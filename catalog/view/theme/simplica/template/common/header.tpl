@@ -82,6 +82,8 @@ $text_service_center = 'Клиентская служба';
 <?php echo $analytic; ?>
 <?php } ?>
 
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
 </head>
 
 <body class="<?php echo $class; ?> s-search m-not_authenticated_user" id="p-search">

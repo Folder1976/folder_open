@@ -5,12 +5,8 @@
     
 //header("Content-Type: text/html; charset=UTF-8");
 //echo "<pre>";  print_r(var_dump( get_defined_vars() )); echo "</pre>";
+//echo "<pre>";  print_r(var_dump( $_SESSION['default']['currency'] )); echo "</pre>";
 
-$title_h1 = "Название категории";
-$category_type['name'] = "Название категории";
-$product_total = 99;
-$min_price = 10;
-$max_price = 100;
 ?>
 
     <main role="main">
@@ -397,24 +393,17 @@ function print_children_filter_list ( $list, $selected_attributes_alias, $catego
                 <div class="b-list_item_page js-list_item_page" data-page="1.0">
                     <div class="l-product_tiles" itemscope itemtype="http://schema.org/AggregateOffer">
                         <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                            <meta itemprop="name" content="<?php echo $title_h1;?>">
-                        <div>
+                            <meta itemprop="name" content="<?php echo $categories['header']; ?>">
+                        </div>
                         <div itemscope itemtype="http://schema.org/AggregateOffer">
                             
-                            <meta itemprop="offerCount"  content="<?php echo $product_total;?>">
-                            <meta itemprop="lowPrice"  content="<?php echo $min_price;?>">
-                            <meta itemprop="highPrice"  content="<?php echo $max_price;?>">
-                            <?php if(defined('RUSSIAN') AND RUSSIAN == true){ ?>
-                                <meta itemprop="priceCurrency" content="RUB">
-                            <?php }else{ ?>
-                                <meta itemprop="priceCurrency" content="USD">
-                            <?php } ?>
+                            <meta itemprop="offerCount"  content="<?php echo $pagination_array['total']; ?>">
+                            <meta itemprop="lowPrice"  content="<?php echo $total_product_info['min_price']; ?>">
+                            <meta itemprop="highPrice"  content="<?php echo $total_product_info['max_price']; ?>">
+                            <meta itemprop="priceCurrency" content="<?php echo $_SESSION['default']['currency']; ?>">
+                            <meta itemprop="category"  content="<?php echo $categories['header']; ?>">
                             
-                            <?php if(isset($category_type)){ ?>
-                                <meta itemprop="category"  content="<?php echo $category_type['name'];?>">
-                            <?php } ?>
-                            
-                        <div>
+                        </div>
 
 
                         <?php foreach ($products as $product) { ?>
@@ -560,13 +549,13 @@ function print_children_filter_list ( $list, $selected_attributes_alias, $catego
 {
     "@context": "http://schema.org/",
     "@type": "Product",
-    "name": "<?php echo str_replace(array('&quot;','"',"'"),'',$title_h1); ?>",
+    "name": "<?php echo str_replace(array('&quot;','"',"'"),'',$categories['header']); ?>",
     "description": "<?php echo str_replace(array('&quot;','&nbsp;','  ','  ','&laquo;','&raquo;',"\n\r","\n\r","\n\r","\n\r","\n\r","\n\r","'",'"'),array('',' ',' ',' ','','','','','','','','','',''),strip_tags($description));?>",
  
     <?php if(isset($category_type)){ ?>
         "category": {
           "@type": "Thing",
-          "name": "<?php echo $category_type['name']; ?>"
+          "name": "<?php echo $categories['header']; ?>"
         },
     <?php } ?>
     
@@ -579,18 +568,14 @@ function print_children_filter_list ( $list, $selected_attributes_alias, $catego
     
     "offers": {
         "@type": "AggregateOffer",
-        "lowPrice": "<?php echo $min_price;?>",
-        "highPrice": "<?php echo $max_price;?>",
-        <?php if(defined('RUSSIAN') AND RUSSIAN == true){ ?>
-        "priceCurrency": "RUB",
-        <?php }else{ ?>
-        "priceCurrency": "USD",
-        <?php } ?>
-        "offerCount": "<?php echo $product_total;?>"
+        "lowPrice": "<?php echo $total_product_info['min_price']; ?>",
+        "highPrice": "<?php echo $total_product_info['max_price']; ?>",
+        "priceCurrency": "<?php echo $_SESSION['default']['currency']; ?>",
+        "offerCount": "<?php echo $pagination_array['total']; ?>",
+        "category": "<?php echo $categories['header']; ?>"
     }
 }
 </script>
-
 
 <?php
 //header("Content-Type: text/html; charset=UTF-8");

@@ -11,5 +11,8 @@ admin/config.php
 system/storage/cache/
 image/cache/
 
+#img
+image/data/
+
 # sxd
 sxd/
