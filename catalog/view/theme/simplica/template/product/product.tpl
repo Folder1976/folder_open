@@ -61,9 +61,10 @@ $text_politic = 'Подтверждая, Вы соглашаетесь с наш
 </span>
 
 
-<main role="main" class="l-pdp js-pdp_main" itemscope="" itemtype="http://schema.org/Product"> 
+<main role="main" class="l-pdp js-pdp_main" itemscope itemtype="http://schema.org/Product"> 
 
-    <div class="l-pdp_primary_content js-pdp_primary_content">
+    <div class="l-pdp_primary_content js-pdp_primary_content" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+
         <div class="b-product_header">
 
             <!-- Хлебные крошки. START -->
@@ -100,7 +101,7 @@ $text_politic = 'Подтверждая, Вы соглашаетесь с наш
                         <?php $count = 1; ?>
                         <?php foreach ($images as $img) { ?>
                         <li class="b-product_thumbnail" data-img-popup="<?php echo $img['popup'];?>" data-index-img="<?php echo $count++; ?>">
-                            <img alt="<?php echo $heading_title; ?>" class="b-product_thumbnail-image" src="<?php echo $img['thumb'];?>" title="<?php echo $heading_title; ?>">
+                            <img itemprop="image" alt="<?php echo $heading_title; ?>" class="b-product_thumbnail-image" src="<?php echo $img['thumb'];?>" title="<?php echo $heading_title; ?>">
                         </li>
                         <?php } ?>
                     </ul>
@@ -130,9 +131,9 @@ $text_politic = 'Подтверждая, Вы соглашаетесь с наш
         <div class="l-product-details js-product_detail js-product_detail-fixed-images" id="product">
             <div class="l-product-details-wrapper">
                 <div class="b-product_content js-product_content">
-                    <h1 class="b-product_container-title"><span class="b-product_name"><?php echo $heading_title; ?></span></h1>
+                    <h1 class="b-product_container-title"><span class="b-product_name" itemprop="name" content="<?php echo str_replace('"', '', $heading_title); ?>"><?php echo $heading_title; ?></span></h1>
                     <h2 class="b-product_container-price">
-                        <div style="" class="b-product_price" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+                        <div style="" class="b-product_price">
                             <h4 style="" class="b-product_price-standard ">
                             <?php if ($price) { ?>
                                 <?php if (!$special) { ?>
@@ -578,7 +579,7 @@ $text_politic = 'Подтверждая, Вы соглашаетесь с наш
                     </li>
                 </ul>
                 <div aria-hidden="false" aria-labelledby="ui-id-1" class="b-product_tabs-content b-product_tabs-details b-product_tabs-content_1 ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab1" role="tabpanel">
-                    <div class="b-product_long_description">
+                    <div class="b-product_long_description" itemprop="description">
                         <?php echo $description; ?>
                     </div>
                     <span class="b-product_tabs-label"><?php echo $text_material; ?></span>
@@ -899,6 +900,50 @@ $('#button-cart, .js-add_to_cart').on('click', function() {
 
 });
 
+</script>
+
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Product",
+  "name": "<?php echo str_replace(array('&quot;','"',"'"),'',$product['name']); ?>",
+    <?php if(isset($mainimage)){ ?>
+  "image": "http:<?php echo $mainimage; ?>",
+    <?php } ?>
+  "description": "<?php echo str_replace(array('&quot;','&nbsp;','  ','  ','&laquo;','&raquo;',"\n\r","\n\r","\n\r","\n\r","\n\r","\n\r","'",'"'),array('',' ',' ',' ','','','','','','','','','',''),strip_tags($description));?>",
+  "sku": "<?php echo $sku; ?>",
+  "brand": {
+    "@type": "Brand",
+    "name": "<?php echo $manufacturer; ?>"
+  },
+    <?php if(isset($category_type)){ ?>
+        "category": {
+          "@type": "Thing",
+          "name": "<?php echo $category_type['name']; ?>"
+        },
+    <?php } ?>
+  "offers": {
+    "@type": "Offer",
+    <?php if(defined('RUSSIAN') AND RUSSIAN == true){ ?>
+    "priceCurrency": "RUB",
+    <?php }else{ ?>
+    "priceCurrency": "USD",
+    <?php } ?>
+    "price": "<?php echo $product_price; ?>",
+    "priceValidUntil": "<?php echo date('Y-m-d', strtotime('+1 year')); ?>",
+    
+    <?php if($stock){ ?>
+    "availability": "http://schema.org/InStock",
+    <?php }else{ ?>
+    "availability": "http://schema.org/OutOfStock",
+    <?php } ?>
+    "seller": {
+      "@type": "Organization",
+      "name": "<?php echo str_replace(array('&quot;','"',"'"),'',$config_owner); ?>"
+    }
+  }
+}
 </script>
 
 <?php echo $footer; ?>

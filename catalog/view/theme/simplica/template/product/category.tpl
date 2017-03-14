@@ -5,6 +5,12 @@
     
 //header("Content-Type: text/html; charset=UTF-8");
 //echo "<pre>";  print_r(var_dump( get_defined_vars() )); echo "</pre>";
+
+$title_h1 = "Название категории";
+$category_type['name'] = "Название категории";
+$product_total = 99;
+$min_price = 10;
+$max_price = 100;
 ?>
 
     <main role="main">
@@ -389,7 +395,26 @@ function print_children_filter_list ( $list, $selected_attributes_alias, $catego
 
             <div class="l-search_result-content js-search_result-content m-search_layout-демонстрация m-four-columns">
                 <div class="b-list_item_page js-list_item_page" data-page="1.0">
-                    <div class="l-product_tiles">
+                    <div class="l-product_tiles" itemscope itemtype="http://schema.org/AggregateOffer">
+                        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                            <meta itemprop="name" content="<?php echo $title_h1;?>">
+                        <div>
+                        <div itemscope itemtype="http://schema.org/AggregateOffer">
+                            
+                            <meta itemprop="offerCount"  content="<?php echo $product_total;?>">
+                            <meta itemprop="lowPrice"  content="<?php echo $min_price;?>">
+                            <meta itemprop="highPrice"  content="<?php echo $max_price;?>">
+                            <?php if(defined('RUSSIAN') AND RUSSIAN == true){ ?>
+                                <meta itemprop="priceCurrency" content="RUB">
+                            <?php }else{ ?>
+                                <meta itemprop="priceCurrency" content="USD">
+                            <?php } ?>
+                            
+                            <?php if(isset($category_type)){ ?>
+                                <meta itemprop="category"  content="<?php echo $category_type['name'];?>">
+                            <?php } ?>
+                            
+                        <div>
 
 
                         <?php foreach ($products as $product) { ?>
@@ -528,6 +553,42 @@ function print_children_filter_list ( $list, $selected_attributes_alias, $catego
     $('.js-mob-filter-popup-link').on('click', function(){
         $(this).siblings('.js-mob-filter-popup').toggleClass('h-mob-hidden');
     });
+</script>
+
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org/",
+    "@type": "Product",
+    "name": "<?php echo str_replace(array('&quot;','"',"'"),'',$title_h1); ?>",
+    "description": "<?php echo str_replace(array('&quot;','&nbsp;','  ','  ','&laquo;','&raquo;',"\n\r","\n\r","\n\r","\n\r","\n\r","\n\r","'",'"'),array('',' ',' ',' ','','','','','','','','','',''),strip_tags($description));?>",
+ 
+    <?php if(isset($category_type)){ ?>
+        "category": {
+          "@type": "Thing",
+          "name": "<?php echo $category_type['name']; ?>"
+        },
+    <?php } ?>
+    
+    <?php if(isset($filter_manufacturer)){ ?>
+        "brand": {
+          "@type": "Brand",
+          "name": "<?php echo $filter_manufacturer; ?>"
+        },
+    <?php } ?>
+    
+    "offers": {
+        "@type": "AggregateOffer",
+        "lowPrice": "<?php echo $min_price;?>",
+        "highPrice": "<?php echo $max_price;?>",
+        <?php if(defined('RUSSIAN') AND RUSSIAN == true){ ?>
+        "priceCurrency": "RUB",
+        <?php }else{ ?>
+        "priceCurrency": "USD",
+        <?php } ?>
+        "offerCount": "<?php echo $product_total;?>"
+    }
+}
 </script>
 
 

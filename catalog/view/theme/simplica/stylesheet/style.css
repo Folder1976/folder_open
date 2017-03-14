@@ -1260,8 +1260,7 @@ fieldset,.f-fieldset {
 }
 
 .b-primary_logo-link img {
-    max-height: 70px;
-    width: auto;
+    width: 85px;
     margin-bottom: -30px;
     margin-top: -10px;
 }

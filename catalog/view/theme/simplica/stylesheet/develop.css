@@ -1283,6 +1283,38 @@ body.checkout-checkout {
 .h-disabled {
     opacity: 0.4;
 }
+a:hover, .g-link:hover {
+    color: #f19514;
+}
+.b-menu_category .b-menu_category-item .b-menu_category-link:hover {
+    color: #f19514;
+}
+.b-menu_category-level_2-link:hover, .b-menu_category-level_2-link h2:hover, .b-menu_category-level_2-link h1:hover {
+    color: #f19514;
+}
+
+.varying_block-btn_black,
+.l-homepage-link {
+    background-color: #f19514;
+    border: 1px solid #f19514;
+    border-radius: 4px;
+}
+.varying_block-btn_black:hover,
+.l-homepage-link:hover {
+    color: #f19514;
+}
+.l-search_result-options .b-change_view-type:hover {
+    color: #f19514;
+}
+.b-breadcrumb-item::before, .b-product_breadcrumbs-item::before {
+    content: '';
+    background: url(../img/folder_ico.png);
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: 3px;
+}
 
 
 /* Авторизация/регистрация  START */

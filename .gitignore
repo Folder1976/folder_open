@@ -4,7 +4,12 @@ config_cron_develop.php
 config_cron_main.php
 admin/config.php
 .htaccess
+.assets/
+
 
 # cache
 system/storage/cache/
 image/cache/
+
+# sxd
+sxd/
