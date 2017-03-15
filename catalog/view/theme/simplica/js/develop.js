@@ -135,9 +135,13 @@ $('.b-change_view').on('click', '.b-change_view-type', function(){
         $('.b-change_view-type').removeClass('b-change_view-type-active');
         $(this).addClass('b-change_view-type-active');
         if ( $(this).hasClass('js-two-columns') ) {
-            $('.js-search_result-content').removeClass("m-four-columns");
-        } else {
-            $('.js-search_result-content').addClass("m-four-columns");
+            $('.js-search_result-content').removeClass("m-four-columns").removeClass("m-six-columns").addClass("m-two-columns");
+        }
+        if ( $(this).hasClass('js-four-columns') ) {
+            $('.js-search_result-content').removeClass("m-two-columns").removeClass("m-six-columns").addClass("m-four-columns");
+        }
+        if ( $(this).hasClass('js-six-columns') ) {
+            $('.js-search_result-content').removeClass("m-four-columns").removeClass("m-two-columns").addClass("m-six-columns");
         }
     }
 });
