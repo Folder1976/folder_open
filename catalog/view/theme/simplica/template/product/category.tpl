@@ -265,8 +265,20 @@ function print_children_filter_list ( $list, $selected_attributes_alias, $catego
                                         <div class="b-refinement-sub_title js-mob-filter-popup-link"><?php echo $text_category; ?></div>
                                         <div class="js-scrollbar scrollbar-light b-refinement-ul js-mob-filter-popup h-mob-hidden">
                                             <?php if ( isset($subcategories) AND count($subcategories) > 0) {
-                                                print_children_list($subcategories, $selected_attributes_alias, $category_alias,$language_href);
-                                            } ?>
+                                                //print_children_list($subcategories, $selected_attributes_alias, $category_alias,$language_href);
+                                            ?>
+                                            <ul class="b-refinement-list">
+                                                <?php foreach($categories['categories'] as $cat) { ?>
+                                                    <li class="b-refinement-item">
+                                                    <?php if ( strpos($selected_attributes_alias, $cat['href']) !== false) { ?>
+                                                        <a class="b-refinement-link b-refinement-link--active" href="/<?php echo $language_href.$cat['href']; ?>"><?php echo $cat['name']; ?></a>
+                                                    <?php } else { ?>
+                                                        <a class="b-refinement-link " href="/<?php echo $language_href.$cat['href']; ?>"><?php echo $cat['name']; ?></a>
+                                                    <?php } ?>
+                                                    </li>
+                                                <?php } ?>
+                                            </ul>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <?php } ?>
@@ -342,7 +354,7 @@ function print_children_filter_list ( $list, $selected_attributes_alias, $catego
                                     <div class="b-refinement">
                                         <div class="b-refinement-sub_title js-mob-filter-popup-link"><?php echo $text_manufacturer; ?></div>
                                         <div class="js-scrollbar scrollbar-light b-refinement-ul js-mob-filter-popup h-mob-hidden">
-                                            <ul class="b-refinement-list">
+                                            <ul class="b-refinement-list b-refinement-list_2-col">
                                             <?php foreach ($manufacturers as $attribut) { ?>
                                                 <li class="b-refinement-item">
                                                     <?php if ( strpos($selected_attributes_alias, $attribut['code']) !== false) { ?>

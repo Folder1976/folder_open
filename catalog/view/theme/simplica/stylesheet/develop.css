@@ -985,6 +985,7 @@ margin-left: 0px;
 .b-refinement-ul {
     max-height: 240px;
     height: 100%;
+    overflow: auto;
 }
 
 .l-search_result-wrapper .b-refinement-list, .l-search_result-wrapper .b-refinement .b-swatches {
@@ -1201,6 +1202,33 @@ a:hover, .g-link:hover {
     position: relative;
     top: 3px;
 }
+
+
+
+
+
+/* Header START */
+.b-header_main-top .b-phone {
+    display: inline-block;
+    position: relative;
+    font-size: 1.7em;
+    color: #f00;
+}
+.b-phone span {
+    text-align: center;
+    color: #f00;
+}
+.b-header_main-top .b-phone .kod {
+    color: #f19514;
+    display: block;
+    position: relative;
+    top: -24px;
+    left: 8px;
+}
+/* Header END */
+
+
+
 
 
 /* Авторизация/регистрация  START */
@@ -1431,12 +1459,25 @@ a:hover, .g-link:hover {
 .b-refinement_dropdown-title {
     text-transform: uppercase;
 }
+.l-search_result-wrapper .b-refinement_dropdown {
+    float: right;
+    padding-right: 100px;
+}
 .b-refinement_dropdown-flyout {
     margin-top: 15px;
 }
 .b-refinement-sub_title {
     font-weight: bold;
 }
+.l-search_result-wrapper .b-refinement_price_range-value .b-refinement_containter {
+    text-align: right;
+    padding: 60px 144px 40px 50%;
+}
+.l-search_result-wrapper .b-refinement_containter .b-filter-buttons {
+    float: none;
+    padding-top: 17px;
+}
+
 .l-search_result-left .b-refinement-list .b-refinement-list {
     padding-left: 10px;
 }
@@ -1461,6 +1502,11 @@ a:hover, .g-link:hover {
 .m-six-columns .b-product_tile {
     width: 16.4%;
     margin: 0 0.1% 40px;
+}
+
+.b-refinement-list_2-col li {
+    width: 50%;
+    float: left;
 }
 /* category.tpl END */
 
@@ -1556,6 +1602,21 @@ a:hover, .g-link:hover {
 }
 .b-checkout_content_block-toggle_title--open::before {
     content: "";
+}
+.b-mini_cart-right, .b-wishlist_flyout-list-right {
+    float: left;
+}
+.b-mini_cart-left, .b-wishlist_flyout-list-left {
+    float: right;
+}
+.b-owl_carousel .b-owl_carousel-nav_prev, .b-owl_carousel .b-owl_carousel-nav_next {
+    color: #f19514;
+}
+.l-mini_cart-product {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+.b-owl_carousel .owl-stage-outer {
+    overflow: initial;
 }
 /* Корзина END */
 

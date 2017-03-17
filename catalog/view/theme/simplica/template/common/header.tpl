@@ -392,8 +392,13 @@ $text_service_center = 'Клиентская служба';
                     </div>
                     <div class="b-primary_logo">
                         <a class="b-primary_logo-link" href="/<?php echo $language_href; ?>"><img alt="" src="catalog/view/theme/simplica/img/logo.png" title=""></a>
+                        <div class="b-phone">
+                            <a href="tel:<?php echo preg_replace('/[^0-9+]/', '', $telephone); ?>">
+                            <span class="kod"><?php echo substr($telephone, 0, 7); ?></span>
+                            <span><?php echo substr($telephone, 8); ?></span>
+                            </a>
+                        </div>
                     </div>
-                 
                     <div class="l-main_navigation">
                         <nav class="b-main_navigation" id="navigation" role="navigation">
                             <ul class="b-menu_category">
