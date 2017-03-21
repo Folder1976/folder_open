@@ -61,10 +61,9 @@ $text_politic = 'Подтверждая, Вы соглашаетесь с наш
 </span>
 
 
-<main role="main" class="l-pdp js-pdp_main" itemscope itemtype="http://schema.org/Product"> 
+<main role="main" class="l-pdp js-pdp_main" itemscope="" itemtype="http://schema.org/Product"> 
 
     <div class="l-pdp_primary_content js-pdp_primary_content">
-
         <div class="b-product_header">
 
             <!-- Хлебные крошки. START -->
@@ -133,7 +132,7 @@ $text_politic = 'Подтверждая, Вы соглашаетесь с наш
                 <div class="b-product_content js-product_content">
                     <h1 class="b-product_container-title"><span class="b-product_name" itemprop="name" content="<?php echo str_replace('"', '', $heading_title); ?>"><?php echo $heading_title; ?></span></h1>
                     <h2 class="b-product_container-price">
-                        <div style="" class="b-product_price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                        <div style="" class="b-product_price" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
                             <h4 style="" class="b-product_price-standard ">
                             <?php if ($price) { ?>
                                 <?php if (!$special) { ?>

@@ -22,8 +22,8 @@ if(strpos($_SERVER['PHP_SELF'], $file[count($file)-1]) !== false){
 
 // ================= ЗАГРУЗКА КАРТИНОК
 //================================================================== ИМПОРТ
-	$uploaddir = DIR_IMAGE.'product/';
-	$uploaddir_s = 'product/';
+	$uploaddir = DIR_IMAGE;//.'product/';
+	$uploaddir_s = '';//'product/';
 	include_once('class/shops.class.php');
 	$Shops = new Shops($mysqli, DB_PREFIX);
 	include_once('class/product.class.php');
@@ -309,18 +309,19 @@ echo '<br>Кодировка сервера - '.mb_internal_encoding();
 					//echo '<br>'.$uploaddir.$image_to;	
 					if(!file_exists($uploaddir.$image_to) OR isset($_GET['file_reload'])){
 						$TdateCode = DownloadFileNoCode($image_from);
-						//$TdateCode1 = DownloadFile($image_from);
+						$TdateCode1 = DownloadFile($image_from);
 						if(file_exists($uploaddir.$image_to)){
 							unlink($uploaddir.$image_to);
 						}
 						
-						//echo '<br>'.$image_from.'<br>'.$uploaddir.$image_to;
-		
+						//echo '<br>'.$image_from.'<br>'.$uploaddir.$image_to;die();
+	
 						if($TdateCode){
 						
 							if(!file_put_contents($uploaddir.$image_to, $TdateCode)){
 							//if(!file_put_contents($uploaddir.'from_url_tmp1_'.$count.'.jpg', $TdateCode)){
 								echo '<br>Не удалось загрузить фаил - '.$image_from;
+								die();
 								continue;
 							}else{
 								$count++;

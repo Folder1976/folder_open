@@ -19,10 +19,6 @@
       <li><a href="<?php echo $information; ?>"><?php echo $text_information; ?></a></li>
     </ul>
   </li>
-  <li><a class="parent" target="_blank" href="<?php echo HTTP_SERVER.'liveimport' ?>">
-      <img title="LiveImport" src="liveimport/lib/static/icon.png" style="vertical-align:middle;">
-      <span><font color="#8de43c">Live</font>Import</span></a>
-  </li>
   <li id="extension"><a class="parent"><i class="fa fa-puzzle-piece fa-fw"></i> <span><?php echo $text_extension; ?></span></a>
     <ul>
       <li><a href="<?php echo $installer; ?>"><?php echo $text_installer; ?></a></li>
@@ -122,12 +118,6 @@
       <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
     </ul>
   </li>
-  <li id="e-d-i">
-    <a class="parent" href="<?php echo $edi_link; ?>"><i class="fa fa-file-excel-o"></i><span>Import / Export</span></a>
-  </li>
-  <li id="structure-editor">
-    <a class="parent" href="<?php print $sted_link ?>"><i class="fa fa-gavel"></i><span>Молоточек</span></a>
-  </li>
   <li id="system"><a class="parent"><i class="fa fa-cog fa-fw"></i> <span><?php echo $text_system; ?></span></a>
     <ul>
       <li><a href="<?php echo $setting; ?>"><?php echo $text_setting; ?></a></li>
@@ -174,7 +164,7 @@
       </li>
     </ul>
   </li>
-   <li id="reports"><a class="parent"><i class="fa fa-bar-chart-o fa-fw"></i> <span><?php echo $text_reports; ?></span></a>
+  <li id="reports"><a class="parent"><i class="fa fa-bar-chart-o fa-fw"></i> <span><?php echo $text_reports; ?></span></a>
     <ul>
       <li><a class="parent"><?php echo $text_sale; ?></a>
         <ul>
@@ -210,6 +200,6 @@
     </ul>
   </li>
   
-  <li id="backend"><a href="/<?php echo TMP_DIR; ?>backend"><i class="fa fa-cog fa-fw"></i> <span>Администрация</span></a>
+  <li id="backend"><a href="/<?php echo TMP_DIR; ?>backend"<span>>> Администрация</span></a>
   </li>
 </ul>

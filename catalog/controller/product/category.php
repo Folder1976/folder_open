@@ -375,6 +375,7 @@ class ControllerProductCategory extends Controller {
 				}
 				
 			}
+			
 
 		
 			$data['text_refine'] = $this->language->get('text_refine');
@@ -1194,6 +1195,9 @@ class ControllerProductCategory extends Controller {
 	
 			foreach($product_tags as $find => $replace){
 
+			
+				if($find == '@block_name_rod@') $replace = ''.$category_info['name'];
+			
 				$data['heading_title'] = str_replace($find, $replace, $data['heading_title']);
 				$data['description'] = str_replace($find, $replace, $data['description']);
 				$this->document->setTitle(str_replace($find, $replace, $this->document->getTitle()));

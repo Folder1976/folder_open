@@ -5,6 +5,9 @@ class ModelCatalogProduct extends Model {
 		$this->event->trigger('pre.admin.product.add', $data);
 
 		if(!isset($data['moderation_id'])) $data['moderation_id'] = 0;
+		if(!isset($data['original_url'])) $data['original_url'] = '';
+		if(!isset($data['original_code'])) $data['original_code'] = '';
+		if(!isset($data['zakup'])) $data['zakup'] = 0;
 		
 		$data['code'] = $data['keyword'];
 		
@@ -50,6 +53,10 @@ class ModelCatalogProduct extends Model {
 		}
 
 		foreach ($data['product_description'] as $language_id => $value) {
+			
+			if(!isset($value['description_detail'])) $value['description_detail'] = '';
+			if(!isset($value['meta_keyword'])) $value['meta_keyword'] = '';
+		
 			$this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET
 							 product_id = '" . (int)$product_id . "',
 							 language_id = '" . (int)$language_id . "',
@@ -270,7 +277,11 @@ class ModelCatalogProduct extends Model {
 		$this->event->trigger('pre.admin.product.edit', $data);
 
 		if(!isset($data['moderation_id'])) $data['moderation_id'] = 0;
-		
+		if(!isset($data['original_url'])) $data['original_url'] = '';
+		if(!isset($data['original_code'])) $data['original_code'] = '';
+		if(!isset($data['zakup'])) $data['zakup'] = 0;
+	
+	
 		$data['code'] = $data['keyword'];
 		
 		$this->db->query("UPDATE " . DB_PREFIX . "product SET
@@ -315,6 +326,10 @@ class ModelCatalogProduct extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_description WHERE product_id = '" . (int)$product_id . "'");
 
 		foreach ($data['product_description'] as $language_id => $value) {
+			
+			if(!isset($value['description_detail'])) $value['description_detail'] = '';
+			if(!isset($value['meta_keyword'])) $value['meta_keyword'] = '';
+	
 			$this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET
 								product_id = '" . (int)$product_id . "',
 								language_id = '" . (int)$language_id . "',
@@ -622,9 +637,13 @@ class ModelCatalogProduct extends Model {
 	}
 	public function getProducts($data = array()) {
 		$sql = "SELECT * FROM " . DB_PREFIX . "product p
-					LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id)
-					LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p.product_id = p2c.product_id)
-					WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+					LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) ";
+					
+		if (!empty($data['filter_category']) AND is_array($data['filter_category'])) {	
+			$sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p.product_id = p2c.product_id) ";
+		}
+		
+		$sql .=	" WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
 		if (!empty($data['filter_name'])) {
 			$sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
@@ -1252,6 +1271,65 @@ class ModelCatalogProduct extends Model {
             return $body;
         
     }
-  
+  	
+	/**
+	 * Get product type
+	 *
+	 * @param int $product_id
+	 * @return array|null
+	 */
+	public function getProductType($product_id) {
+
+		if (!is_numeric($product_id)) {
+			return null;
+		}
+
+		// Select product type id
+		$p = DB_PREFIX;
+		$sql = "SELECT `product_type_id` FROM `{$p}product` WHERE `product_id` = $product_id";
+		$result = $this->db->query($sql);
+		if ($result->num_rows == 0) {
+			return null;
+		}
+		$product_type_id = (int)$result->row['product_type_id'];
+		unset($result);
+		if (!$product_type_id) {
+			return null;
+		}
+
+		// Select product type data
+		$sql = "SELECT * FROM `{$p}product_type` WHERE `product_type_id` = $product_type_id";
+		$result = $this->db->query($sql);
+		if ($result->num_rows == 0) {
+			return null;
+		}
+
+		return $result->row;
+	}
+
+	public function setProductType($product_id, $code) {
+
+		if (!$code || !is_numeric($product_id)) {
+			return false;
+		}
+
+		// Select product type id
+		$p = DB_PREFIX;
+		$code = $this->db->escape(trim($code));
+		$sql = "SELECT `product_type_id` FROM `{$p}product_type` WHERE `product_type_kod` = '$code'";
+		$result = $this->db->query($sql);
+		if ($result->num_rows == 0) {
+			return false;
+		}
+		$product_type_id = $result->row['product_type_id'];
+		unset($result);
+
+		// Update product
+		$sql = "UPDATE `{$p}product` SET `product_type_id` = $product_type_id WHERE `product_id` = $product_id";
+		$this->db->query($sql);
+
+		return true;
+	}
+
 	
 }

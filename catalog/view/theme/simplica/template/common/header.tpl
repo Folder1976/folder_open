@@ -27,6 +27,15 @@ $text_service_center = 'Клиентская служба';
 Осталось без перевода:
 2) помоему это не задействовано (смысл переводить?) : "Вы в Украина", "Верный язык?", "Верная страна?", "Оставить", "Изменить"
 */
+    $server_name = '//'.$_SERVER['SERVER_NAME'].'/';
+
+
+	if($_SERVER['HTTPS']){
+		$server_name = str_replace('//', 'https://', $server_name);
+	}elseif(defined('USE_CDN') AND USE_CDN == true){
+		$server_name = str_replace('//', 'http://', $server_name);
+	}
+	
 
 ?>
 <!DOCTYPE html>
@@ -48,6 +57,17 @@ $text_service_center = 'Клиентская служба';
 <?php if ($keywords) { ?>
 <meta name="keywords" content= "<?php echo $keywords; ?>" />
 <?php } ?>
+
+	<?php if(isset($og)){ ?>
+		
+		<meta property="og:type" content="<?php echo $og['type'];?>" />
+        <meta property="og:title" content="<?php echo $og['name'];?>" />
+        <meta property="og:url" content="<?php echo $server_name.$og['keyword'];?>" />
+        <meta property="og:image" content="<?php echo $server_name.$og['image'];?>" />
+        <meta property="og:description" content="<?php echo str_replace('"',"'",$og['meta_description']);?>" />
+	
+	<?php } ?>
+
 <script src="<?php echo HTTPS_CATALOG; ?>catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
 <!-- <link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" /> -->
 <script src="<?php echo HTTPS_CATALOG; ?>catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>

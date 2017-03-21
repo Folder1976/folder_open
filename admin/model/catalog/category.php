@@ -5,10 +5,23 @@ class ModelCatalogCategory extends Model {
 	public function addCategory($data) {
 		$this->event->trigger('pre.admin.category.add', $data);
 		
+		//Найдем одноименную категорию
+		foreach ($data['category_description'] as $language_id => $value) {
+			
+			$category_id_tmp = $this->getCategoryIdOnName($value['name']);
+			if($category_id_tmp){
+				return $category_id_tmp;
+			}
+			
+		}
+		
 		$category_id = '';
 		if(isset($data['category_id']) AND $data['category_id'] > 0){
 			$category_id = $data['category_id'];
 		}
+		
+		if(!isset($data['is_filter'])) $data['is_filter'] = 0;
+		
 		
 		$data['code'] = $data['keyword'];
 		
@@ -36,7 +49,7 @@ class ModelCatalogCategory extends Model {
 			if(!isset($value['name_sush'])) $value['name_sush'] = '';
 			if(!isset($value['name_rod'])) $value['name_rod'] = '';
 			if(!isset($value['name_several'])) $value['name_several'] = '';
-	
+			if(!isset($value['meta_keyword'])) $value['meta_keyword'] = 'Купить '.$value['name'];
 			
 			$this->db->query("INSERT INTO " . DB_PREFIX . "category_description SET
 										category_id = '" . (int)$category_id . "',
@@ -83,6 +96,8 @@ class ModelCatalogCategory extends Model {
 			}
 		}
 
+		if(!isset($data['category_store']) OR !is_array($data['category_store'])) $data['category_store'] = array('0' => '0');
+		
 		if (isset($data['category_store'])) {
 			foreach ($data['category_store'] as $store_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "category_to_store SET category_id = '" . (int)$category_id . "', store_id = '" . (int)$store_id . "'");
@@ -170,7 +185,7 @@ class ModelCatalogCategory extends Model {
 			if(!isset($value['name_sush'])) $value['name_sush'] = '';
 			if(!isset($value['name_rod'])) $value['name_rod'] = '';
 			if(!isset($value['name_several'])) $value['name_several'] = '';
-	
+			if(!isset($value['meta_keyword'])) $value['meta_keyword'] = 'Купить '.$value['name'];
 			
 			$sql = "INSERT INTO " . DB_PREFIX . "category_description SET
 									category_id = '" . (int)$category_id . "',
@@ -268,6 +283,8 @@ class ModelCatalogCategory extends Model {
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_store WHERE category_id = '" . (int)$category_id . "'");
 
+		if(!isset($data['category_store']) OR !is_array($data['category_store'])) $data['category_store'] = array('0' => '0');
+		
 		if (isset($data['category_store'])) {
 			foreach ($data['category_store'] as $store_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "category_to_store SET category_id = '" . (int)$category_id . "', store_id = '" . (int)$store_id . "'");
@@ -385,8 +402,40 @@ class ModelCatalogCategory extends Model {
 		}
 
 	}
+	public function getCategoryStore($category_id) {
+		$query = $this->db->query("SELECT store_id
+									FROM " . DB_PREFIX . "category_to_store
+									WHERE category_id = '" . (int)$category_id . "'");
+		if ($query->num_rows == 0) {
+			return -1;
+		}
+
+		return $query->row['store_id'];
+	}	
+	public function getCategoryCarfitString($category_id) {
+		return '1';
 	
-	
+		$sql = "SELECT category_carfit_id, category_id, product_carfit_kod AS code
+				FROM " . DB_PREFIX . "category_to_carfit
+				LEFT JOIN " . DB_PREFIX . "product_carfit ON category_carfit_id = product_carfit_id
+				WHERE category_id='$category_id';";
+		
+		$query = $this->db->query($sql);
+		if ($query->num_rows == 0) {
+			return '';
+		}
+
+		$return = array();
+		$return['id_str'] = '';
+		
+		foreach($query->rows as $tmp){
+			$return['id_str'] 	.= $tmp['code'].'#';
+		}
+		
+		$return['id_str'] = trim($return['id_str'], ' ,#');
+		
+		return $return['id_str'];
+	}
 	public function repairCategories($parent_id = 0) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category WHERE parent_id = '" . (int)$parent_id . "'");
 
@@ -414,6 +463,16 @@ class ModelCatalogCategory extends Model {
 		die();
 	}
 
+	public function getCategoryIdOnName($category_name) {
+		$sql = "SELECT category_id FROM " . DB_PREFIX . "category_description WHERE name LIKE '" . $category_name . "' LIMIT 1";
+		$query = $this->db->query($sql);
+
+		if($query->num_rows){
+			return $query->row['category_id'];
+		}
+		
+		return false;
+	}
 	public function getCategory($category_id) {
 		$sql = "SELECT DISTINCT *, code as keyword, (SELECT GROUP_CONCAT(cd1.name ORDER BY level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;')
 				FROM " . DB_PREFIX . "category_path cp

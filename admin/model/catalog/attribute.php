@@ -24,7 +24,21 @@ class ModelCatalogAttribute extends Model {
 
 		return $attribute_id;
 	}
+	public function getAttributesByCategoryIdWhereContentsIsNotEmpty($categoryId) {
 
+		$categoryId = (int)$this->db->escape($categoryId);
+		$prefix = DB_PREFIX;
+		$sql = "SELECT DISTINCT `ad`.`name`, `ad`.`attribute_id`"
+			. " FROM `" . DB_PREFIX . "attribute_description` `ad`"
+			. " INNER JOIN `" . DB_PREFIX . "product_attribute` `pa` ON `pa`.`attribute_id` = `ad`.`attribute_id`"
+			. " INNER JOIN `" . DB_PREFIX . "product_to_category` `p2c` ON `p2c`.`product_id` = `pa`.`product_id`"
+			. " INNER JOIN `" . DB_PREFIX . "category_path` `cp` ON `cp`.`category_id` = `p2c`.`category_id`"
+			. " WHERE `cp`.`path_id` = $categoryId AND (`pa`.`text` IS NOT NULL AND LENGTH(`pa`.`text`) > 0) "
+			. " ORDER BY LCASE(`ad`.`name`)";
+		$result = $this->db->query($sql);
+
+		return $result->rows;
+    }
 	public function editAttribute($attribute_id, $data) {
 		$this->event->trigger('pre.admin.attribute.edit', $data);
 

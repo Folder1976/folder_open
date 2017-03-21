@@ -244,6 +244,30 @@ $data[''] = $this->language->get('');
 		if (isset($this->request->get['route'])) {
 			if (isset($this->request->get['product_id'])) {
 				$class = '-' . $this->request->get['product_id'];
+				
+				//Это для разметки мета OG
+				$this->load->model('catalog/product');
+				$data['og'] 			= $this->model_catalog_product->getProduct($this->request->get['product_id']);
+				$data['og']['type'] 	= 'product';
+				$data['og']['name'] 	= $this->document->getTitle();
+				$data['og']['keyword'] 	= $this->request->get['_route_'].'';
+				$data['og']['image'] 	= "image/".$data['og']['image'];
+				$data['og']['meta_description'] = $data['og']['meta_description'];
+				
+			}elseif (isset($this->request->get['category_id'])) {
+				
+				//Это для разметки мета OG
+				$this->load->model('catalog/category');
+				$class = '';
+				$category = $this->model_catalog_category->getCategory($this->request->get['category_id']);
+				
+				$data['og'] = $category;
+				$data['og']['type'] 	= 'product.group';
+				$data['og']['name'] 	= $this->document->getTitle();
+				$data['og']['keyword'] 	= $this->request->get['_route_'];
+				$data['og']['image'] 	= "image/placeholder_210.png";
+				$data['og']['meta_description'] = str_replace('@block_name_rod@', $category['name'], $category['meta_description']);;
+				
 			} elseif (isset($this->request->get['path'])) {
 				$class = '-' . $this->request->get['path'];
 			} elseif (isset($this->request->get['manufacturer_id'])) {
