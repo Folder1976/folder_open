@@ -1221,10 +1221,20 @@ a:hover, .g-link:hover {
 .b-phone span {
     text-align: center;
     color: #f19514;
+    white-space: nowrap;
 }
-
 .b-header_close_button {
     z-index: 1;
+}
+@media screen and (max-width: 520px) {
+    .b-phone span {
+       font-size: 0.9em;
+    }
+}
+@media screen and (max-width: 390px) {
+    .b-phone span {
+       font-size: 0.55em;
+    }
 }
 /* Header END */
 
