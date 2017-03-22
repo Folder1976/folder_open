@@ -1,5 +1,5 @@
 html {
-    font-family: "FuturaStd-Medium",Arial,sans-serif;
+    font-family: "Open Sans",Arial,sans-serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     height: 100%;
@@ -9,7 +9,7 @@ ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 body {
@@ -119,7 +119,7 @@ button,input,optgroup,select,textarea {
     color: inherit;
     font: inherit;
     margin: 0;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 button {
@@ -424,7 +424,7 @@ td,th {
 @font-face {
     font-family: "FuturaStd-Medium";
     src: url(../fonts/FuturaStd-Medium.eot);
-    src: url(../fonts/FuturaStd-Medium.eot?#iefix) format("embedded-opentype"),url(../fonts/FuturaStd-Medium.woff2) format("woff2"),url(../fonts/FuturaStd-Medium.woff) format("woff"),url(../fonts/FuturaStd-Medium.ttf) format("truetype"),url(../fonts/FuturaStd-Medium.svg#FuturaStd-Medium) format("svg");
+    src: url(../fonts/FuturaStd-Medium.eot?#iefix) format("embedded-opentype"),url(../fonts/FuturaStd-Medium.woff2) format("woff2"),url(../fonts/FuturaStd-Medium.woff) format("woff"),url(../fonts/FuturaStd-Medium.ttf) format("truetype"),url(../fonts/FuturaStd-Medium.svg#Open Sans) format("svg");
     font-weight: 400;
     font-style: normal;
 }
@@ -527,14 +527,14 @@ html {
 }
 
 .t-title-light-60 {
-    font: normal 200 60px/.933 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: normal 200 60px/.933 Open Sans,Arial,Times,sans-serif;
     color: #666;
     padding: 5px 0;
     text-transform: uppercase;
 }
 
 .t-title-light-42 {
-    font: normal 200 42px/.933 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: normal 200 42px/.933 Open Sans,Arial,Times,sans-serif;
     color: #666;
     padding: 5px 0;
     text-transform: uppercase;
@@ -559,12 +559,12 @@ html {
 }
 
 .t-text-14 {
-    font: normal normal 14px/1.33em FuturaStd-Medium,Arial,Times,sans-serif;
+    font: normal normal 14px/1.33em Open Sans,Arial,Times,sans-serif;
     padding: 5px 0;
 }
 
 .t-text-12 {
-    font: normal normal 12px/1.33em FuturaStd-Medium,Arial,Times,sans-serif;
+    font: normal normal 12px/1.33em Open Sans,Arial,Times,sans-serif;
     padding: 5px 0;
 }
 
@@ -593,7 +593,7 @@ a:hover,.g-link:hover {
 }
 
 .t-table td,.t-table th {
-    font: normal normal 12px/18px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: normal normal 12px/18px Open Sans,Arial,Times,sans-serif;
     border-bottom: 1px solid #666;
     padding: 15px 5px;
     text-align: center;
@@ -617,22 +617,22 @@ h1 a,h2 a,h3 a,h4 a,h5 a,h6 a {
 }
 
 h1 {
-    font: 18px/24px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/24px Open Sans,Arial,Times,sans-serif;
 }
 
 h2 {
-    font: 12px/20px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/20px Open Sans,Arial,Times,sans-serif;
 }
 
 h3 {
-    font: 12px/20px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/20px Open Sans,Arial,Times,sans-serif;
     text-transform: none;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 h4,h5 {
-    font: 10px/18px FuturaStd-Medium,Arial,Times,sans-serif;
-    letter-spacing: 2px;
+    font: 10px/18px Open Sans,Arial,Times,sans-serif;
+    letter-spacing: 0px;
 }
 
 h5 {
@@ -643,7 +643,7 @@ p,ul,ol,table,iframe {
     margin-bottom: 20px;
     font-size: 12px;
     line-height: 18px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 table {
@@ -674,8 +674,8 @@ table td {
 }
 
 p {
-    font: 12px/18px FuturaStd-Medium,Arial,Times,sans-serif;
-    letter-spacing: 2px;
+    font: 12px/18px Open Sans,Arial,Times,sans-serif;
+    letter-spacing: 0px;
 }
 
 .text-big {
@@ -725,7 +725,7 @@ button,.g-button,.g-button_secondary,.g-button_link,.b-mini_cart-checkout_btn,.b
     color: #fff;
     cursor: pointer;
     display: block;
-    font: 12px/38px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/38px Open Sans,Arial,Times,sans-serif;
     padding: 0 18px;
     text-align: center;
     text-decoration: none;
@@ -733,7 +733,7 @@ button,.g-button,.g-button_secondary,.g-button_link,.b-mini_cart-checkout_btn,.b
     -webkit-transition: all .2s ease-in;
     transition: all .2s ease-in;
     min-width: 130px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 button:hover,button:active,button:focus,.g-button:hover,.g-button_secondary:hover,.g-button_link:hover,.b-mini_cart-checkout_btn:hover,.b-wishlist_flyout-list-checkout_btn:hover,.l-search_result-wrapper .b-refinement_containter .b-filter-submit_button:hover,.l-search_result-paging-controls-link:hover,.l-pdp .b-product_content .b-add_to_wishlist:hover,.b-quickview-wrapper .b-product_content .b-add_to_wishlist:hover,.b-address_book-create:hover,.b-address_details-submit:hover,.b-address_details-cancel:hover,.b-newsletter_subscribed-unsubscribe:hover,.b-newsletter_subscribed-edit_profile:hover,.b-orders_item-button_return:hover,.b-orders_item-button_details:hover,.b-payment_methods-create:hover,.b-add_credit_card-submit:hover,.b-add_credit_card-cancel:hover,.b-wishlist_send-button:hover,.b-wishlist_table .b-product_share-send_to_friend:hover,.l-return_guest_content .b-return_guest-login_button:hover,.l-return_guest_content .b-return_guest-form_submit:hover,.b-countryselect-button:hover,.g-button:active,.g-button_secondary:active,.g-button_link:active,.b-mini_cart-checkout_btn:active,.b-wishlist_flyout-list-checkout_btn:active,.l-search_result-wrapper .b-refinement_containter .b-filter-submit_button:active,.l-search_result-paging-controls-link:active,.l-pdp .b-product_content .b-add_to_wishlist:active,.b-quickview-wrapper .b-product_content .b-add_to_wishlist:active,.b-address_book-create:active,.b-address_details-submit:active,.b-address_details-cancel:active,.b-newsletter_subscribed-unsubscribe:active,.b-newsletter_subscribed-edit_profile:active,.b-orders_item-button_return:active,.b-orders_item-button_details:active,.b-payment_methods-create:active,.b-add_credit_card-submit:active,.b-add_credit_card-cancel:active,.b-wishlist_send-button:active,.b-wishlist_table .b-product_share-send_to_friend:active,.l-return_guest_content .b-return_guest-login_button:active,.l-return_guest_content .b-return_guest-form_submit:active,.b-countryselect-button:active,.g-button:focus,.g-button_secondary:focus,.g-button_link:focus,.b-mini_cart-checkout_btn:focus,.b-wishlist_flyout-list-checkout_btn:focus,.l-search_result-wrapper .b-refinement_containter .b-filter-submit_button:focus,.l-search_result-paging-controls-link:focus,.l-pdp .b-product_content .b-add_to_wishlist:focus,.b-quickview-wrapper .b-product_content .b-add_to_wishlist:focus,.b-address_book-create:focus,.b-address_details-submit:focus,.b-address_details-cancel:focus,.b-newsletter_subscribed-unsubscribe:focus,.b-newsletter_subscribed-edit_profile:focus,.b-orders_item-button_return:focus,.b-orders_item-button_details:focus,.b-payment_methods-create:focus,.b-add_credit_card-submit:focus,.b-add_credit_card-cancel:focus,.b-wishlist_send-button:focus,.b-wishlist_table .b-product_share-send_to_friend:focus,.l-return_guest_content .b-return_guest-login_button:focus,.l-return_guest_content .b-return_guest-form_submit:focus,.b-countryselect-button:focus,.b-login_wide-create_new_account_button:hover,.b-login_dropdown-create_new_account_button:hover,.b-login_account-login_button:hover,.b-account_login-create_button:hover,.b-account_wishlist_login-create_account_button:hover,.l-homepage-link:hover,.b-login_wide-create_new_account_button:active,.b-login_dropdown-create_new_account_button:active,.b-login_account-login_button:active,.b-account_login-create_button:active,.b-account_wishlist_login-create_account_button:active,.l-homepage-link:active,.b-login_wide-create_new_account_button:focus,.b-login_dropdown-create_new_account_button:focus,.b-login_account-login_button:focus,.b-account_login-create_button:focus,.b-account_wishlist_login-create_account_button:focus,.l-homepage-link:focus {
@@ -759,7 +759,7 @@ button::-moz-focus-inner,.g-button::-moz-focus-inner,.g-button_secondary::-moz-f
     color: #fff;
     cursor: pointer;
     display: block;
-    font: 12px/44px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/44px Open Sans,Arial,Times,sans-serif;
     padding: 0 18px;
     text-align: center;
     text-decoration: none;
@@ -767,7 +767,7 @@ button::-moz-focus-inner,.g-button::-moz-focus-inner,.g-button_secondary::-moz-f
     -webkit-transition: all .2s ease-in;
     transition: all .2s ease-in;
     min-width: 130px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .g-button-dark:hover,.g-button-dark:active,.g-button-dark:focus,.l-checkout_cart-left .b-checkout_button:hover,.l-checkout_cart-left .b-checkout_submit-button:hover,.l-checkout_cart-right .b-checkout_button:hover,.b-cart_payment_method-info_credit_button:hover,.b-cart_coupon_code-button:hover,.b-cart_gift_certificate_code-button:hover,.b-upsaplocator .b-storelocator-search_action a:hover,.l-checkout_cart-left .b-checkout_button:active,.l-checkout_cart-left .b-checkout_submit-button:active,.l-checkout_cart-right .b-checkout_button:active,.b-cart_payment_method-info_credit_button:active,.b-cart_coupon_code-button:active,.b-cart_gift_certificate_code-button:active,.b-upsaplocator .b-storelocator-search_action a:active,.l-checkout_cart-left .b-checkout_button:focus,.l-checkout_cart-left .b-checkout_submit-button:focus,.l-checkout_cart-right .b-checkout_button:focus,.b-cart_payment_method-info_credit_button:focus,.b-cart_coupon_code-button:focus,.b-cart_gift_certificate_code-button:focus,.b-upsaplocator .b-storelocator-search_action a:focus {
@@ -896,9 +896,9 @@ button::-moz-focus-inner,.g-button::-moz-focus-inner,.g-button_secondary::-moz-f
 
 .f-label-value {
     display: inline-block;
-    font: 12px/20px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/20px Open Sans,Arial,Times,sans-serif;
     vertical-align: middle;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     color: #252525;
 }
 
@@ -1035,14 +1035,14 @@ fieldset,.f-fieldset {
     padding: 20px 0;
     position: relative;
     float: left;
-    font: 12px/20px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/20px Open Sans,Arial,Times,sans-serif;
 }
 
 .f-wrapper-f-type-allowtocollect p,.f-wrapper-f-type-allowtocollect ul,.f-wrapper-f-type-allowtocollect ol {
     margin: 0;
     padding: 0;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .f-wrapper-f-type-allowtocollect .f-field-checkbox.f-type-allowtocollect {
@@ -1394,20 +1394,20 @@ fieldset,.f-fieldset {
 }
 
 .b-newsletter_popup-title,.b-newsletter_modal-title {
-    font: 18px/24px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/24px Open Sans,Arial,Times,sans-serif;
     position: absolute;
     right: 0;
     top: 20px;
     width: 280px;
     margin: 0 0 15px;
-    letter-spacing: 3px;
+    letter-spacing: 0px;
     text-align: center;
     text-transform: uppercase;
     color: #252525;
 }
 
 .b-newsletter_popup-promo,.b-newsletter_modal-promo {
-    font: 18px/25px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/25px Open Sans,Arial,Times,sans-serif;
     float: left;
     margin: -40px 0 -40px -40px;
     width: 320px;
@@ -1483,7 +1483,7 @@ fieldset,.f-fieldset {
 
 .b-newsletter_popup-privacy_text,.b-newsletter_modal-privacy_text {
     line-height: 20px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .b-newsletter_popup-link,.b-newsletter_modal-link {
@@ -1531,7 +1531,7 @@ fieldset,.f-fieldset {
 }
 
 .fancybox-newsletter_response .b-newsletter_modal-text {
-    font: 18px/25px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/25px Open Sans,Arial,Times,sans-serif;
     margin-bottom: 30px;
     max-width: 350px;
 }
@@ -1556,7 +1556,7 @@ fieldset,.f-fieldset {
 }
 
 .fancybox-newsletter_response-error .b-newsletter_modal-text {
-    font: 18px/25px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/25px Open Sans,Arial,Times,sans-serif;
     max-width: 400px;
 }
 
@@ -1589,9 +1589,9 @@ fieldset,.f-fieldset {
 }
 
 .b-login_dropdown-welcome_box .b-login_dropdown-welcome_name {
-    font: normal normal 26px/1 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: normal normal 26px/1 Open Sans,Arial,Times,sans-serif;
     display: inline-block;
-    letter-spacing: .1em;
+    letter-spacing: 01em;
     text-transform: uppercase;
     color: #252525;
     padding: 14px 0 0;
@@ -1599,7 +1599,7 @@ fieldset,.f-fieldset {
 }
 
 .b-login_dropdown-welcome_box>a {
-    font: normal 200 12px/1 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: normal 200 12px/1 Open Sans,Arial,Times,sans-serif;
     color: #252525;
     border-bottom: 1px solid #252525;
     display: inline-block;
@@ -1670,10 +1670,10 @@ fieldset,.f-fieldset {
 }
 
 .b-logged_in-menu .b-wishlist-text_link,.b-logged_in-menu .b-logged_in-link {
-    font: normal 200 14px/18px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: normal 200 14px/18px Open Sans,Arial,Times,sans-serif;
     color: #252525;
     display: inline-block;
-    letter-spacing: .2em;
+    letter-spacing: 02em;
     text-transform: uppercase;
     padding-bottom: 2px;
     border-bottom: 1px solid #fff;
@@ -1684,7 +1684,7 @@ fieldset,.f-fieldset {
 }
 
 .b-logged_in-menu .b-wishlist-text_link .b-wishlist-quantity_value,.b-logged_in-menu .b-logged_in-link .b-wishlist-quantity_value {
-    font: normal normal 26px/1 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: normal normal 26px/1 Open Sans,Arial,Times,sans-serif;
     position: absolute;
     color: #000;
     max-width: 33px;
@@ -1757,7 +1757,7 @@ fieldset,.f-fieldset {
 .b-wishlist_flyout-title {
     cursor: pointer;
     display: block;
-    font: 11px/14px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 11px/14px Open Sans,Arial,Times,sans-serif;
     height: 19px;
     padding-bottom: 39px;
     text-align: center;
@@ -1860,10 +1860,10 @@ fieldset,.f-fieldset {
 }
 
 .b-wishlist_flyout .b-wishlist_empty-title {
-    font: 18px/24px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/24px Open Sans,Arial,Times,sans-serif;
     text-transform: uppercase;
     color: #252525;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     margin-bottom: 10px;
     text-decoration: none;
 }
@@ -1885,17 +1885,17 @@ fieldset,.f-fieldset {
 }
 
 .b-wishlist_flyout-name {
-    font: 18px/1 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/1 Open Sans,Arial,Times,sans-serif;
     display: inline-block;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .b-wishlist_flyout-count {
     display: inline-block;
-    font: 12px/1 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/1 Open Sans,Arial,Times,sans-serif;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .b-wishlist_flyout-availability,.b-wishlist_flyout .b-cart_table-body_col_product-attribute {
@@ -1903,7 +1903,7 @@ fieldset,.f-fieldset {
 }
 
 .b-wishlist_flyout .b-product_list-price {
-    font: 18px/1 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/1 Open Sans,Arial,Times,sans-serif;
     display: block;
 }
 
@@ -1917,7 +1917,7 @@ fieldset,.f-fieldset {
 }
 
 .b-wishlist_flyout .b-product_price,.b-wishlist_flyout .b-manufacturer_name,.b-wishlist_flyout .b-delivery_message {
-    font: 18px/1 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/1 Open Sans,Arial,Times,sans-serif;
     display: block;
     margin: 0 0 6px;
 }
@@ -2035,7 +2035,7 @@ fieldset,.f-fieldset {
     border: 0;
     font-size: 11px;
     line-height: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     color: #252525;
     background-color: #fff;
 }
@@ -2066,13 +2066,13 @@ fieldset,.f-fieldset {
     border-radius: 0;
     border: 0;
     display: inline-block;
-    font: 18px/45px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/45px Open Sans,Arial,Times,sans-serif;
     height: 45px;
     margin: 38px 0 0;
     outline: none;
     width: 90%;
     position: absolute;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
     padding: 0 0 0 1px;
 }
 
@@ -2087,7 +2087,7 @@ fieldset,.f-fieldset {
 .b-simple_search-suggested {
     color: #999;
     display: inline-block;
-    font: 18px/45px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/45px Open Sans,Arial,Times,sans-serif;
     padding-right: 100px;
 }
 
@@ -2122,9 +2122,9 @@ fieldset,.f-fieldset {
     width: 18.5%;
     text-align: center;
     white-space: normal;
-    font: 10px/18px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 10px/18px Open Sans,Arial,Times,sans-serif;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
     vertical-align: top;
 }
 
@@ -2195,7 +2195,7 @@ fieldset,.f-fieldset {
     float: left;
     font-size: 18px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .l-mini_cart-totals_subtotals .value {
@@ -2225,7 +2225,7 @@ fieldset,.f-fieldset {
 
 .b-minicart-quantity_value {
     position: absolute;
-    font: 11px/14px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 11px/14px Open Sans,Arial,Times,sans-serif;
     top: 22px;
     left: 0;
     right: 0;
@@ -2295,16 +2295,16 @@ fieldset,.f-fieldset {
 }
 
 .b-mini_cart-flyout_qty,.b-wishlist_flyout-list-flyout_qty {
-    font: 12px/1 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/1 Open Sans,Arial,Times,sans-serif;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .b-mini_cart-flyout_title,.b-wishlist_flyout-list-flyout_title {
-    font: 18px/1 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/1 Open Sans,Arial,Times,sans-serif;
     margin-bottom: 10px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .b-mini_cart-flyout_products,.b-wishlist_flyout-list-flyout_products {
@@ -2321,10 +2321,10 @@ fieldset,.f-fieldset {
 }
 
 .b-mini_cart-summary_title,.b-mini_cart-flyout_empty_cart,.b-wishlist_flyout-list-summary_title,.b-wishlist_flyout-list-flyout_empty_cart {
-    font: 18px/24px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/24px Open Sans,Arial,Times,sans-serif;
     text-transform: uppercase;
     color: #252525;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     margin-bottom: 10px;
     text-decoration: none;
 }
@@ -2348,13 +2348,13 @@ fieldset,.f-fieldset {
 
 .b-mini_cart-subtotal_title,.b-wishlist_flyout-list-subtotal_title {
     width: 80%;
-    font: 12px/1 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/1 Open Sans,Arial,Times,sans-serif;
     display: inline-block;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .b-mini_cart-subtotal_qty,.b-wishlist_flyout-list-subtotal_qty {
-    font: 12px/1 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/1 Open Sans,Arial,Times,sans-serif;
     text-align: right;
     width: 20%;
     display: inline-block;
@@ -2388,7 +2388,7 @@ fieldset,.f-fieldset {
     text-align: center;
     font-size: 12px;
     line-height: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     height: 2.8em;
     overflow: hidden;
 }
@@ -2405,8 +2405,8 @@ fieldset,.f-fieldset {
     display: block;
     margin: 0 0 5px;
     text-align: center;
-    font: 12px/18px FuturaStd-Medium,Arial,Times,sans-serif;
-    letter-spacing: 1px;
+    font: 12px/18px Open Sans,Arial,Times,sans-serif;
+    letter-spacing: 0px;
 }
 
 .b-mini_cart-subtotal,.b-wishlist_flyout-list-subtotal {
@@ -2433,7 +2433,7 @@ html {
 .l-main_navigation {
     color: #252525;
     float: left;
-    font-family: "FuturaStd-Medium","Arial",Times,sans-serif;
+    font-family: "Open Sans","Arial",Times,sans-serif;
     padding: 0;
     width: 60%;
     margin: 22px 0 0;
@@ -2497,12 +2497,12 @@ html {
     border-bottom: 2px solid transparent;
     color: #252525;
     display: inline-block;
-    font-family: "FuturaStd-Medium","Arial",Times,sans-serif;
+    font-family: "Open Sans","Arial",Times,sans-serif;
     font-size: 12px;
     font-stretch: normal;
     font-style: normal;
     font-weight: 400;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     text-decoration: none;
     text-transform: uppercase;
     line-height: 24px;
@@ -2718,7 +2718,7 @@ html {
 }
 
 .b-menu_category-level_2-link,.b-menu_category-level_2-link h2,.b-menu_category-level_2-link h1 {
-    font: 12px/27px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/27px Open Sans,Arial,Times,sans-serif;
     text-decoration: none;
     text-transform: uppercase;
     display: inline;
@@ -2780,7 +2780,7 @@ html {
 .b-menu_category-level_3-link,.b-menu_category-level_3 h1,.b-menu_category-level_3 h3 {
     text-transform: uppercase;
     font-size: 10px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
     color: #666;
     line-height: 27px;
     padding: 0 0 2px;
@@ -2955,7 +2955,7 @@ html {
 .b-menu_category-item.m-travel .b-navigation_custom_content-item,.b-menu_category-item.m-tools .b-navigation_custom_content-item,.b-menu_category-item.m-workspace .b-navigation_custom_content-item,.b-menu_category-item.m-new .b-navigation_custom_content-item,.b-menu_category-item.m-home .b-navigation_custom_content-item,.b-menu_category-item.m-designer .b-navigation_custom_content-item {
     display: inline-block;
     margin-left: 18px;
-    font: 18px/25px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/25px Open Sans,Arial,Times,sans-serif;
 }
 
 .b-menu_category-item.m-travel .b-navigation_custom_content-text_link,.b-menu_category-item.m-tools .b-navigation_custom_content-text_link,.b-menu_category-item.m-workspace .b-navigation_custom_content-text_link,.b-menu_category-item.m-new .b-navigation_custom_content-text_link,.b-menu_category-item.m-home .b-navigation_custom_content-text_link,.b-menu_category-item.m-designer .b-navigation_custom_content-text_link {
@@ -3091,7 +3091,7 @@ html {
 
 .b-login_wide-title_logout .b-login_dropdown-link,.b-login_dropdown-title_logout .b-login_dropdown-link {
     color: #666;
-    font: 10px/18px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 10px/18px Open Sans,Arial,Times,sans-serif;
     min-width: 70px;
     padding-left: 10px;
     text-transform: uppercase;
@@ -3134,10 +3134,10 @@ html {
 
 .b-login_wide-link,.b-login_dropdown-link {
     display: inline-block;
-    font: 18px/24px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/24px Open Sans,Arial,Times,sans-serif;
     text-transform: uppercase;
     color: #252525;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     margin-bottom: 10px;
     text-decoration: none;
 }
@@ -3197,10 +3197,10 @@ html {
 }
 
 .b-login_wide-create_title,.b-login_dropdown-create_title {
-    font: 18px/24px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/24px Open Sans,Arial,Times,sans-serif;
     text-transform: uppercase;
     color: #252525;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     margin-bottom: 10px;
 }
 
@@ -3251,7 +3251,7 @@ html {
 
 .b-login_wide-list_coment,.b-login_dropdown-list_coment {
     color: #252525;
-    font: 12px/20px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/20px Open Sans,Arial,Times,sans-serif;
 }
 
 .b-login_wide-benefits_list,.b-login_dropdown-benefits_list {
@@ -3270,15 +3270,15 @@ html {
 }
 
 .b-login_account-title {
-    font: 18px/24px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/24px Open Sans,Arial,Times,sans-serif;
     text-transform: uppercase;
     color: #252525;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     margin-bottom: 10px;
 }
 
 .b-login_account-capture {
-    font: 18px/27px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/27px Open Sans,Arial,Times,sans-serif;
     margin-bottom: 18px;
 }
 
@@ -3309,7 +3309,7 @@ html {
     position: relative;
     top: -20px;
     margin-bottom: -20px;
-    font: 12px/20px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/20px Open Sans,Arial,Times,sans-serif;
 }
 
 .b-login_account-form_fildset {
@@ -3387,7 +3387,7 @@ html {
 }
 
 .l-footer_top-locale-labels,.l-footer_top-locale-selectors {
-    font: 12px/24px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/24px Open Sans,Arial,Times,sans-serif;
     text-transform: uppercase;
     display: inline-block;
 }
@@ -3443,7 +3443,7 @@ html {
 
 .l-footer_top-locale-selectors {
     font-size: 10px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .l-footer_top-locale-selectors-change {
@@ -3504,7 +3504,7 @@ html {
 .l-footer_top-newsletter .b-simple_newsletter-title {
     text-transform: uppercase;
     display: inline-block;
-    font: normal normal 12px/24px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: normal normal 12px/24px Open Sans,Arial,Times,sans-serif;
 }
 
 .l-footer_top-newsletter .b-simple_newsletter-form,.l-footer_top-newsletter .b-simple_newsletter-fieldset,.l-footer_top-newsletter .b-simple_newsletter-form_input_text,.l-footer_top-newsletter .b-simple_newsletter-button {
@@ -3529,7 +3529,7 @@ html {
     padding: 5px 0 7px;
     margin: 0 6px;
     width: 185px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .l-footer_top-newsletter .b-simple_newsletter label {
@@ -3617,9 +3617,9 @@ html {
 
 .l-footer-mini p {
     margin: 0;
-    font: 10px/2 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 10px/2 Open Sans,Arial,Times,sans-serif;
     color: #666;
-    letter-spacing: 1.2px;
+    letter-spacing: 0.2px;
 }
 
 .l-social-links {
@@ -3757,10 +3757,10 @@ html {
 }
 
 .b-footer_bottom-navigation_link {
-    font: 10px/1 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 10px/1 Open Sans,Arial,Times,sans-serif;
     text-decoration: none;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .b-footer_bottom-navigation_link:hover {
@@ -3773,7 +3773,7 @@ html {
 }
 
 .b-footer_bottom-navigation_item:first-child .b-footer_bottom-navigation_link {
-    font: 12px/1 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/1 Open Sans,Arial,Times,sans-serif;
 }
 
 .b-copyright_link {
@@ -3906,7 +3906,7 @@ html {
 .b-footer-section_top-item {
     color: #666;
     float: left;
-    font: 14px/22px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 14px/22px Open Sans,Arial,Times,sans-serif;
     margin-left: 18px;
     width: 378px;
 }
@@ -3986,7 +3986,7 @@ html {
 }
 
 .b-footer-section_top-item .tel_number {
-    font: 24px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 24px Open Sans,Arial,Times,sans-serif;
 }
 
 .b-footer-section_top-item .contacts_email_link,.b-footer-section_top-item .custom_service_link,.b-footer-section_top-item .shipping_returns-link {
@@ -4041,7 +4041,7 @@ html {
 
 .b-language_selector-title {
     display: inline-block;
-    font: 14px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 14px Open Sans,Arial,Times,sans-serif;
     color: #666;
     text-transform: uppercase;
     cursor: pointer;
@@ -4169,7 +4169,7 @@ html {
     font-size: 10px;
     line-height: 30px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -4277,15 +4277,15 @@ html {
 
 .fancybox-inner .b-newsletter_modal-text {
     color: #252525;
-    font: 12px/20px FuturaStd-Medium,Arial,Times,sans-serif;
-    letter-spacing: 2px;
+    font: 12px/20px Open Sans,Arial,Times,sans-serif;
+    letter-spacing: 0px;
 }
 
 .fancybox-inner .b-newsletter_modal-title {
     position: relative;
     top: auto;
     width: auto;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .fancybox-inner .b-newsletter_modal-wrapper {
@@ -4303,7 +4303,7 @@ html {
 }
 
 .fancybox-inner #faq-section .b-faq_popup-left h2 {
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .fancybox-inner #faq-section .b-faq_popup-left .scroll-pane {
@@ -4393,7 +4393,7 @@ html {
 }
 
 .b-reset_password-error {
-    font: 12px/20px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/20px Open Sans,Arial,Times,sans-serif;
     color: #f99;
 }
 
@@ -4414,7 +4414,7 @@ html {
 
 .b-cookies_informer-title {
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     margin-bottom: 10px;
 }
 
@@ -4447,7 +4447,7 @@ html {
     padding: 10px 50px;
     font-size: 10px;
     line-height: 18px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
     color: #252525;
     border-bottom: 1px solid #ccc;
 }
@@ -4755,8 +4755,8 @@ body .ui-tabs .ui-tabs-nav li,body .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
 body .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
     margin: 0 0 0 18px;
     color: #666;
-    font: 12px/18px FuturaStd-Medium,Arial,Times,sans-serif;
-    letter-spacing: 1px;
+    font: 12px/18px Open Sans,Arial,Times,sans-serif;
+    letter-spacing: 0px;
     text-transform: uppercase;
     cursor: pointer;
 }
@@ -4912,13 +4912,13 @@ body .ui-tabs .ui-tabs-panel {
     padding: 0 2%;
     text-transform: uppercase;
     overflow: hidden;
-    font: 12px/18px FuturaStd-Medium,Arial,Times,sans-serif;
-    letter-spacing: 1px;
+    font: 12px/18px Open Sans,Arial,Times,sans-serif;
+    letter-spacing: 0px;
 }
 
 .b-product_price-standard,.b-product_price-standard--line_through,.b-product_price-sales,.b-product_price-percent {
-    font: 12px/18px FuturaStd-Medium,Arial,Times,sans-serif;
-    letter-spacing: 1px;
+    font: 12px/18px Open Sans,Arial,Times,sans-serif;
+    letter-spacing: 0px;
 }
 
 .b-product_price-standard,.b-product_price-sales {
@@ -4936,10 +4936,10 @@ body .ui-tabs .ui-tabs-panel {
 }
 
 .b-product_labels {
-    font: 12px/18px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/18px Open Sans,Arial,Times,sans-serif;
     text-transform: uppercase;
     color: #999;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     text-align: center;
     margin: 5px 0;
 }
@@ -5317,7 +5317,7 @@ body .ui-tabs .ui-tabs-panel {
     padding: 60px 2% 40px;
     text-transform: uppercase;
     color: #666;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
     text-align: left;
     height: 100%;
     overflow: hidden;
@@ -5371,7 +5371,7 @@ body .ui-tabs .ui-tabs-panel {
 .l-search_result-wrapper .b-refinement-sub_title {
     font-size: 12px;
     color: #252525;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     margin: 0 0 15px;
 }
 
@@ -5399,11 +5399,11 @@ body .ui-tabs .ui-tabs-panel {
     font-size: 12px;
     z-index: 7;
     color: #252525;
-    font-family: "FuturaStd-Medium","Arial",Times,sans-serif;
+    font-family: "Open Sans","Arial",Times,sans-serif;
     font-stretch: normal;
     font-style: normal;
     font-weight: 400;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     line-height: 24px;
 }
 
@@ -5519,7 +5519,7 @@ body .ui-tabs .ui-tabs-panel {
 .l-search_result-paging-controls {
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
     font-size: 12px;
 }
 
@@ -5535,7 +5535,7 @@ body .ui-tabs .ui-tabs-panel {
 .b-slot-grid_header,.b-slot-grid_bottom {
     clear: both;
     text-align: center;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
     font: 16px/26px AvenirLTStd-Roman,Arial,sans-serif;
 }
 
@@ -5631,7 +5631,7 @@ p.fancybox-error {
 }
 
 .l-main_productsearchresult_nohits .b-no_hits-title {
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .l-main_productsearchresult_nohits .b-no_hits-banner .l-product_tile_wrapper {
@@ -5680,17 +5680,17 @@ p.fancybox-error {
 }
 
 .l-main_productsearchresult_nohits .b-no_hits-search_info,.l-main_productsearchresult_nohits .b-no_hits-search_key {
-    font: 12px/20px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/20px Open Sans,Arial,Times,sans-serif;
     text-transform: none;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .l-search_result-content_no_hits .b-recommendation_title {
     padding: 35px 0 27px;
     margin: 32px 0 0;
-    font: 17px/18px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 17px/18px Open Sans,Arial,Times,sans-serif;
     text-align: center;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
     text-transform: uppercase;
     border-top: 1px solid #ccc;
 }
@@ -6021,7 +6021,7 @@ html.ipad.html_fancybox_opened body {
     margin: 35px 0;
     font-size: 10px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .l-pdp .b-product_nav-link_prev,.l-pdp .b-product_nav-link_next,.b-quickview-wrapper .b-product_nav-link_prev,.b-quickview-wrapper .b-product_nav-link_next {
@@ -6187,9 +6187,9 @@ html.ipad.html_fancybox_opened body {
 }
 
 .l-pdp .b-product_content .b-product_price-standard,.l-pdp .b-product_content .b-product_price-standard--line_through,.l-pdp .b-product_content .b-product_price-sales,.l-pdp .b-product_content .b-product_price-percent,.b-quickview-wrapper .b-product_content .b-product_price-standard,.b-quickview-wrapper .b-product_content .b-product_price-standard--line_through,.b-quickview-wrapper .b-product_content .b-product_price-sales,.b-quickview-wrapper .b-product_content .b-product_price-percent {
-    font: 20px/18px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 20px/18px Open Sans,Arial,Times,sans-serif;
     color: #252525;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .l-pdp .b-product_content .b-product_price-standard--line_through,.b-quickview-wrapper .b-product_content .b-product_price-standard--line_through {
@@ -6221,7 +6221,7 @@ html.ipad.html_fancybox_opened body {
     text-transform: uppercase;
     padding: 0 17px 10px 0;
     display: block;
-    font-family: "FuturaStd-Medium","Arial",Times,sans-serif;
+    font-family: "Open Sans","Arial",Times,sans-serif;
 }
 
 .l-pdp .b-product_slide-link:after,.b-quickview-wrapper .b-product_slide-link:after {
@@ -6552,7 +6552,7 @@ html.ipad.html_fancybox_opened body {
 .l-pdp .b-customer_service_button>a,.b-quickview-wrapper .b-customer_service_button>a {
     font-size: 12px;
     line-height: 18px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
     color: #666;
 }
 
@@ -6626,7 +6626,7 @@ html.ipad.html_fancybox_opened body {
 }
 
 .l-pdp .l-product_shopthelook .b-product_name {
-    font: 30px/32px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 30px/32px Open Sans,Arial,Times,sans-serif;
     padding: 0;
 }
 
@@ -6669,8 +6669,8 @@ html.ipad.html_fancybox_opened body {
 }
 
 .l-pdp .l-product_shopthelook .b-product_tile .b-product_name,.l-pdp .l-product_shopthelook .b-product_tile .b-product_price,.l-pdp .l-product_shopthelook .b-product_tile .b-product_price-standard {
-    font: 12px/18px FuturaStd-Medium,Arial,Times,sans-serif;
-    letter-spacing: 1px;
+    font: 12px/18px Open Sans,Arial,Times,sans-serif;
+    letter-spacing: 0px;
 }
 
 .l-pdp .l-product_shopthelook .b-product_tile .b-product_name {
@@ -6755,9 +6755,9 @@ html.ipad.html_fancybox_opened body {
 .l-pdp .b-last_visited-title,.l-pdp .b-recommendation_title,.l-pdp .b-product_you-may-also-like-heading {
     padding: 35px 0 27px;
     margin: 32px 0 0;
-    font: 17px/18px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 17px/18px Open Sans,Arial,Times,sans-serif;
     text-align: center;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
     text-transform: uppercase;
     border-top: 1px solid #ccc;
 }
@@ -6996,7 +6996,7 @@ html.ipad.html_fancybox_opened body {
 .pdp-need-help-title {
     text-transform: uppercase;
     font-size: 24px;
-    letter-spacing: 5px;
+    letter-spacing: 0px;
     line-height: 50px;
     margin: 25px 0;
 }
@@ -7027,7 +7027,7 @@ html.ipad.html_fancybox_opened body {
 .b-size_guide-title {
     font-size: 24px;
     text-align: center;
-    letter-spacing: 4px;
+    letter-spacing: 0px;
 }
 
 .b-size_guide-category {
@@ -7329,7 +7329,7 @@ html.ipad.html_fancybox_opened body {
     float: right;
     display: inline-block;
     padding: 0 12px;
-    font: 12px/43px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/43px Open Sans,Arial,Times,sans-serif;
     text-transform: uppercase;
     border: 1px solid #666;
 }
@@ -7445,7 +7445,7 @@ html.ipad.html_fancybox_opened body {
 
 .b-cart_table-body_col_product-user_actions .b-add_to_wishlist_button {
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     line-height: 18px;
 }
 
@@ -7637,7 +7637,7 @@ html.ipad.html_fancybox_opened body {
     cursor: pointer;
     display: block;
     font-size: 12px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     line-height: 22px;
     padding: 0 0 0 30px;
 }
@@ -7704,10 +7704,10 @@ html.ipad.html_fancybox_opened body {
 }
 
 .b-cart_shipping_method-radio,.b-cart_shipping_method-label,.b-cart_shipping_method-value {
-    font: 12px/18px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/18px Open Sans,Arial,Times,sans-serif;
     display: inline-block;
     vertical-align: middle;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     white-space: normal;
 }
 
@@ -7728,7 +7728,7 @@ html.ipad.html_fancybox_opened body {
 .b-cart_shipping_method-value {
     width: 20%;
     text-align: right;
-    font: 12px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px Open Sans,Arial,Times,sans-serif;
 }
 
 .b-cart_shipping_method-value .b-cross_shipping-cost {
@@ -7761,7 +7761,7 @@ html.ipad.html_fancybox_opened body {
 }
 
 .b-cart_gift_certificate-check_label {
-    font: 12px/21px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/21px Open Sans,Arial,Times,sans-serif;
     text-transform: none;
     padding-left: 10px;
 }
@@ -7812,7 +7812,7 @@ html.ipad.html_fancybox_opened body {
     cursor: pointer;
     display: block;
     font-size: 12px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     line-height: 22px;
     padding: 10px 0 10px 30px;
 }
@@ -7897,7 +7897,7 @@ html.ipad.html_fancybox_opened body {
 .b-cart_payment_method-info_credit-link {
     text-decoration: underline;
     font-size: 12px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
     cursor: pointer;
 }
 
@@ -7947,14 +7947,14 @@ html.ipad.html_fancybox_opened body {
 
 .b-cart_payment_method-donthavestorecredit,.b-cart_payment_method-yourstorecredit {
     float: left;
-    font: 12px/18px FuturaStd-Medium,Arial,Times,sans-serif;
-    letter-spacing: 2px;
+    font: 12px/18px Open Sans,Arial,Times,sans-serif;
+    letter-spacing: 0px;
     text-transform: uppercase;
 }
 
 .b-cart_payment_method-yourstorebalance {
     float: right;
-    font: 18px/18px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/18px Open Sans,Arial,Times,sans-serif;
     text-align: right;
     text-transform: uppercase;
 }
@@ -8003,7 +8003,7 @@ html.ipad.html_fancybox_opened body {
 .b-cart_payment_method-value {
     width: 15%;
     text-align: right;
-    font: 12px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px Open Sans,Arial,Times,sans-serif;
     text-transform: uppercase;
 }
 
@@ -8012,7 +8012,7 @@ html.ipad.html_fancybox_opened body {
 }
 
 .b-cart_coupon_code-title,.b-cart_gift_certificate_code-title {
-    font: 12px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px Open Sans,Arial,Times,sans-serif;
     color: #000;
     margin-bottom: 16px;
     text-transform: uppercase;
@@ -8172,7 +8172,7 @@ html.ipad.html_fancybox_opened body {
 .b-checkout_content_block-title {
     text-transform: uppercase;
     padding: 0 0 17px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .b-checkout_content_block-text p {
@@ -8365,13 +8365,13 @@ html.ipad.html_fancybox_opened body {
     padding: 30px 20px;
     border: 1px solid #666;
     background: #fff;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
     line-height: 20px;
     z-index: 99;
 }
 
 .sales-tax .sale-tax-label {
-    font: 10px/18px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 10px/18px Open Sans,Arial,Times,sans-serif;
     letter-spacing: 0;
     margin: 2px 0 0 8px;
     color: #252525;
@@ -8465,7 +8465,7 @@ html.ipad.html_fancybox_opened body {
 .b-summary_list {
     padding: 25px 0 0;
     margin-top: 25px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     background: #f2f2f2;
 }
 
@@ -8474,7 +8474,7 @@ html.ipad.html_fancybox_opened body {
     padding: 0 20px;
     font-size: 18px;
     text-transform: none;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .b-summary_list-line {
@@ -8635,7 +8635,7 @@ html.ipad.html_fancybox_opened body {
 }
 
 .b-order_confirmation-product_list_wrapper {
-    font: 18px/1 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/1 Open Sans,Arial,Times,sans-serif;
     margin: 0 0 10px;
     border-bottom: 1px solid #999;
 }
@@ -8870,7 +8870,7 @@ html.ipad.html_fancybox_opened body {
 .b-address_book-title {
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -8881,7 +8881,7 @@ html.ipad.html_fancybox_opened body {
     color: #252525;
     font-size: 12px;
     line-height: 20px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .b-address_book-create {
@@ -8895,7 +8895,7 @@ html.ipad.html_fancybox_opened body {
 }
 
 .b-address_item {
-    font: normal normal 12px/20px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: normal normal 12px/20px Open Sans,Arial,Times,sans-serif;
     display: inline-block;
     vertical-align: top;
     margin: 10px 30px 30px;
@@ -8914,7 +8914,7 @@ html.ipad.html_fancybox_opened body {
     font-size: 12px;
     line-height: 20px;
     color: #252525;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     text-transform: uppercase;
     text-decoration: underline;
 }
@@ -8941,7 +8941,7 @@ html.ipad.html_fancybox_opened body {
 .b-address_details-title {
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -8958,7 +8958,7 @@ html.ipad.html_fancybox_opened body {
     text-transform: uppercase;
     font-size: 12px;
     color: #252525;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .b-address_details-label_required:after {
@@ -9000,7 +9000,7 @@ html.ipad.html_fancybox_opened body {
 .b-account_registration-title {
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -9032,7 +9032,7 @@ html.ipad.html_fancybox_opened body {
     text-transform: uppercase;
     font-size: 12px;
     color: #252525;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .b-account_registration-label_required:after {
@@ -9146,7 +9146,7 @@ html.ipad.html_fancybox_opened body {
 .l-account .b-login .b-login_wide-list_title,.l-account .b-login_dropdown-list_title {
     font-size: 12px;
     text-transform: uppercase;
-    font-family: "FuturaStd-Medium","Arial",Times,sans-serif;
+    font-family: "Open Sans","Arial",Times,sans-serif;
     border: none;
     color: #252525;
     cursor: pointer;
@@ -9170,7 +9170,7 @@ html.ipad.html_fancybox_opened body {
 .l-account .b-order_confirmation-title,.l-account .b-return_details h2 {
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -9204,20 +9204,20 @@ html.ipad.html_fancybox_opened body {
 }
 
 .l-account_content .b-return_confirmation-title {
-    font: 18px/24px FuturaStd-Medium,Arial,Times,sans-serif;
-    letter-spacing: 1px;
+    font: 18px/24px Open Sans,Arial,Times,sans-serif;
+    letter-spacing: 0px;
     margin-bottom: 35px;
 }
 
 .l-account_content .b-return_confirmation-headline {
-    font: 12px/18px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/18px Open Sans,Arial,Times,sans-serif;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     margin-bottom: 20px;
 }
 
 .l-account_content .b-return_confirmation-summary {
-    font: 12px/20px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/20px Open Sans,Arial,Times,sans-serif;
     margin-bottom: 20px;
 }
 
@@ -9227,7 +9227,7 @@ html.ipad.html_fancybox_opened body {
 
 .l-account_content .b-return_confirmation-summary_header_column {
     padding-right: 10px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     text-transform: uppercase;
 }
 
@@ -9237,13 +9237,13 @@ html.ipad.html_fancybox_opened body {
 
 .l-account_content .b-return_confirmation-summary_body_column {
     padding-right: 10px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
     word-wrap: break-word;
 }
 
 .l-account_content .b-return_confirmation-summary_body_column:last-child {
     font: 12px/20px FuturaStd-Heavy,"Arial Bold",sans-serif;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 @media screen and (max-width: 1100px) {
@@ -9277,7 +9277,7 @@ html.ipad.html_fancybox_opened body {
     display: inline-block;
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -9296,7 +9296,7 @@ html.ipad.html_fancybox_opened body {
 .b-menu_account-level_2-link {
     font-weight: 400;
     font-size: 12px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     color: #252525;
 }
 
@@ -9307,7 +9307,7 @@ html.ipad.html_fancybox_opened body {
 .b-account_overview-title {
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -9364,14 +9364,14 @@ html.ipad.html_fancybox_opened body {
 .b-account_overview-logout {
     margin-bottom: 40px;
     color: #252525;
-    font: 12px/20px FuturaStd-Medium,Arial,Times,sans-serif;
-    letter-spacing: 2px;
+    font: 12px/20px Open Sans,Arial,Times,sans-serif;
+    letter-spacing: 0px;
 }
 
 .b-account_store_credit-title {
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -9382,13 +9382,13 @@ html.ipad.html_fancybox_opened body {
     color: #252525;
     font-size: 12px;
     line-height: 20px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .b-account_newsletter-title {
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -9423,7 +9423,7 @@ html.ipad.html_fancybox_opened body {
     color: #252525;
     font-size: 12px;
     line-height: 20px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .b-newsletter_unsubscribed .b-login_account-privacy_box_link {
@@ -9439,7 +9439,7 @@ html.ipad.html_fancybox_opened body {
     color: #252525;
     font-size: 12px;
     line-height: 20px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .b-newsletter_unsubscribe .f-field-wrapper {
@@ -9450,7 +9450,7 @@ html.ipad.html_fancybox_opened body {
 .b-newsletter_unsubscribe-title {
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -9461,7 +9461,7 @@ html.ipad.html_fancybox_opened body {
     color: #252525;
     font-size: 12px;
     line-height: 20px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
     display: block;
     margin: 25px 0;
 }
@@ -9514,7 +9514,7 @@ html.ipad.html_fancybox_opened body {
 .l-account_content .b-newsletter_profile-title {
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -9533,7 +9533,7 @@ html.ipad.html_fancybox_opened body {
 .b-orders_title {
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -9550,7 +9550,7 @@ html.ipad.html_fancybox_opened body {
     color: #252525;
     font-size: 12px;
     line-height: 20px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .b-orders_item {
@@ -9636,7 +9636,7 @@ html.ipad.html_fancybox_opened body {
 }
 
 .b-pagination {
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .b-pagination:after {
@@ -9697,7 +9697,7 @@ html.ipad.html_fancybox_opened body {
 .b-payment_methods-title {
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -9712,7 +9712,7 @@ html.ipad.html_fancybox_opened body {
     color: #252525;
     font-size: 12px;
     line-height: 20px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .l-payment_list {
@@ -9733,7 +9733,7 @@ html.ipad.html_fancybox_opened body {
     font-size: 12px;
     line-height: 20px;
     color: #252525;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     text-transform: uppercase;
     text-decoration: underline;
 }
@@ -9760,7 +9760,7 @@ html.ipad.html_fancybox_opened body {
 .b-add_credit_card-title {
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -9777,7 +9777,7 @@ html.ipad.html_fancybox_opened body {
     text-transform: uppercase;
     font-size: 12px;
     color: #252525;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .b-add_credit_card-label_required:after {
@@ -9830,7 +9830,7 @@ html.ipad.html_fancybox_opened body {
 .b-account_login-title {
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -9883,7 +9883,7 @@ html.ipad.html_fancybox_opened body {
 .b-account_login-create_title {
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -9894,7 +9894,7 @@ html.ipad.html_fancybox_opened body {
     color: #252525;
     font-size: 12px;
     line-height: 20px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .b-account_login-create_button {
@@ -9937,7 +9937,7 @@ html.ipad.html_fancybox_opened body {
 .b-wishlist-title {
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -9948,7 +9948,7 @@ html.ipad.html_fancybox_opened body {
     color: #252525;
     font-size: 12px;
     line-height: 20px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .b-wishlist_send:after {
@@ -10028,7 +10028,7 @@ html.ipad.html_fancybox_opened body {
 .b-wishlist_table-price .b-product_price-standard {
     font-size: 12px;
     line-height: 20px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     color: #252525;
 }
 
@@ -10136,7 +10136,7 @@ html.ipad.html_fancybox_opened body {
 .l-wishlist .b-product_recommendations-title {
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -10183,7 +10183,7 @@ html.ipad.html_fancybox_opened body {
 .b-account_wishlist_login-title {
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -10241,7 +10241,7 @@ html.ipad.html_fancybox_opened body {
 }
 
 .b-return_product_list-wrapper {
-    font: 18px/1 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/1 Open Sans,Arial,Times,sans-serif;
     margin: 25px 0 10px;
     border-bottom: 1px solid #999;
     border-top: 1px solid #999;
@@ -10288,7 +10288,7 @@ html.ipad.html_fancybox_opened body {
     left: 20px;
     text-transform: uppercase;
     line-height: 15px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .b-return-summary_list {
@@ -10402,7 +10402,7 @@ html.ipad.html_fancybox_opened body {
 .b-return_comments .f-form-error_message {
     clear: both;
     padding-top: 30px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     color: #f99;
 }
 
@@ -10436,7 +10436,7 @@ html.ipad.html_fancybox_opened body {
 .l-return_guest_content .b-return_details h2 {
     text-transform: uppercase;
     font-size: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     font-weight: 400;
     margin-bottom: 35px;
     line-height: 24px;
@@ -10449,12 +10449,12 @@ html.ipad.html_fancybox_opened body {
 }
 
 .l-return_guest_content .b-return_guest-title {
-    font: 18px/24px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/24px Open Sans,Arial,Times,sans-serif;
     margin: 20px 0 10px;
 }
 
 .l-return_guest_content .b-return_guest-description {
-    font: 12px/18px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/18px Open Sans,Arial,Times,sans-serif;
 }
 
 .l-return_guest_content .b-return_guest-login:after {
@@ -10468,7 +10468,7 @@ html.ipad.html_fancybox_opened body {
 }
 
 .l-return_guest_content .b-return_guest-form .f-label {
-    font: 18px/1 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/1 Open Sans,Arial,Times,sans-serif;
 }
 
 .l-return_guest_content .b-return_guest-form .f-field-wrapper {
@@ -10520,12 +10520,12 @@ html.ipad.html_fancybox_opened body {
     font-size: 30px;
     font-family: "SuperiorTitle-Bold",Arial,sans-serif;
     margin: 0 0 10px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .l-homepage-hero_banner-info_subtitle {
     font: 16px/26px AvenirLTStd-Roman,Arial,sans-serif;
-    letter-spacing: .1em;
+    letter-spacing: 01em;
 }
 
 .l-homepage-hero_banner-info_bottom {
@@ -10641,7 +10641,7 @@ html.ipad.html_fancybox_opened body {
     font-size: 30px;
     font-family: "SuperiorTitle-Bold",Arial,sans-serif;
     margin: 0px 0 10px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
@@ -10744,12 +10744,12 @@ html.ipad.html_fancybox_opened body {
 }
 
 .varying_block .l-homepage-hero_banner-info_title,.varying_block .l-homepage-hero_banner-info-title,.varying_block .l-homepage_title,.varying_block .l-homepage-title {
-    font-family: "FuturaStd-Medium","Arial",Times,sans-serif;
+    font-family: "Open Sans","Arial",Times,sans-serif;
 }
 
 .varying_block .l-homepage-hero_banner-info_subtitle,.varying_block .l-homepage-hero_banner-info-subtitle,.varying_block .l-homepage_subtitle,.varying_block .l-homepage-subtitle {
     font-size: 16px;
-    letter-spacing: .1em;
+    letter-spacing: 01em;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -10998,28 +10998,28 @@ html.ipad.html_fancybox_opened body {
 }
 
 .b-customer_service-sub_header-title {
-    font: 18px/24px FuturaStd-Medium,Arial,Times,sans-serif;
-    letter-spacing: 1px;
+    font: 18px/24px Open Sans,Arial,Times,sans-serif;
+    letter-spacing: 0px;
     text-transform: uppercase;
     color: #252525;
 }
 
 .b-customer_service-sub_header-sub_title {
-    font: 12px/20px FuturaStd-Medium,Arial,Times,sans-serif;
-    letter-spacing: 1px;
+    font: 12px/20px Open Sans,Arial,Times,sans-serif;
+    letter-spacing: 0px;
     text-transform: uppercase;
     color: #252525;
 }
 
 .b-customer_service-sub_header-description {
-    font: 12px/20px FuturaStd-Medium,Arial,Times,sans-serif;
-    letter-spacing: 2px;
+    font: 12px/20px Open Sans,Arial,Times,sans-serif;
+    letter-spacing: 0px;
     color: #252525;
 }
 
 .b-customer_service-sub_header-link {
     display: inline-block;
-    font: 14px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 14px Open Sans,Arial,Times,sans-serif;
     margin: 4px 0 3px;
 }
 
@@ -11028,7 +11028,7 @@ html.ipad.html_fancybox_opened body {
 }
 
 .b-customer_service_navigation-list {
-    font: 12px/18px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/18px Open Sans,Arial,Times,sans-serif;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -11046,8 +11046,8 @@ html.ipad.html_fancybox_opened body {
 
 .b-customer_service_navigation-description {
     display: none;
-    font: 12px/20px FuturaStd-Medium,Arial,Times,sans-serif;
-    letter-spacing: 2px;
+    font: 12px/20px Open Sans,Arial,Times,sans-serif;
+    letter-spacing: 0px;
     text-transform: none;
     color: #252525;
 }
@@ -11055,7 +11055,7 @@ html.ipad.html_fancybox_opened body {
 .b-customer_service_navigation-link {
     text-transform: uppercase;
     text-decoration: none;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .b-customer_service_navigation-link:hover {
@@ -11064,12 +11064,12 @@ html.ipad.html_fancybox_opened body {
 }
 
 .l-customer_service-right {
-    letter-spacing: 2px;
+    letter-spacing: 0px;
 }
 
 .l-customer_service-right h1 {
     margin: 0 0 10px;
-    letter-spacing: 1px;
+    letter-spacing: 0px;
     color: #252525;
 }
 
@@ -11106,14 +11106,14 @@ html.ipad.html_fancybox_opened body {
 
 .b-countryselect-title {
     margin: 0 0 10px;
-    font: 18px/1 FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 18px/1 Open Sans,Arial,Times,sans-serif;
     text-transform: uppercase;
 }
 
 .b-countryselect-asset {
-    font: 12px/20px FuturaStd-Medium,Arial,Times,sans-serif;
+    font: 12px/20px Open Sans,Arial,Times,sans-serif;
     margin-bottom: 20px;
-    letter-spacing: 2px;
+    letter-spacing: 0px;
     color: #252525;
 }
 
@@ -11135,8 +11135,8 @@ html.ipad.html_fancybox_opened body {
 
 .b-countryselect-currency_name,.b-countryselect-currency_value,.b-countryselect-dispatched_name,.b-countryselect-dispatched_value {
     display: inline-block;
-    font: 12px/20px FuturaStd-Medium,Arial,Times,sans-serif;
-    letter-spacing: 2px;
+    font: 12px/20px Open Sans,Arial,Times,sans-serif;
+    letter-spacing: 0px;
 }
 
 .b-countryselect-dispatched_name,.b-countryselect-currency_name {
@@ -11180,11 +11180,11 @@ html.ipad.html_fancybox_opened body {
 }
 
 .l-error_page .b-error_page-title {
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .l-error_page .b-error_page-message .b-content_asset h1,.l-error_page .b-error_page-message .b-content_asset h2 {
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 .b-content_asset--shippinginfo .shippingpromotable.countriestable {

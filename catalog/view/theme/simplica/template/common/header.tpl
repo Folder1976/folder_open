@@ -73,6 +73,7 @@ $text_service_center = 'Клиентская служба';
 <script src="<?php echo HTTPS_CATALOG; ?>catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <link href="<?php echo HTTPS_CATALOG; ?>catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 <!--link href="<?php echo HTTPS_CATALOG; ?>catalog/view/theme/simplica/stylesheet/stylesheet.css" rel="stylesheet"-->
 <?php foreach ($styles as $style) { ?>
 <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
@@ -414,8 +415,7 @@ $text_service_center = 'Клиентская служба';
                         <a class="b-primary_logo-link" href="/<?php echo $language_href; ?>"><img alt="" src="catalog/view/theme/simplica/img/logo.png" title=""></a>
                         <div class="b-phone">
                             <a href="tel:<?php echo preg_replace('/[^0-9+]/', '', $telephone); ?>">
-                            <span class="kod"><?php echo substr($telephone, 0, 7); ?></span>
-                            <span><?php echo substr($telephone, 8); ?></span>
+                                <span><?php echo $telephone; ?></span>
                             </a>
                         </div>
                     </div>

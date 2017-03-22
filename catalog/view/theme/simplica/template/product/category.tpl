@@ -41,8 +41,21 @@
                         <!-- Хлебные крошки. END -->
 
 
+                        <!-- Отображение списка товарово (Список/Сетка). START -->
+                        <div class="b-filter_view-header b-change_view">
+                            <ul class="b-change_view-list">
+                                <li style="list-style: none; display: inline">
+                                    <div class="h-hidden js-view-selector"></div>
+                                </li>
+                                <li class="b-change_view-item"><span class="b-change_view-type b-change_view-type_six js-six-columns b-change_view-type-active" data-grid-class="m-six-columns"></span></li>
+                                <li class="b-change_view-item"><span class="b-change_view-type b-change_view-type_four js-four-columns" data-grid-class="m-four-columns"></span></li>
+                                <li class="b-change_view-item"><span class="b-change_view-type b-change_view-type_two js-two-columns" data-grid-class="m-two-columns"></span></li>
+                            </ul>
+                        </div>
+                        <!-- Отображение списка товарово (Список/Сетка). END -->
+
                         <!-- Сортировка. START -->
-                        <div class="b-refinement_dropdown">
+                        <div class="b-refinement_dropdown b-sort">
                             <div class="b-sortby_price_select sort-by">
                                 <span class="b-refinement_dropdown-title js-custom-toggler" data-slide=".js-min_sortby_selector" data-toggle-class="h-minimized" data-toggle-closeonoutsideclick="yes" data-toggle-elem-class="h-toggled" data-close-element=".b-filter-close_button"><?php echo $text_sort; ?></span>
                                 <div class="b-refinement_price_range-value js-min_sortby_selector js-custom-toggler-slide h-minimized">
@@ -65,19 +78,11 @@
                         </div>
                         <!-- Сортировка. END -->
 
-
-                        <!-- Отображение списка товарово (Список/Сетка). START -->
-                        <div class="b-filter_view-header b-change_view">
-                            <ul class="b-change_view-list">
-                                <li style="list-style: none; display: inline">
-                                    <div class="h-hidden js-view-selector"></div>
-                                </li>
-                                <li class="b-change_view-item"><span class="b-change_view-type b-change_view-type_six js-six-columns b-change_view-type-active" data-grid-class="m-six-columns"></span></li>
-                                <li class="b-change_view-item"><span class="b-change_view-type b-change_view-type_four js-four-columns" data-grid-class="m-four-columns"></span></li>
-                                <li class="b-change_view-item"><span class="b-change_view-type b-change_view-type_two js-two-columns" data-grid-class="m-two-columns"></span></li>
-                            </ul>
+                        <!-- Моб. кнопка фильтр. START -->
+                        <div class="b-button-filter">
+                            <span class="b-refinement_dropdown-title js-mob-filter">Фильтр</span>
                         </div>
-                        <!-- Отображение списка товарово (Список/Сетка). END -->
+                        <!-- Моб. кнопка фильтр. END -->
 
                         <?php
                         //Или категория или отрежем хвост
@@ -185,7 +190,7 @@
 
 
             <div class="l-search_result">
-            <div class="l-search_result-left">
+            <div class="l-search_result-left js-mob-filter-block">
                 <!-- Фильтры. START -->
 
                 <div class="b-category-title">
@@ -561,6 +566,22 @@ function print_children_filter_list ( $list, $selected_attributes_alias, $catego
     });
 </script>
 
+<script>
+function filterBlockClose() {
+    $('.js-mob-filter-block').removeClass('active');
+}
+function filterBlockOpen() {
+    $('.js-mob-filter-block').addClass('active');
+}
+
+$('.js-mob-filter').on('click', function() {
+    if ( $('.js-mob-filter-block').hasClass('active') ) {
+        filterBlockClose();
+    } else {
+        filterBlockOpen();
+    }
+});
+</script>
 
 <script type="application/ld+json">
 {

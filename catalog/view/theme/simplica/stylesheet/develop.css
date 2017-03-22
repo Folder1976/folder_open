@@ -983,7 +983,7 @@ margin-left: 0px;
     padding: 0 0 0 2%;
 }
 .b-refinement-ul {
-    max-height: 240px;
+    /*max-height: 240px;*/
     height: 100%;
     overflow: auto;
 }
@@ -1202,7 +1202,9 @@ a:hover, .g-link:hover {
     position: relative;
     top: 3px;
 }
-
+.l-pdp {
+    margin-top: 30px;
+}
 
 
 
@@ -1210,20 +1212,19 @@ a:hover, .g-link:hover {
 /* Header START */
 .b-header_main-top .b-phone {
     display: inline-block;
-    position: relative;
+    position: absolute;
     font-size: 1.7em;
-    color: #f00;
+    color: #f19514;
+    top: 25px;
+    left: 90px;
 }
 .b-phone span {
     text-align: center;
-    color: #f00;
-}
-.b-header_main-top .b-phone .kod {
     color: #f19514;
-    display: block;
-    position: relative;
-    top: -24px;
-    left: 8px;
+}
+
+.b-header_close_button {
+    z-index: 1;
 }
 /* Header END */
 
@@ -1459,10 +1460,6 @@ a:hover, .g-link:hover {
 .b-refinement_dropdown-title {
     text-transform: uppercase;
 }
-.l-search_result-wrapper .b-refinement_dropdown {
-    float: right;
-    padding-right: 100px;
-}
 .b-refinement_dropdown-flyout {
     margin-top: 15px;
 }
@@ -1507,6 +1504,67 @@ a:hover, .g-link:hover {
 .b-refinement-list_2-col li {
     width: 50%;
     float: left;
+}
+
+.l-search_result-options .b-change_view {
+    display: inline-block;
+    position: static;
+    float: right;
+}
+.b-sort {
+    display: inline-block;
+    position: static;
+    float: right;
+}
+.b-button-filter {
+    float: right;
+    padding: 38px 35px 11px;
+    text-transform: uppercase;
+    display: none;
+}
+
+@media screen and (max-width: 1068px) {
+    .l-search_result-left {
+        position: absolute;
+        right: 15px;
+        top: 140px;
+        background: #fff;
+        z-index: 1;
+        border: 1px solid #f19514;
+        border-radius: 5px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+        padding: 10px;
+        width: 300px;
+        display: none;
+    }
+    .l-search_result-left.active {
+        display: block;
+    }
+    .l-search_result-content {
+        width: 100%;
+    }
+    .b-button-filter {
+        display: inline-block;
+    }
+    .b-refinement {
+        cursor: pointer;
+    }
+}
+@media screen and (max-width: 860px) {
+    .b-button-filter {
+        padding: 10px 1% 20px;
+    }
+    .l-search_result-left {
+        top: 110px;
+    }
+    .l-search_result-content .b-product_tile {
+        width: 24%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .l-search_result-content .b-product_tile {
+        width: 48%;
+    }
 }
 /* category.tpl END */
 
