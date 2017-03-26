@@ -139,19 +139,19 @@
             </div>
           <?php } ?>
 <!-- Поля для склонений -->
-          <div class="form-group">
+          <div class="form-group" style="display: none;">
             <label class="col-sm-2 control-label" for="input-name-sush"><?php echo $entry_name_sush; ?></label>
             <div class="col-sm-10">
               <input type="text" name="name_sush" value="<?php echo isset($name_sush) ? $name_sush : ''; ?>" placeholder="@block_name@ " id="input-name-sush" class="form-control" />
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" style="display: none;">
             <label class="col-sm-2 control-label" for="input-name-rod"><?php echo $entry_name_rod; ?></label>
             <div class="col-sm-10">
               <input type="text" name="name_rod" value="<?php echo isset($name_rod) ? $name_rod : ''; ?>" placeholder="@block_name_rod@" id="input-name-rod" class="form-control" />
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" style="display: none;">
             <label class="col-sm-2 control-label" for="input-name-several"><?php echo $entry_name_several; ?></label>
             <div class="col-sm-10">
               <input type="text" name="name_several" value="<?php echo isset($name_several) ? $name_several : ''; ?>" placeholder="@block_name_several@" id="input-name-several" class="form-control" />

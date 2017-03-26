@@ -275,7 +275,7 @@ function print_children_filter_list ( $list, $selected_attributes_alias, $catego
                                             <ul class="b-refinement-list">
                                                 <?php foreach($categories['categories'] as $cat) { ?>
                                                     <li class="b-refinement-item">
-                                                    <?php if ( strpos($selected_attributes_alias, $cat['href']) !== false) { ?>
+                                                    <?php if ( $selected_attributes_alias != '' AND $cat['href'] != '' AND strpos($selected_attributes_alias, $cat['href']) !== false) { ?>
                                                         <a class="b-refinement-link b-refinement-link--active" href="/<?php echo $language_href.$cat['href']; ?>"><?php echo $cat['name']; ?></a>
                                                     <?php } else { ?>
                                                         <a class="b-refinement-link " href="/<?php echo $language_href.$cat['href']; ?>"><?php echo $cat['name']; ?></a>

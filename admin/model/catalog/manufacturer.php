@@ -137,7 +137,7 @@ class ModelCatalogManufacturer extends Model {
 
 	public function getManufacturer($manufacturer_id) {
 		$query = $this->db->query("SELECT DISTINCT *,
-									(SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'manufacturer_id=" . (int)$manufacturer_id . "') AS keyword
+									(SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'manufacturer_id=" . (int)$manufacturer_id . "' LIMIT 0, 1) AS keyword
 									FROM " . DB_PREFIX . "manufacturer
 									WHERE manufacturer_id = '" . (int)$manufacturer_id . "' LIMIT 0, 1");
 		
