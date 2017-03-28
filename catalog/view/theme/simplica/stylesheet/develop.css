@@ -1211,12 +1211,25 @@ a:hover, .g-link:hover {
 
 /* Header START */
 .b-header_main-top .b-phone {
-    display: inline-block;
     position: absolute;
-    font-size: 1.7em;
+    font-size: 1.2em;
     color: #f19514;
-    top: 25px;
-    left: 90px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(to bottom,rgb(245, 245, 245) 0%,rgb(255, 255, 255) 100%);
+}
+.b-phone span::before {
+    content: '';
+    background: url(../img/phone.png) no-repeat;
+    background-size: 17px;
+    width: 17px;
+    height: 17px;
+    position: relative;
+    display: inline-block;
+    top: 3px;
+    right: 5px;
 }
 .b-phone span {
     text-align: center;
@@ -1226,16 +1239,12 @@ a:hover, .g-link:hover {
 .b-header_close_button {
     z-index: 1;
 }
-@media screen and (max-width: 520px) {
-    .b-phone span {
-       font-size: 0.9em;
+@media screen and (max-width: 560px) {
+    .b-header_main-top .b-phone {
+       padding-left: 120px;
     }
 }
-@media screen and (max-width: 390px) {
-    .b-phone span {
-       font-size: 0.55em;
-    }
-}
+
 /* Header END */
 
 

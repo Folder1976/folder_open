@@ -387,6 +387,11 @@ $text_service_center = 'Клиентская служба';
 
         <div class="b-header_main-top">
             <div class="b-header_main-wrapper">
+                <div class="b-phone">
+                    <a href="tel:<?php echo preg_replace('/[^0-9+]/', '', $telephone); ?>">
+                        <span><?php echo $telephone; ?></span>
+                    </a>
+                </div>
                 <div class="js-first-visit-banner b-first_visit_banner js-toggler-slide" style="display: none;">
                     <div class="js-policy_banner b-cookies_informer">
                         <div class="b-cookies_informer-info">
@@ -425,11 +430,6 @@ $text_service_center = 'Клиентская служба';
                     </div>
                     <div class="b-primary_logo">
                         <a class="b-primary_logo-link" href="/<?php echo $language_href; ?>"><img alt="" src="catalog/view/theme/simplica/img/logo.png" title=""></a>
-                        <div class="b-phone">
-                            <a href="tel:<?php echo preg_replace('/[^0-9+]/', '', $telephone); ?>">
-                                <span><?php echo $telephone; ?></span>
-                            </a>
-                        </div>
                     </div>
                     <div class="l-main_navigation">
                         <nav class="b-main_navigation" id="navigation" role="navigation">
