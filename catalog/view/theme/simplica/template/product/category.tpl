@@ -205,35 +205,37 @@
                                     <h2 class="h-hidden"><?php echo $text_search_detail; ?></h2>
 
 <?php
-function print_children_list ( $list, $selected_attributes_alias, $category_alias,$language_href) {
-    echo '<ul class="b-refinement-list">';
+function print_children_list ( $list, $selected_attributes_alias, $category_alias, $language_href, $level) {
+    if ($level < 2) {
+        echo '<ul class="b-refinement-list">';
 
-    foreach ( $list as $item ) {
-        echo '<li class="b-refinement-item">';
-        //echo '<a class="b-refinement-link " href="'.$item['keyword'].'">'.$item['name'].'</a>';
-       
-        $edit = '';
-       
-       
-        $item['keyword'] = str_replace('-','@',$item['keyword']); 
-        if ( strlen($selected_attributes_alias) > 0 AND strlen($item['keyword']) > 0 AND strpos($selected_attributes_alias, $item['keyword']) !== false) { 
-            echo $edit.'<a class="b-refinement-link b-refinement-link--active" href="'.str_replace($item['keyword'].'-','',$selected_attributes_alias).$category_alias.'">'.$item['name'].'</a>';
-        } else {
-            if(!isset($manufacturer_main_category)){ 
-                echo $edit.'<a class="b-refinement-link " href="/'.$language_href.$item['keyword'].'-'.$selected_attributes_alias.$category_alias.'">'.$item['name'].'</a>';
-            }else{
-                echo $edit.'<a class="b-refinement-link " href="/'.$language_href.$selected_attributes_alias.'-'.$item['keyword'].'">'.$item['name'].'</a>';
+        foreach ( $list as $item ) {
+            echo '<li class="b-refinement-item">';
+            //echo '<a class="b-refinement-link " href="'.$item['keyword'].'">'.$item['name'].'</a>';
+           
+            $edit = '';
+           
+           
+            $item['keyword'] = str_replace('-','@',$item['keyword']); 
+            if ( strlen($selected_attributes_alias) > 0 AND strlen($item['keyword']) > 0 AND strpos($selected_attributes_alias, $item['keyword']) !== false) { 
+                echo $edit.'<a class="b-refinement-link b-refinement-link--active" href="'.str_replace($item['keyword'].'-','',$selected_attributes_alias).$category_alias.'">'.$item['name'].'</a>';
+            } else {
+                if(!isset($manufacturer_main_category)){ 
+                    echo $edit.'<a class="b-refinement-link " href="/'.$language_href.$item['keyword'].'-'.$selected_attributes_alias.$category_alias.'">'.$item['name'].'</a>';
+                }else{
+                    echo $edit.'<a class="b-refinement-link " href="/'.$language_href.$selected_attributes_alias.'-'.$item['keyword'].'">'.$item['name'].'</a>';
+                }
+            } 
+            
+            if ( isset($item['children']) && count($item['children']) != 0 ) {
+                print_children_list( $item['children'] , $selected_attributes_alias, $category_alias,$language_href, ++$level);
             }
-        } 
-        
-        if ( isset($item['children']) && count($item['children']) != 0 ) {
-            print_children_list( $item['children'] , $selected_attributes_alias, $category_alias,$language_href);
+
+            echo '</li>';
         }
 
-        echo '</li>';
+        echo '</ul>';
     }
-
-    echo '</ul>';
 
     return;
 }
@@ -264,26 +266,13 @@ function print_children_filter_list ( $list, $selected_attributes_alias, $catego
     return;
 }
 ?>
-
                                     <?php if ( isset($subcategories) && count($subcategories) > 0 ) { ?>
                                     <div class="b-refinement">
                                         <div class="b-refinement-sub_title js-mob-filter-popup-link"><?php echo $text_category; ?></div>
                                         <div class="js-scrollbar scrollbar-light b-refinement-ul js-mob-filter-popup h-mob-hidden">
                                             <?php if ( isset($subcategories) AND count($subcategories) > 0) {
-                                                //print_children_list($subcategories, $selected_attributes_alias, $category_alias,$language_href);
-                                            ?>
-                                            <ul class="b-refinement-list">
-                                                <?php foreach($categories['categories'] as $cat) { ?>
-                                                    <li class="b-refinement-item">
-                                                    <?php if ( $selected_attributes_alias != '' AND $cat['href'] != '' AND strpos($selected_attributes_alias, $cat['href']) !== false) { ?>
-                                                        <a class="b-refinement-link b-refinement-link--active" href="/<?php echo $language_href.$cat['href']; ?>"><?php echo $cat['name']; ?></a>
-                                                    <?php } else { ?>
-                                                        <a class="b-refinement-link " href="/<?php echo $language_href.$cat['href']; ?>"><?php echo $cat['name']; ?></a>
-                                                    <?php } ?>
-                                                    </li>
-                                                <?php } ?>
-                                            </ul>
-                                            <?php } ?>
+                                                print_children_list($subcategories, $selected_attributes_alias, $category_alias, $language_href, 0);
+                                            } ?>
                                         </div>
                                     </div>
                                     <?php } ?>
