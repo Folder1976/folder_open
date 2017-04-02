@@ -25,7 +25,7 @@
            )
          ) { ?>
 <footer class="l-footer_checkout">
-    <div class="b-copyright_footer">COPYRIGHT © PLAZAMILANO <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</div>
+    <div class="b-copyright_footer">COPYRIGHT © FOLDER 2014 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</div>
 </footer>
 <?php } else { ?>
 
@@ -160,7 +160,7 @@
             <div class="b-footer_navigation_list-item">
                 <div class="b-content_asset b-content_asset--mobile-footer-copyright content-asset">
                     <p>
-                        <span style="text-transform:uppercase;">COPYRIGHT © PLAZAMILANO <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</span>
+                        <span style="text-transform:uppercase;">COPYRIGHT © FOLDER 2014 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</span>
                     </p>
                 </div>
             </div>

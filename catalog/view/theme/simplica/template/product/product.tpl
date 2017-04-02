@@ -19,7 +19,7 @@ $text_confirm = 'Подтвердить';
 $text_error_email = 'Пожалуйста, введите Email';
 $text_politic = 'Подтверждая, Вы соглашаетесь с нашей</span> <a class="b-notifyme_form-privacy_link" href="privacy-policy.html" id="privacyPolicyNL" target="_blank" title="Политика конфиденциальности">Политика конфиденциальности</a>';
 */
-//$email = 'mail@plazamilano.com';
+//$email = 'mail@folder.com.ua';
 ?>
 
 <span class="h-hidden">

@@ -37,7 +37,7 @@
             <label class="control-label f-label">
               <span class="f-label-value"><?php echo $entry_customer_group; ?></span>
             </label>
-            <div class="f-field-wrapper">
+            <div class="f-field-wrapper" style="display:none;">
               <?php foreach ($customer_groups as $customer_group) { ?>
               <?php if ($customer_group['customer_group_id'] == $customer_group_id) { ?>
               <div class="radio">

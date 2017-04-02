@@ -2,7 +2,7 @@
 /*
 $text_write_to_us = 'Написать нам';
 $text_customer_service = 'Клиентская служба онлайн';
-$email = 'mail@plazamilano.com';
+$email = 'mail@folder.com.ua';
 */
 ?>
 
