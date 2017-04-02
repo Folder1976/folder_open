@@ -33,11 +33,12 @@
       <p><?php echo $text_account_already; ?></p>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
         <fieldset id="account">
-          <div class="form-group required f-field f-state-required" style="display: <?php echo (count($customer_groups) > 1 ? 'block' : 'none'); ?>;">
+          <!-- <div class="form-group required f-field f-state-required" style="display: <?php //echo (count($customer_groups) > 1 ? 'block' : 'none'); ?>;"> -->
+          <div class="form-group f-field" style="display: none">
             <label class="control-label f-label">
               <span class="f-label-value"><?php echo $entry_customer_group; ?></span>
             </label>
-            <div class="f-field-wrapper" style="display:none;">
+            <div class="f-field-wrapper">
               <?php foreach ($customer_groups as $customer_group) { ?>
               <?php if ($customer_group['customer_group_id'] == $customer_group_id) { ?>
               <div class="radio">
@@ -304,7 +305,7 @@
               <input type="text" name="address_2" value="<?php echo $address_2; ?>" placeholder="<?php echo $entry_address_2; ?>" id="input-address-2" class="form-control f-textinput" />
             </div>
           </div>
-          <div class="form-group required f-field f-state-required">
+          <div class="form-group f-field">
             <label class="control-label f-label" for="input-city">
               <span class="f-label-value"><?php echo $entry_city; ?></span>
             </label>
@@ -317,7 +318,7 @@
               <?php } ?>
             </div>
           </div>
-          <div class="form-group required f-field f-state-required">
+          <div class="form-group f-field">
             <label class="control-label f-label" for="input-postcode">
               <span class="f-label-value"><?php echo $entry_postcode; ?></span>
             </label>
@@ -330,7 +331,7 @@
               <?php } ?>
             </div>
           </div>
-          <div class="form-group required f-field f-state-required">
+          <div class="form-group required f-field f-state-required" style="display: none;">
             <label class="control-label f-label" for="input-country">
               <span class="f-label-value"><?php echo $entry_country; ?></span>
             </label>
@@ -352,7 +353,7 @@
               <?php } ?>
             </div>
           </div>
-          <div class="form-group required f-field f-state-required">
+          <div class="form-group required f-field f-state-required" style="display: none;">
             <label class="control-label f-label" for="input-zone">
               <span class="f-label-value"><?php echo $entry_zone; ?></span>
             </label>

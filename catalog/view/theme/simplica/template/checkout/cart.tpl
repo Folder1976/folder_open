@@ -187,7 +187,7 @@ $faq_array = array ();   // Сюда засунуть фак
 <!-- Содержимое корзины. END -->
 
 <!-- Способ доставки. START -->
-      <div class="b-cart_shipping_method js-shipping-anchor" id="shippingAnchor">
+      <div class="b-cart_shipping_method js-shipping-anchor" id="shippingAnchor" style="display: none">
         <h3 class="b-cart_shipping_method-title">
           <?php echo $text_delivery_method; ?>
         </h3>

@@ -58,7 +58,7 @@
               </div>
               <div class="f-field-wrapper">
                 <input type="text" name="patronymic" value="<?php echo $patronymic; ?>" placeholder="<?php echo $entry_patronymic; ?>" id="input-patronymic" class="form-control f-textinput" />
-                <?php if ($error_lastname) { ?>
+                <?php if (isset($error_patronymic)) { ?>
                 <span class="f-error_message">
                   <span class="f-error_message-block"><?php echo $error_patronymic; ?></span>
                 </span>
@@ -270,7 +270,7 @@
   <!-- смена пароля. END -->
 
   <!-- Адреса доставки START -->
-    <div class="l-main_account-block">
+    <div class="l-main_account-block" style="display: none;">
       <div class="panel" id="block-address_delivery">
         <div class="panel-body"></div>
       </div>
@@ -299,18 +299,18 @@
 // подгружаем смену пароля. END
 
 // подгружаем адреса доставки. START
-  $(document).ready(function() {
-    $.ajax({
-        url: '/<?php echo $language_href; ?>index.php?route=account/address',
-        dataType: 'html',
-        success: function(html) {
-           $('#block-address_delivery .panel-body').html(html);
-        },
-        error: function(xhr, ajaxOptions, thrownError) {
-            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-        }
-    });
-});
+//   $(document).ready(function() {
+//     $.ajax({
+//         url: '/<?php echo $language_href; ?>index.php?route=account/address',
+//         dataType: 'html',
+//         success: function(html) {
+//            $('#block-address_delivery .panel-body').html(html);
+//         },
+//         error: function(xhr, ajaxOptions, thrownError) {
+//             alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+//         }
+//     });
+// });
 // подгружаем адреса доставки. END
 </script>
 

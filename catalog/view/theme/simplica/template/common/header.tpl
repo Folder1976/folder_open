@@ -210,7 +210,7 @@ $text_service_center = 'Клиентская служба';
                               data-hide-block=".b-login_block"><?php echo $text_register_new_buyer; ?></span>
                     </div>
 
-                    <div class="b-login_block-registration-user">
+                    <div class="b-login_block-registration-user" style="display: none;">
                         <span><a href="/<?php echo $language_href; ?>index.php?route=account/register&opt"><?php echo $text_register_new_wholesale_buyer; ?></a></span>
                     </div>
 

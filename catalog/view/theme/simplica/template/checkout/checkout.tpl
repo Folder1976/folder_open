@@ -143,7 +143,7 @@ $faq_array = array ();   // Сюда засунуть фак
         <div class="b-checkout_shipping_address-wrapper">
 
     <?php if($logged) { ?>
-          <div class="f-field f-field-textinput f-state-required">
+          <div class="f-field f-field-textinput f-state-required" style="display: none;">
               <div class="f-select-wrapper" id="select_address">
 
                 <select class="f-select country js-state-required" id="delivery_address" name="delivery_address">
@@ -330,14 +330,14 @@ $faq_array = array ();   // Сюда засунуть фак
                      type="hidden"
                      maxlength="35">
                      
-          <div class="f-field f-field-textinput f-state-required">
+          <div class="f-field f-field-textinput">
             <label class="f-label" for="fields_zip">
               <span class="f-label-value"><?php echo $text_fields_zip; ?></span>
             </label>
             <div class="f-field-wrapper">
               <input id="fields_zip"
                      name="fields_zip"
-                     class="f-textinput f-state-required js-state-required"
+                     class="f-textinput"
                      placeholder="<?php echo $text_fields_zip_placeholder; ?>"
                      value="<?php //echo isset($customer_info['firstname']) ? $customer_info['firstname'] : ''; ?>"
                      type="text"
@@ -349,7 +349,7 @@ $faq_array = array ();   // Сюда засунуть фак
           </div>
           
           <?php if ( isset($delivery_info[0]['CityLable']) && $delivery_info[0]['CityLable'] != '' ) { ?>
-          <div class="f-field f-field-textinput f-state-required">
+          <div class="f-field f-field-textinput f-state-required" style="display: none;">
             <label class="f-label" for="city">
               <span class="f-label-value"><?php echo $text_city; ?></span>
             </label>
@@ -369,7 +369,7 @@ $faq_array = array ();   // Сюда засунуть фак
           </div>
           <?php } ?>
 
-          <div class="f-field f-field-textinput">
+          <div class="f-field f-field-textinput" style="display: none;">
             <label class="f-label" for="country">
               <span class="f-label-value"><?php echo $text_country; ?></span>
             </label>
@@ -975,8 +975,9 @@ $('#step').on('change', function(){
         $('.js-indication-step-3').addClass('b-checkout_progress_indicator-step--active');
         $('.js-indication-step-2').removeClass('b-checkout_progress_indicator-step--active');
         var address_summary = '<p>' + $('#first_name').val() + ' ' + $('#last_name').val()  + '</p>' +
-                              '<p>' + $('.country_lable').html() + '</p>' +
-                              '<p>' + $('#fields_zip').val() + ', ' + $('#city').val() + ', ' + $('#address1').val() + '</p>' + 
+                              //'<p>' + $('.country_lable').html() + '</p>' +
+                              //'<p>' + $('#fields_zip').val() + ', ' + $('#city').val() + '</p>' +
+                              '<p>' + $('#address1').val() + '</p>' + 
                               '<?php echo $text_fields_phone;?> ' + $('#fields_phone').val() + '</p>';
         $('.js-checkout_shipping_address_summary').html(address_summary);
       } else {
