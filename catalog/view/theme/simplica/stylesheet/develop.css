@@ -1246,6 +1246,28 @@ a:hover, .g-link:hover {
 }
 /* Header END */
 
+
+/* Search START */
+.l-header-search {
+    padding: 0;
+}
+.b-simple_search {
+    height: auto;
+    padding: 10px;
+}
+.b-simple_search.h-minimized {
+    padding: 0;
+}
+.b-google-search {
+    width: calc(100% - 65px);
+}
+.b-google-search table td {
+    border-right: none;
+    border-bottom: none;
+}
+/* Search END */
+
+
 /* Menu START */
 .b-menu_category-level_2-list {
     text-align: left;

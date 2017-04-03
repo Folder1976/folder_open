@@ -321,41 +321,22 @@ $text_service_center = 'Клиентская служба';
 
     <header class="l-header_main">
         <div class="l-header-search">
-            <div class="b-header_search">
-                <span class="b-header_search-title"><?php echo $text_search; ?></span>
-                <div class="b-header_search-form_wrapper">
-                    <form action="/<?php echo $language_href; ?>search-results" class="b-simple_search js-min_search js-toggler-slide h-minimized" id="simpleSearch" method="get" name="simpleSearch" novalidate="novalidate" role="search">
-                        <fieldset class="b-simple_search-fieldset">
-                            <legend class="b-simple_search-legend"><?php echo $text_search_legend; ?></legend>
-                            <label class="b-simple_search-label" for="q"><?php echo $text_search; ?></label>
-                            <input autocomplete="off" class="b-simple_search-field js-quicksearch js-validate_placeholder h-hidden" id="q" maxlength="100" name="q" placeholder="<?php echo $text_search; ?>" type="text" value="<?php echo $text_search; ?>">
-                            <div class="b-simple_search-input js-simple_search_phrase" contenteditable="true" data-text="<?php echo $text_search; ?>"></div>
-                            <span class="b-simple_search-suggested js-simple_search_suggest_phrase"></span>
-                            <span class="b-simple_search-close_button js-search_clear h-minimized"></span>
-                            <button class="b-simple_search-submit-button js-simple_search_submit_button" type="submit" value="Смотреть"><?php echo $text_search_submit_button; ?></button>
-                            <div class="b-simple_search-gender_buttons js-simple_search_cat_btn_block">
-                                <?php $count = 1; ?>
-                                <?php foreach ($categories as $category) { ?>
-                                    <button name="search_category" class="b-simple_search-gender_buttons--submit js-simple_search_category_button <?php if($count == 1){ echo 'active';$count = $category['href'];}?>" type="button" value="<?php echo $language_href.$category['href']; ?>"><?php echo $category['name']; ?></button>
-                                <?php } ?>
-                                <button name="search_category" class="b-simple_search-gender_buttons--submit js-simple_search_category_button" type="button" value="sale"><?php echo $text_sale; ?></button>
-                                <button name="search_category" class="b-simple_search-gender_buttons--submit js-simple_search_category_button" type="button" value="brands"><?php echo $text_brands; ?></button>
-                            </div>
-                            <input class="js-simple_search_category_id" name="cgid" type="hidden" value="<?php echo $count; ?>">
-                        </fieldset>
-                    </form>
-                    <ul class="js-quicksearch_result_container b-search_result h-minimized"></ul>
-                    <script id="js-simple_search_item" type="text/template">
-                    <li class="b-search_result-item">
-                    <a class="b-search_result-product" href="{{url}}">
-                    <img class="b-search_result-image" src="{{image}}"/>
-                    <span class="b-search_result-title">{{name}}</span>
-                    </a>
-                    <span class="b-search_result-manufacturer">{{brand}}</span>
-                    <span class="b-search_result-price">{{price}}</span>
-                    </li>
+            <div class="b-simple_search js-min_search js-toggler-slide h-minimized" id="simpleSearch">
+                <div class="b-google-search">
+                    <script>
+                    (function() {
+                      var cx = '009417796080221402326:-7oc08ul0vo';
+                      var gcse = document.createElement('script');
+                      gcse.type = 'text/javascript';
+                      gcse.async = true;
+                      gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+                      var s = document.getElementsByTagName('script')[0];
+                      s.parentNode.insertBefore(gcse, s);
+                    })();
                     </script>
+                    <gcse:search></gcse:search>
                 </div>
+                <button class="b-header_close_button"></button>
             </div>
         </div>
         <div class="l-header-minicart">
@@ -426,21 +407,7 @@ $text_service_center = 'Клиентская служба';
                         </div>
                     </div>
                 </div>
-				<div style="clear: both;"></div>
-				<div class="b-phone">
-				<script>
-					(function() {
-					  var cx = '009417796080221402326:-7oc08ul0vo';
-					  var gcse = document.createElement('script');
-					  gcse.type = 'text/javascript';
-					  gcse.async = true;
-					  gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-					  var s = document.getElementsByTagName('script')[0];
-					  s.parentNode.insertBefore(gcse, s);
-					})();
-				  </script>
-				  <gcse:search></gcse:search>
-				</div>
+
                 <div class="b-header_main-content">
                     <div class="b-vertical_menu-button js-vertical_menu-button">
                         menu
@@ -537,7 +504,7 @@ $text_service_center = 'Клиентская служба';
                     </div>
 
                     <ul class="l-header_service_menu">
-                        <!--li class="l-header_service_menu-item l-header_service_menu-item-search"><span class="b-header_search_icon js-toggler js-search-icon" data-close-element=".js-search_clear" data-move-body="true" data-slide=".js-min_search, .js-search_clear" data-toggle-class="h-minimized" data-toggle-closeonoutsideclick="yes" data-toggle-elem-class="h-minimized"></span></li-->
+                        <li class="l-header_service_menu-item l-header_service_menu-item-search"><span class="b-header_search_icon js-toggler js-search-icon" data-close-element=".b-header_close_button" data-move-body="true" data-slide=".js-min_search, .js-search_clear" data-toggle-class="h-minimized" data-toggle-closeonoutsideclick="yes" data-toggle-elem-class="h-minimized"></span></li>
                         <li class="l-header_service_menu-item l-header_service_menu-item-login">
                             <?php if($logged) { ?>
                             <a href="/index.php?route=account/edit">
