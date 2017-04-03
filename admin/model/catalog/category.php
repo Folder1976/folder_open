@@ -104,9 +104,13 @@ class ModelCatalogCategory extends Model {
 			}
 		}
 
-		if (isset($data['category_to_attribute'])) {
+		$category_ids = $this->getChildrenCategoriesIds($category_id);
+		
+		if (isset($data['category_to_attribute']) and count($category_ids)) {
 			foreach ($data['category_to_attribute'] as $attribute_id) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "category_to_attribute SET category_id = '" . (int)$category_id . "', attribute_id = '" . (int)$attribute_id . "'");
+				foreach($category_ids as $row){
+					$this->db->query("INSERT INTO " . DB_PREFIX . "category_to_attribute SET category_id = '" . (int)$row . "', attribute_id = '" . (int)$attribute_id . "'");
+				}
 			}
 		}
 
@@ -159,21 +163,28 @@ class ModelCatalogCategory extends Model {
 
 		
 		$data['code'] = $data['keyword'];
-		if(!isset($data['is_menu'])) $data['is_menu'] = '0';
-		if(!isset($data['is_filter'])) $data['is_filter'] = '0';
-		
 		
 		$this->db->query("UPDATE " . DB_PREFIX . "category SET
 									parent_id = '" . (int)$data['parent_id'] . "',
-									`top` = '" . (isset($data['top']) ? (int)$data['top'] : 0) . "',
 									`column` = '" . (int)$data['column'] . "',
 									`code` = '" . $data['code'] . "',
-									is_menu = '" . (int)$data['is_menu'] . "',
-									is_filter = '" . (int)$data['is_filter'] . "',
 									sort_order = '" . (int)$data['sort_order'] . "',
 									status = '" . (int)$data['status'] . "',
 									date_modified = NOW() WHERE category_id = '" . (int)$category_id . "'");
 
+		if (isset($data['top'])) {
+			$this->db->query("UPDATE " . DB_PREFIX . "category SET top = '" . (int)$data['top'] . "' WHERE category_id = '" . (int)$category_id . "'");
+		}
+
+		if (isset($data['is_menu'])) {
+			$this->db->query("UPDATE " . DB_PREFIX . "category SET is_menu = '" . (int)$data['is_menu'] . "' WHERE category_id = '" . (int)$category_id . "'");
+		}
+
+		if (isset($data['is_filter'])) {
+			$this->db->query("UPDATE " . DB_PREFIX . "category SET is_filter = '" . (int)$data['is_filter'] . "' WHERE category_id = '" . (int)$category_id . "'");
+		}
+
+		
 		if (isset($data['image'])) {
 			$this->db->query("UPDATE " . DB_PREFIX . "category SET image = '" . $this->db->escape($data['image']) . "' WHERE category_id = '" . (int)$category_id . "'");
 		}
@@ -291,16 +302,19 @@ class ModelCatalogCategory extends Model {
 			}
 		}
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_attribute WHERE category_id = '" . (int)$category_id . "'");
-
-		if (isset($data['category_to_attribute'])) {
+		$category_ids = $this->getChildrenCategoriesIds($category_id);
+		
+		$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_attribute WHERE category_id IN (" . implode(',', $category_ids) . ")");
+		
+		if (isset($data['category_to_attribute']) and count($category_ids)) {
 			foreach ($data['category_to_attribute'] as $attribute_id) {
-				$sql = "INSERT INTO " . DB_PREFIX . "category_to_attribute SET category_id = '" . (int)$category_id . "', attribute_id = '" . (int)$attribute_id . "'";
-				//echo $sql.'<br>';
-				$this->db->query($sql);
+				foreach($category_ids as $row){
+					$this->db->query("INSERT INTO " . DB_PREFIX . "category_to_attribute SET category_id = '" . (int)$row . "', attribute_id = '" . (int)$attribute_id . "'");
+				}
 			}
 		}
 
+	
 		
 		$this->db->query("DELETE FROM " . DB_PREFIX . "category_to_layout WHERE category_id = '" . (int)$category_id . "'");
 
@@ -320,6 +334,24 @@ class ModelCatalogCategory extends Model {
 		$this->event->trigger('post.admin.category.edit', $category_id);
 	}
 
+	public function getChildrenCategoriesIds($category_id = 2) {
+		
+		$sql = "SELECT category_id FROM " . DB_PREFIX . "category_path WHERE path_id='".(int)$category_id."'";
+
+		$query = $this->db->query($sql);
+
+		if($query->num_rows == 0) return false;
+		
+		$return = array();
+		foreach($query->rows as $row){
+			$return[] = $row['category_id'];
+		}
+		
+		return $return;
+		
+	}
+
+	
 	public function deleteCategory($category_id) {
 		$this->event->trigger('pre.admin.category.delete', $category_id);
 
@@ -473,7 +505,8 @@ class ModelCatalogCategory extends Model {
 		return false;
 	}
 	public function getCategory($category_id) {
-		$sql = "SELECT DISTINCT *, code as keyword, (SELECT GROUP_CONCAT(cd1.name ORDER BY level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;')
+		$sql = "SELECT DISTINCT *, code as keyword,
+							(SELECT GROUP_CONCAT(cd1.name ORDER BY level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;')
 				FROM " . DB_PREFIX . "category_path cp
 				LEFT JOIN " . DB_PREFIX . "category_description cd1 ON (cp.path_id = cd1.category_id AND
 							cp.category_id != cp.path_id) WHERE cp.category_id = c.category_id AND
@@ -513,6 +546,7 @@ class ModelCatalogCategory extends Model {
 				GROUP_CONCAT(cd1.name ORDER BY cp.level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') AS name,
 				c1.parent_id,
 				c1.sort_order,
+				c1.top,
 				c1.is_menu,
 				c1.is_filter
 				FROM " . DB_PREFIX . "category_path cp

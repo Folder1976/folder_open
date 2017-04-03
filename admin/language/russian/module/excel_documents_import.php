@@ -47,6 +47,9 @@ $_['text_column_manufacturer'] = 'Бренд';
 $_['text_column_product_type_code'] = 'Тип товара';
 
 $_['text_column_is_universal'] = 'Универсальный';
+$_['text_column_top'] = 'ГлавноеМеню';
+$_['text_column_is_menu'] = 'ВыпадающееМеню';
+$_['text_column_is_filter'] = 'Фильтры';
 $_['text_column_main_image'] = 'Основное изображение';
 $_['text_column_image_n'] = 'Изображение %d';
 

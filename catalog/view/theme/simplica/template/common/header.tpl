@@ -392,6 +392,8 @@ $text_service_center = 'Клиентская служба';
                         <span><?php echo $telephone; ?></span>
                     </a>
                 </div>
+				
+
                 <div class="js-first-visit-banner b-first_visit_banner js-toggler-slide" style="display: none;">
                     <div class="js-policy_banner b-cookies_informer">
                         <div class="b-cookies_informer-info">
@@ -424,6 +426,21 @@ $text_service_center = 'Клиентская служба';
                         </div>
                     </div>
                 </div>
+				<div style="clear: both;"></div>
+				<div class="b-phone">
+				<script>
+					(function() {
+					  var cx = '009417796080221402326:-7oc08ul0vo';
+					  var gcse = document.createElement('script');
+					  gcse.type = 'text/javascript';
+					  gcse.async = true;
+					  gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+					  var s = document.getElementsByTagName('script')[0];
+					  s.parentNode.insertBefore(gcse, s);
+					})();
+				  </script>
+				  <gcse:search></gcse:search>
+				</div>
                 <div class="b-header_main-content">
                     <div class="b-vertical_menu-button js-vertical_menu-button">
                         menu

@@ -248,10 +248,10 @@ class ControllerModuleExcelDocumentsImport extends Controller
             'store_id', 'sort_order', 'model',
             'sku', 'name', 'url_alias', 'parent_url_alias', 'price',
             'quantity', 'title_h1', 'description',
-            'mini_description', /*'meta_keyword', */'meta_title',
+            'mini_description', 'meta_keyword', 'meta_title',
             'meta_description', 'manufacturer',
             'product_type_code', 'product_carfit_codes',
-            'is_universal',
+            'is_universal','top','is_menu','is_filter',
             'product_model',
         );
 
@@ -290,12 +290,16 @@ class ControllerModuleExcelDocumentsImport extends Controller
             'description' => $this->language->get('text_column_description'),
             'mini_description' => $this->language->get('text_column_mini_description'),
              'meta_title' => $this->language->get('text_column_meta_title'),
+            'meta_keyword' => $this->language->get('text_column_meta_keyword'),
             'meta_description' => $this->language->get('text_column_meta_description'),
             'manufacturer' => $this->language->get('text_column_manufacturer'),
             'product_type_code' => $this->language->get('text_column_product_type_code'),
             'product_carfit_codes' => $this->language->get('text_column_product_carfit_code'),
             'is_universal' => $this->language->get('text_column_is_universal'),
-        );
+            'top' => $this->language->get('text_column_top'),
+           'is_menu' => $this->language->get('text_column_is_menu'),
+           'is_filter' => $this->language->get('text_column_is_filter')
+         );
 
         for ($i = 0; $i < $imagesCount; ++ $i) {
 
@@ -1508,6 +1512,10 @@ class ControllerModuleExcelDocumentsImport extends Controller
         $data = array(
             'category_store' => $this->_getValueFromRowOrFromOldData('store_id', $data_from_row, $oldData),
             'sort_order' => $this->_getValueFromRowOrFromOldData('sort_order', $data_from_row, $oldData),
+            'is_universal' => $this->_getValueFromRowOrFromOldData('is_universal', $data_from_row, $oldData),
+            'top' => $this->_getValueFromRowOrFromOldData('top', $data_from_row, $oldData),
+            'is_menu' => $this->_getValueFromRowOrFromOldData('is_menu', $data_from_row, $oldData),
+            'is_filter' => $this->_getValueFromRowOrFromOldData('if_filter', $data_from_row, $oldData),
             'parent_id' => $this->_tryToFindParentId($processed_categories, $level),
             'column' => 0,
             'status' => 1,
@@ -1518,7 +1526,7 @@ class ControllerModuleExcelDocumentsImport extends Controller
                     'name' => $name,
                     'meta_title' => str_replace('&quot;', '"', $name),
                     'meta_description' => $this->_getValueFromRowOrFromOldData('meta_description', $data_from_row, $oldData, ''),
-                    /*'meta_keyword' => $this->_getValueFromRowOrFromOldData('meta_keyword', $data_from_row, $oldData, ''), Folder 2015.09.30 */
+                    'meta_keyword' => $this->_getValueFromRowOrFromOldData('meta_keyword', $data_from_row, $oldData, ''),
                     'meta_title' => str_replace('&quot;', '"', $this->_getValueFromRowOrFromOldData('meta_title', $data_from_row, $oldData, '')),
                     'title_h1' => $this->_getValueFromRowOrFromOldData('title_h1', $data_from_row, $oldData, ''),
                     'description' => $this->_getValueFromRowOrFromOldData('description', $data_from_row, $oldData, '')
@@ -1755,7 +1763,7 @@ class ControllerModuleExcelDocumentsImport extends Controller
                 $this->config->get('config_language_id') => array(
                     'name'          => $this->_cleanItemName($this->_getValueFromRowOrFromOldData('name', $data_from_row, $oldData, '')),
                     'meta_title'    => str_replace('&quot;', '"', $this->_cleanItemName($this->_getValueFromRowOrFromOldData('name', $data_from_row, $oldData, ''))),
-                    /*'meta_keyword'  => $this->_getValueFromRowOrFromOldData('meta_keyword', $data_from_row, $oldData, ''), Folder 2015.09.30 */
+                    'meta_keyword'  => $this->_getValueFromRowOrFromOldData('meta_keyword', $data_from_row, $oldData, ''), 
                     'meta_title'    => str_replace('&quot;', '"', $this->_getValueFromRowOrFromOldData('meta_title', $data_from_row, $oldData, '')),
                     'meta_description' => $this->_getValueFromRowOrFromOldData('meta_description', $data_from_row, $oldData, ''),
                     'description'   => $this->_getValueFromRowOrFromOldData('description', $data_from_row, $oldData, ''),
@@ -2454,7 +2462,7 @@ class ControllerModuleExcelDocumentsImport extends Controller
         else {
             if (count($cds) == 0)
                 $category_description = array(
-                    /*'meta_keyword' => '', Folder 2015.09.30*/
+                    'meta_keyword' => '',
                     'meta_title' => '',
                     'meta_description' => '',
                 );
@@ -2462,6 +2470,9 @@ class ControllerModuleExcelDocumentsImport extends Controller
                 $category_description = $cds[count($cds) - 1];
         }
         //array_walk($category_description, function (&$item, $key) { $item = addslashes($item); });
+//header("Content-Type: text/html; charset=UTF-8");
+//echo '<pre>'; print_r(var_dump( $category  ));
+//die();
 
         // Get category record, need image path (OpenCart sucks...)
         $category_record = $this->model_catalog_category->getCategory($category['category_id']);
@@ -2471,7 +2482,7 @@ class ControllerModuleExcelDocumentsImport extends Controller
         
         // Get category carfit
         $carfit = $this->model_catalog_category->getCategoryCarfitString($category['category_id']);
-
+     
         $fields = array(
             $store_id, // store_id
             $category['sort_order'], // sort_order
@@ -2484,12 +2495,15 @@ class ControllerModuleExcelDocumentsImport extends Controller
             '', // quantity
             $category_description['title_h1'], // title_h1
             str_replace('&quot;', '"', str_replace('&quot;', '"', $category_description['meta_title'])), // Meta_title
-            /*$category_description['meta_keyword'], // meta_keyword Folder 2015.09.30*/
+            $category_description['meta_keyword'], 
             '',
             '', // manufacturer
             '', // product_type_code
             $carfit, // product_carfit_code
-            '', // is_universal
+            (isset($category['is_universal']) AND $category['is_universal']) ? $this->language->get('text_yes') : $this->language->get('text_no'),// is_universal
+            ($category['top']) ? $this->language->get('text_yes') : $this->language->get('text_no'),// top
+            ($category['is_menu']) ? $this->language->get('text_yes') : $this->language->get('text_no'),// is_menu
+            ($category['is_filter']) ? $this->language->get('text_yes') : $this->language->get('text_no'),// is_filter
             '', //Product_model
         );
 
@@ -2563,12 +2577,15 @@ class ControllerModuleExcelDocumentsImport extends Controller
             $product['price'], // price
             $product['quantity'], // quantity
             $product['title_h1'], // title_h1
-            /*$product['meta_keyword'], // meta_keyword Folder 2015.09.30*/
+            $product['meta_keyword'],
             str_replace('&quot;', '"', $product['meta_title']), // meta_title
             $manufacturer_name, // manufacturer
             $product_type['product_type_kod'], // product_type_name
             isset($pCarfitCodeList) ? implode('#', $pCarfitCodeList) : '', // product_carfit_kod
             $this->language->get('text_yes'),//((bool)$product['is_universal'])? $this->language->get('text_yes') : $this->language->get('text_no'), // is_universal
+            '', //top
+            '', //is_menu
+            '', //is_filter
             '',//$this->model_catalog_product_model->getAlias($product['product_model']), //Product_model
         );
 
@@ -2729,7 +2746,7 @@ class ControllerModuleExcelDocumentsImport extends Controller
             $product['price'], // price
             $product['quantity'], // quantity
             $product['title_h1'], // title_h1
-            /*$product['meta_keyword'], // meta_keyword Folder 2015.09.30*/
+            $product['meta_keyword'], 
             str_replace('&quot;', '"', $product['meta_title']), // meta_title
             '',
             $manufacturer_name, // manufacturer
@@ -2737,6 +2754,9 @@ class ControllerModuleExcelDocumentsImport extends Controller
             isset($pCarfitCodeList) ? implode('#', $pCarfitCodeList) : '', // product_carfit_kod
             ((bool)$product['is_universal'])
                 ? $this->language->get('text_yes') : $this->language->get('text_no'), // is_universal
+            '', //top
+            '', //is_menu
+            '', //is_filter
             $this->model_catalog_product_model->getAlias($product['product_model']), //Product_model
         );
 
