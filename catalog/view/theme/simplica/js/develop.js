@@ -3,6 +3,9 @@ $(document).ready(function() {
 // Главное меню. START
 $('.b-menu_category-item').on('mouseover', function(){
     $(this).children('div.b-menu_category-level_2').show();
+    var p = $(this).position();
+    var top = p.top + $(this).height();
+    $(this).children('div.b-menu_category-level_2').css('top', top+'px');
 });
 $('.b-menu_category-item').on('mouseout', function(){
     $(this).children('div.b-menu_category-level_2').hide();
