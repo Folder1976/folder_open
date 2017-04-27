@@ -25,7 +25,25 @@
            )
          ) { ?>
 <footer class="l-footer_checkout">
-    <div class="b-copyright_footer">COPYRIGHT © FOLDER 2014 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</div>
+            
+            <div id="powered-container">
+                        <div id="powered">
+                                    <div class="vcard" style="align-self:left;">
+                                                <div class="fn org"><b><?php echo $_SERVER['HTTP_HOST']; ?></b></div>
+                                                <img class="photo" src="http://folder.com.ua/catalog/view/theme/simplica/img/logo.png"/>
+                                                <div class="adr">
+                                                            <span class="country-name">FOLDER</span>,
+                                                            <span class="locality">Lviv</span>,
+                                                            <span class="street-address"></span>
+                                                            
+                                                </div>
+                                                <div><span class="tel"><i class="value"><a href="tel:+380975662575">+38-097-566-25-75</a></i></span> </div>
+                                                <div class="copyright b-copyright_footer">COPYRIGHT © FOLDER 2014 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</div>
+                                    </div>
+            
+                        </div>
+            </div>
+    
 </footer>
 <?php } else { ?>
 
@@ -160,7 +178,24 @@
             <div class="b-footer_navigation_list-item">
                 <div class="b-content_asset b-content_asset--mobile-footer-copyright content-asset">
                     <p>
-                        <span style="text-transform:uppercase;">COPYRIGHT © FOLDER 2014 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</span>
+                        <div id="powered-container">
+                        <div id="powered">
+                                    <div class="vcard" style="align-self:left;">
+                                                <div class="fn org"><b><?php echo $_SERVER['HTTP_HOST']; ?></b></div>
+                                                <img class="photo" src="http://folder.com.ua/catalog/view/theme/simplica/img/logo.png"/>
+                                                <div class="adr">
+                                                            <span class="country-name">FOLDER</span>,
+                                                            <span class="locality">Lviv</span>,
+                                                            <span class="street-address"></span>
+                                                            
+                                                </div>
+                                                <div><span class="tel"><i class="value"><a href="tel:+380975662575">+38-097-566-25-75</a></i></span> </div>
+                                                <div class="copyright b-copyright_footer">COPYRIGHT © FOLDER 2014 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</div>
+                                    </div>
+            
+                        </div>
+                        </div>
+                        <!--span style="text-transform:uppercase;">COPYRIGHT © FOLDER 2014 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</span-->
                     </p>
                 </div>
             </div>
@@ -313,7 +348,25 @@
         <div class="l-footer-copyright_soc-content">
             <div class="l-footer-mini">
                 <div class="b-content_asset b-content_asset--mini-footer content-asset">
-                    <p><span style="text-transform:uppercase;">COPYRIGHT © FOLDER 2014 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</span></p>
+                    <p>
+                        <div id="powered-container">
+                        <div id="powered">
+                                    <div class="vcard" style="align-self:left;">
+                                                <img class="photo" style="width:50px;" src="http://folder.com.ua/catalog/view/theme/simplica/img/logo.png"/>
+                                                <div class="fn org"><b><?php echo $_SERVER['HTTP_HOST']; ?></b></div>
+                                                <div class="adr">
+                                                            <span class="country-name">Украина</span>,
+                                                            <span class="locality">Львов</span>,
+                                                            <span class="street-address"></span>
+                                                            
+                                                </div>
+                                                <div><span class="tel"><i class="value"><a href="tel:+380975662575">+38-097-566-25-75</a></i></span> </div>
+                                                <div class="copyright b-copyright_footer">COPYRIGHT © FOLDER 2014 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</div>
+                                    </div>
+            
+                        </div>
+                        </div>
+                        <!--span style="text-transform:uppercase;">COPYRIGHT © FOLDER 2014 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</span></p-->
                 </div><!-- End content-asset mini-footer -->
             </div>
             <div class="l-social-links">
@@ -354,6 +407,10 @@ $(document).ready(function() {
     });
 });
 </script>
-
+<!-- BEGIN JIVOSITE CODE {literal} -->
+<script type='text/javascript'>
+(function(){ var widget_id = 'Te7l7nvEik';var d=document;var w=window;function l(){
+var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
+<!-- {/literal} END JIVOSITE CODE -->
 
 </body></html>
