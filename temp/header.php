@@ -50,8 +50,8 @@ class ControllerCommonHeader extends Controller {
 			//Убрать после перехода на новый дизайн
 			$this->document->addScript($data['CDN']."catalog/view/javascript/shoppingcartpopupxtra/shoppingcartpopupxtra.js");
 			$this->document->addScript($data['CDN']."catalog/view/javascript/shoppingcartpopupxtra/jquery.gritter.min.js");
-			$this->document->addStyle($data['CDN']."catalog/view/theme/default/stylesheet/shoppingcartpopupxtra/shoppingcartpopupxtra.css");
-			$this->document->addStyle($data['CDN']."catalog/view/theme/default/stylesheet/shoppingcartpopupxtra/jquery.gritter.css");
+			//$this->document->addStyle($data['CDN']."catalog/view/theme/default/stylesheet/shoppingcartpopupxtra/shoppingcartpopupxtra.css");
+			//$this->document->addStyle($data['CDN']."catalog/view/theme/default/stylesheet/shoppingcartpopupxtra/jquery.gritter.css");
 			
 	
 			$this->load->model("setting/setting");
@@ -135,6 +135,9 @@ class ControllerCommonHeader extends Controller {
 		//Копия скпипта у нас
 		$this->document->addScript($data['CDN'].'catalog/view/javascript/jquery.super-smart-menu-serjopepper.min.js');
 		
+		//Старый скрипт убивалки советника
+		//$this->document->addScript('/catalog/view/javascript/jquery.super-smart-menu.min.js');
+		
 		$data['title'] = str_replace('"', "'",htmlspecialchars_decode($this->document->getTitle(), ENT_QUOTES));
 	
 		$currentGMDate = gmdate('D, d M Y H:i:s ') . 'GMT';
@@ -146,6 +149,53 @@ class ControllerCommonHeader extends Controller {
 		} else {
 			$server = $this->config->get('config_url');
 		}
+
+
+		// Подключаем css-стили
+		if ( isset($this->request->get['route']) ) {
+			$page = $this->request->get['route'];
+		} else {
+			$page = '';
+		}
+		switch ( $page ) {
+	        case '':
+	            $css_file = 'home';
+	            break;
+	        case 'product/category':
+	            $css_file = 'category';
+	            break;
+	        case 'product/product':
+	            $css_file = 'product';
+	            break;
+	        case '/checkout/checkout':
+	        case '/checkout/cart':
+	            $css_file = 'checkout';
+	            break;
+	        case 'information/information':
+	            $css_file = 'information';
+	            break;
+	        case 'information/dostavka':
+	            $css_file = 'information';
+	            break;
+	        case 'blog/blog':
+	            $css_file = 'blog';
+	            break;
+
+	        default:
+	            $css_file = 'style';
+	            break;
+	    }
+	    // пока идет переход на scss подключение новых стилей делаем если есть $_COOKIE['scss'] и значение больше нуля
+	    // (после полного перехода на scss это условие нужно будет убрать)
+	    if ( isset($_COOKIE['scss']) && $_COOKIE['scss'] > 0 ) {
+		    $this->document->addStyle($data['CDN']."catalog/view/theme/4WB/css/style_main.css");
+		    $this->document->addStyle($data['CDN']."catalog/view/theme/4WB/css/".$css_file.".css");
+		} else {
+			// иначе подключаем старые css-стили
+			$this->document->addStyle($data['CDN']."catalog/view/theme/4WB/css/style.css");
+		}
+
+
 
 		$sub_domain = isset($this->session->data['sub_domain']['Domain']) ? $this->session->data['sub_domain']['Domain'] : '';
 		$data['base'] = $server = str_replace('domain',$sub_domain,$server);
@@ -325,13 +375,7 @@ class ControllerCommonHeader extends Controller {
 		} else {
 			$data['class'] = 'common-home';
 		}
-		
-		if(defined('FB_APP_ID')){
-			
-			$data['fb']['app_id'] = FB_APP_ID;
-			
-		}
-		
+
 		// Main menu
 		$store_id = $this->config->get('config_store_id');
 		$mmDirName = 'default';
@@ -362,6 +406,7 @@ class ControllerCommonHeader extends Controller {
 				}
 				
 		}
+
 		
 		return $this->load->view($this->config->get('config_template') . '/template/common/header.tpl', $data);
 		
