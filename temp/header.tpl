@@ -31,17 +31,12 @@
 	if(isset($og)){ ?>
 		
 		<meta property="og:type" content="<?php echo $og['type'];?>" />
-		<meta property="og:title" content="<?php echo $og['name'];?>" />
-        <meta property="og:url" content="<?php echo $server_name.$og['keyword'];?>" />
+        <meta property="og:title" content="<?php echo $og['name'];?>" />
+        <meta property="og:url" content="<?php echo $CDN.$og['keyword'];?>" />
         <meta property="og:image" content="<?php echo $CDN.''.$og['image'];?>" />
         <meta property="og:description" content="<?php echo str_replace('"',"'",$og['meta_description']);?>" />
 	
 	<?php } ?>
-	
-	<?php if(isset($fb)){ ?>
-		<meta property="fb:app_id" content="<?php echo $fb['app_id'];?>" />
-	<?php } ?>
-  
   
     <?php if(!defined("USA_MODE")){ ?> 
     <meta name='yandex-verification' content='465c9ac1412d3ccf' />
@@ -126,25 +121,16 @@
         }
     </style>
 
-	<?php if(isset($_GET['_route_']) AND
-				(strpos($_GET['_route_'],'dostavka') !== false
-				 OR
-				 strpos($_GET['_route_'],'contact') !== false)){ 
-	
-		if($_SERVER['HTTPS']){ ?>
-			<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-		<?php }else{ ?>
-			<script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-		<?php } ?>
-	
-	<?php } ?>
-	
+    <?php foreach ($styles as $style) { ?>
+    <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
+    <?php } ?>
+
+
 	<link href="<?php echo $CDN; ?>catalog/view/javascript/highslide.css" rel="stylesheet">
 	<script type="text/javascript" src="<?php echo $CDN;?>catalog/view/javascript/highslide-with-html.packed.js"></script>
 	<link type="text/css" href="/catalog/view/javascript/checkout_tabs/checkout_tabs.css" rel="stylesheet">
-	
-    <link type="text/css" href="<?php echo $CDN; ?>catalog/view/theme/4WB/css/style.css" rel="stylesheet" />
-  
+
+
  	<?php if(isset($_GET['route']) AND strpos($_GET['route'],'checkout/checkout') !== false){ ?>
 		<script type="text/javascript" src="<?php echo $CDN;?>catalog/view/javascript/checkout_tabs/checkout_tabs.js"></script>
 		<script type="text/javascript" src="<?php echo $CDN;?>catalog/view/javascript/checkout_tabs/checkout_table.js"></script>
