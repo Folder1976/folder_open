@@ -68,29 +68,29 @@ $text_service_center = 'Клиентская служба';
 	
 	<?php } ?>
 
-<script src="<?php echo HTTPS_CATALOG; ?>catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="<?php echo HTTP_CATALOG; ?>catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
 <!-- <link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" /> -->
-<script src="<?php echo HTTPS_CATALOG; ?>catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<link href="<?php echo HTTPS_CATALOG; ?>catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<script src="<?php echo HTTP_CATALOG; ?>catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<link href="<?php echo HTTP_CATALOG; ?>catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-<!--link href="<?php echo HTTPS_CATALOG; ?>catalog/view/theme/simplica/stylesheet/stylesheet.css" rel="stylesheet"-->
+<!--link href="<?php echo HTTP_CATALOG; ?>catalog/view/theme/simplica/stylesheet/stylesheet.css" rel="stylesheet"-->
 <?php foreach ($styles as $style) { ?>
 <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
 <?php } ?>
 
-<link href="<?php echo HTTPS_CATALOG; ?>catalog/view/theme/simplica/stylesheet/jquery-ui.css" rel="stylesheet">
-<link href="<?php echo HTTPS_CATALOG; ?>catalog/view/theme/simplica/stylesheet/style.css" rel="stylesheet">
+<link href="<?php echo HTTP_CATALOG; ?>catalog/view/theme/simplica/stylesheet/jquery-ui.css" rel="stylesheet">
+<link href="<?php echo HTTP_CATALOG; ?>catalog/view/theme/simplica/stylesheet/style.css" rel="stylesheet">
 <!-- <link href="/catalog/view/theme/simplica/stylesheet/style_mobile.css" rel="stylesheet"> -->
-<link href="<?php echo HTTPS_CATALOG; ?>catalog/view/theme/simplica/stylesheet/develop.css" rel="stylesheet">
-<link href="<?php echo HTTPS_CATALOG; ?>catalog/view/theme/simplica/stylesheet/develop_mobile.css" rel="stylesheet">
-<script src="<?php echo HTTPS_CATALOG; ?>catalog/view/javascript/common.js" type="text/javascript"></script>
+<link href="<?php echo HTTP_CATALOG; ?>catalog/view/theme/simplica/stylesheet/develop.css" rel="stylesheet">
+<link href="<?php echo HTTP_CATALOG; ?>catalog/view/theme/simplica/stylesheet/develop_mobile.css" rel="stylesheet">
+<script src="<?php echo HTTP_CATALOG; ?>catalog/view/javascript/common.js" type="text/javascript"></script>
 <!-- <script src="catalog/view/theme/simplica/js/jquery-ui.js" type="text/javascript"></script> -->
 <!-- <script src="catalog/view/theme/simplica/js/klarna.js" type="text/javascript"></script> -->
 <!-- <script src="catalog/view/theme/simplica/js/app_lib.js" type="text/javascript"></script> -->
-<link rel="stylesheet" href="<?php echo HTTPS_CATALOG; ?>catalog/view/theme/simplica/js/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
-<script type="text/javascript" src="<?php echo HTTPS_CATALOG; ?>catalog/view/theme/simplica/js/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-<script src="<?php echo HTTPS_CATALOG; ?>catalog/view/theme/simplica/js/owl.carousel.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="<?php echo HTTP_CATALOG; ?>catalog/view/theme/simplica/js/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+<script type="text/javascript" src="<?php echo HTTP_CATALOG; ?>catalog/view/theme/simplica/js/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script src="<?php echo HTTP_CATALOG; ?>catalog/view/theme/simplica/js/owl.carousel.min.js" type="text/javascript"></script>
 
 
 <?php foreach ($links as $link) { ?>
@@ -107,7 +107,23 @@ $text_service_center = 'Клиентская служба';
 
 </head>
 
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "url": "http://folder.com.ua",
+  "name": "Folder.com.ua",
+  "image": "http://folder.com.ua/catalog/view/theme/simplica/img/logo.png",
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "telephone": "+38-097-566-25-75",
+    "contactType": "customer service"
+  }]
+}
+</script>
+
 <script>
+	
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -322,7 +338,7 @@ $text_service_center = 'Клиентская служба';
     <header class="l-header_main">
         <div class="l-header-search">
             <div class="b-simple_search js-min_search js-toggler-slide h-minimized" id="simpleSearch">
-                <div class="b-google-search">
+                <!--div class="b-google-search">
                     <script>
                     (function() {
                       var cx = '009417796080221402326:-7oc08ul0vo';
@@ -336,8 +352,14 @@ $text_service_center = 'Клиентская служба';
                     </script>
                     <gcse:search></gcse:search>
                 </div>
-                <button class="b-header_close_button"></button>
+                <button class="b-header_close_button"></button-->
+				<div id="search" class="input-group">
+					<input type="text" name="search" value="<?php if(isset($_GET['search'])) echo $_GET['search']; ?>" placeholder="Поиск" class="form-control input-lg">
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-default btn-lg">
+							<i class="fa fa-search"></i></button> </span> </div>
             </div>
+			
         </div>
         <div class="l-header-minicart">
             <!-- Report any requested source code -->

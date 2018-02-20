@@ -110,7 +110,22 @@
               </select>
             </div>
           </div>
-        
+          
+           <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-shop_id">Магазин</label>
+            <div class="col-sm-10">
+              <select name="shop_id" id="input-shop_id" class="form-control">
+                <?php foreach ($shops as $shop) { ?>
+                <?php if ($shop['shop_id'] == $shop_id) { ?>
+                <option value="<?php echo $shop['shop_id']; ?>" selected="selected"><?php echo $shop['name']; ?></option>
+                <?php } else { ?>
+                <option value="<?php echo $shop['shop_id']; ?>"><?php echo $shop['name']; ?></option>
+                <?php } ?>
+                <?php } ?>
+              </select>
+            </div>
+          </div>
+       
         <?php foreach($user_permisson as $permission){ ?>
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-permission"><?php echo $permission['group_name']; ?></label>

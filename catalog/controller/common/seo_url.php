@@ -371,6 +371,7 @@ class ControllerCommonSeoUrl extends Controller {
 		
 		//Если прилетел поиск
 		if (isset($this->request->get['search'])) {
+			//$this->request->get['route'] = 'product/search';
 			$this->request->get['route'] = 'product/category';
 			return new Action($this->request->get['route']);
 		}
@@ -452,7 +453,7 @@ class ControllerCommonSeoUrl extends Controller {
 
 		//Проверим магазин - Он без фильтров
 		if(isset($this->request->get['_route_'])){
-			
+			/*
 			$sql = "SELECT id AS shop_id FROM " . DB_PREFIX . "shops WHERE href = '" . $this->db->escape($this->request->get['_route_']) . "' LIMIT 0,1;";
 			$query = $this->db->query($sql);
 		
@@ -463,7 +464,7 @@ class ControllerCommonSeoUrl extends Controller {
 				return new Action($this->request->get['route']);
 			
 			}
-		
+			*/
 		}
 
 		
@@ -513,6 +514,7 @@ class ControllerCommonSeoUrl extends Controller {
 						$query = $this->db->query($sql);
 					}
 				//echo $query->num_rows; die($sql);
+				//echo '<br>'.$sql;
 				
 				if ($query->num_rows) {
 					$url = explode('=', $query->row['query']);
@@ -670,7 +672,7 @@ class ControllerCommonSeoUrl extends Controller {
 									
 									$sql = "SELECT query FROM " . DB_PREFIX . "url_alias WHERE keyword LIKE '" . $this->db->escape($categ) . "' AND (`query` LIKE 'category_id=%' OR `query` LIKE 'manufacturer_id=%') LIMIT 0,1;";
 									$query = $this->db->query($sql);
-									
+									//echo '<br>'.$sql;
 									if($query->num_rows){
 										
 										$url = explode('=', $query->row['query']);
@@ -732,7 +734,11 @@ class ControllerCommonSeoUrl extends Controller {
 										break;
 									}
 									
-									$categ = str_replace($alias.'-', '', $categ);
+									//Если уже есть какойто результат
+									if(isset($this->request->get['filter_manufacturer_id'])
+									   ){
+											$categ = str_replace($alias.'-', '', $categ);
+									}
 								}
 								
 								//Мы сделали полный круг по поиску и ничего не нашели - вылет на уровень ниже

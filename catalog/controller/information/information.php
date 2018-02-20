@@ -31,6 +31,7 @@ class ControllerInformationInformation extends Controller {
 			);
 
 			$data['heading_title'] = $information_info['title'];
+			$data['header'] = $information_info['title'];
 
 			$data['button_continue'] = $this->language->get('button_continue');
 

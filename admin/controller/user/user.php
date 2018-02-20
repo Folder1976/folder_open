@@ -375,9 +375,29 @@ class ControllerUserUser extends Controller {
 			$data['user_group_id'] = '';
 		}
 
+		if (isset($this->request->post['shop_id'])) {
+			$data['shop_id'] = $this->request->post['shop_id'];
+		} elseif (!empty($user_info)) {
+			$data['shop_id'] = $user_info['shop_id'];
+		} else {
+			$data['shop_id'] = '';
+		}
+
 		$this->load->model('user/user_group');
+		$this->load->model('marketing/shop');
 
 		$data['user_groups'] = $this->model_user_user_group->getUserGroups();
+		$shops = $this->model_marketing_shop->getShops();
+		
+		$data['shops'][0] = array(
+							   'shop_id' 	=> 0,
+							   'name' 		=> 'Все магазины'
+							   );
+		foreach($shops as $index => $row){
+			
+			$data['shops'][$row['shop_id']] = $row;
+		}
+		
 
 		if (isset($this->request->post['password'])) {
 			$data['password'] = $this->request->post['password'];

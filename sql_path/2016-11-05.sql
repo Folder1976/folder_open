@@ -1,1 +1,0 @@
-UPDATE  `fash_country` SET  `status` =0 WHERE  `country_id` NOT IN ( 223, 176 )

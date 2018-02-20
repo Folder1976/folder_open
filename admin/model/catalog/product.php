@@ -41,11 +41,19 @@ class ModelCatalogProduct extends Model {
 
 		$product_id = $this->db->getLastId();
 		
+		if(isset($data['url_image'])){
+			$this->addImageToLoad($data['url_image'], $product_id);
+		}
+		
 		//Если индексированое добавление
 		if(isset($data['product_id']) AND is_numeric($data['product_id'])){
 			$sql = 'UPDATE ' . DB_PREFIX . 'product SET product_id = "'.(int)$data['product_id'].'" WHERE product_id = "'.$product_id.'";';
 			$this->db->query($sql) or die($sql);
 			$product_id = (int)$data['product_id'];
+		}
+
+		if (isset($data['shop_id'])) {
+			$this->db->query("UPDATE " . DB_PREFIX . "product SET shop_id = '" . $this->db->escape($data['shop_id']) . "' WHERE product_id = '" . (int)$product_id . "'");
 		}
 
 		if (isset($data['image'])) {
@@ -212,7 +220,11 @@ class ModelCatalogProduct extends Model {
 		}
 
 		if (isset($data['keyword'])) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+			if ($data['keyword'] != '') {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+			}else{
+				$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias SET query = 'product_id=" . (int)$product_id . "'");
+			}
 		}
 
 		if (isset($data['product_recurrings'])) {
@@ -251,7 +263,7 @@ class ModelCatalogProduct extends Model {
 			if(count($images)){
 				
 				foreach($images as $image){
-					$sql = "INSERT INTO " . DB_PREFIX . "product_image SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape($image) . "', sort_order = '0'";
+					$sql = "INSERT INTO " . DB_PREFIX . "product_image SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape($image) . "', sort_order = '0';";
 					$this->db->query($sql);
 					//echo '<br>'.$sql;
 				}
@@ -261,6 +273,43 @@ class ModelCatalogProduct extends Model {
 		}
 		//die();
 	}
+	
+	public function addImageToLoad($images, $product_id, $path = ''){
+		
+		
+		if(!is_array($images) AND $images != ''){
+			$image_a = explode(';', $images);
+		}elseif(count($images) > 0){
+			$image_a = $images;
+		}else{
+			return false;
+		}
+		
+		$pref = date('D').'_'.date('H').'_'.date('i').'_'.date('s');
+		
+		$count = 1;
+		$images = array();
+		
+		if(!is_array($image_a)) return false;
+		
+		foreach($image_a as $img){
+			
+			$tmp = explode('/',$img);
+			
+			$imgN = $product_id.'_'.$tmp[count($tmp)-1];
+			
+			$sql = 'INSERT INTO ' . DB_PREFIX . 'import_pic SET `from`="'.$img.'", `to`="'.'product/'.$path.$imgN.'";';
+			$this->db->query($sql);
+			$images[] = 'product/'.$path.$imgN;
+			$count++;
+		
+		}
+		
+		$this->updateProductImages($product_id, $images);
+		
+	}
+	
+	
 	
 	public function dellProductImages($product_id) {
 		
@@ -286,9 +335,6 @@ class ModelCatalogProduct extends Model {
 		
 		$this->db->query("UPDATE " . DB_PREFIX . "product SET
 								model = '" . $this->db->escape($data['model']) . "',
-								moderation_id = '" . $this->db->escape($data['moderation_id']) . "',
-								original_url = '" . $this->db->escape($data['original_url']) . "',
-								original_code = '" . $this->db->escape($data['original_code']) . "',
 								sku = '" . $this->db->escape($data['sku']) . "',
 								code = '" . $this->db->escape($data['code']) . "',
 								upc = '" . $this->db->escape($data['upc']) . "',
@@ -304,7 +350,6 @@ class ModelCatalogProduct extends Model {
 								date_available = '" . $this->db->escape($data['date_available']) . "',
 								manufacturer_id = '" . (int)$data['manufacturer_id'] . "',
 								shipping = '" . (int)$data['shipping'] . "',
-								zakup = '" . (float)$data['zakup'] . "',
 								price = '" . (float)$data['price'] . "',
 								points = '" . 1/*(int)$data['points']*/ . "',
 								weight = '" . (float)$data['weight'] . "',
@@ -318,6 +363,32 @@ class ModelCatalogProduct extends Model {
 								sort_order = '" . (int)$data['sort_order'] . "',
 								date_modified = NOW()
 								WHERE product_id = '" . (int)$product_id . "'");
+
+								
+		if(isset($data['url_image'])){
+			$this->addImageToLoad($data['url_image'], $product_id);
+		}
+	
+								
+		if (isset($data['shop_id'])) {
+			$this->db->query("UPDATE " . DB_PREFIX . "product SET shop_id = '" . $this->db->escape($data['shop_id']) . "' WHERE product_id = '" . (int)$product_id . "'");
+		}
+						
+		if (isset($data['moderation_id'])) {
+			$this->db->query("UPDATE " . DB_PREFIX . "product SET moderation_id = '" . (int)$data['moderation_id'] . "' WHERE product_id = '" . (int)$product_id . "'");
+		}
+
+		if (isset($data['original_url'])) {
+			$this->db->query("UPDATE " . DB_PREFIX . "product SET original_url = '" . $this->db->escape($data['original_url']) . "' WHERE product_id = '" . (int)$product_id . "'");
+		}
+
+		if (isset($data['original_code'])) {
+			$this->db->query("UPDATE " . DB_PREFIX . "product SET original_code = '" . $this->db->escape($data['original_code']) . "' WHERE product_id = '" . (int)$product_id . "'");
+		}
+
+		if (isset($data['zakup'])) {
+			$this->db->query("UPDATE " . DB_PREFIX . "product SET zakup = '" . (float)$data['zakup'] . "' WHERE product_id = '" . (int)$product_id . "'");
+		}
 
 		if (isset($data['image'])) {
 			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape($data['image']) . "' WHERE product_id = '" . (int)$product_id . "'");

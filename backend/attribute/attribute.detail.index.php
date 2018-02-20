@@ -19,6 +19,7 @@ $table = '';
         <th>id</th>
         <th>Группа</th>
         <th>Название</th>
+        <th>Номер для индекса</th>
         <th>URL</th>
         <th>Активный</th>
         <th>Сорт</th>
@@ -39,6 +40,7 @@ $table = '';
                 </select>
         </td>
         <td class="mixed"><input type="text"        id="name" style="width:300px;" value="" placeholder="Название фильтра"></td>
+        <td class="mixed"><input type="text"        id="index" style="width:100px;" value="" placeholder="Index"></td>
         <td class="mixed"><input type="text"        id="filter_name" style="width:300px;" value="" placeholder="Дополнительное имя"></td>
         <td class="mixed"><input type="checkbox"    id="enable"  checked ></td>
         <td class="mixed"><input type="text"        id="sort" style="width:100px;" value=""></td>
@@ -68,6 +70,7 @@ $table = '';
                 </select>
         </td>
         <td class="mixed"><input type="text" class="edit_detail" id="name<?php echo $ex['id'];?>" style="width:300px;" value="<?php echo $ex['name']; ?>"></td>
+        <td class="mixed"><input type="text" class="edit_detail" id="index<?php echo $ex['id'];?>" style="width:100px;" value="<?php echo $ex['index']; ?>"></td>
         <td class="mixed"><input type="text" class="edit_detail" id="filter_name<?php echo $ex['id'];?>" style="width:300px;" value="<?php echo $ex['filter_name']; ?>"></td>
         <td class="mixed"><input type="checkbox" class="edit_detail" id="enable<?php echo $ex['id'];?>"  <?php if($ex['enable']) echo 'checked';?>></td>
         <td class="mixed"><input type="text" class="edit_detail" id="sort<?php echo $ex['id'];?>" style="width:100px;" value="<?php echo $ex['sort']; ?>"></td>
@@ -99,6 +102,7 @@ $table = '';
       
 	    var id = jQuery(this).parent('td').parent('tr').attr('id');
         var name = jQuery('#name'+id).val();
+        var index = jQuery('#index'+id).val();
         var table = '';//jQuery('#table').val();
         var filter_name = jQuery('#filter_name'+id).val();
         var enable_tmp = 0;
@@ -113,7 +117,7 @@ $table = '';
             type: "POST",
             url: "/<?php echo TMP_DIR; ?>backend/ajax/ajax_guideuniversal.php",
             dataType: "text",
-            data: "id="+id+"&group="+group+"&filter_name="+filter_name+"&name="+name+"&enable="+enable_tmp+"&sort="+sort+"&key=edit_attr",
+            data: "id="+id+"&group="+group+"&index="+index+"&filter_name="+filter_name+"&name="+name+"&enable="+enable_tmp+"&sort="+sort+"&key=edit_attr",
             beforeSend: function(){
             },
             success: function(msg){
@@ -126,6 +130,7 @@ $table = '';
     jQuery(document).on('click','.add_detail', function(){
         var id = 0;
         var name = jQuery('#name').val();
+        var index = jQuery('#index').val();
         var filter_name = jQuery('#filter_name').val();
         var table = '';//jQuery('#table').val();
         var enable_tmp = 0;
@@ -141,7 +146,7 @@ $table = '';
                 type: "POST",
                 url: "/<?php echo TMP_DIR; ?>backend/ajax/ajax_guideuniversal.php",
                 dataType: "text",
-                data: "id="+id+"&group="+group+"&filter_name="+filter_name+"&name="+name+"&enable="+enable_tmp+"&sort="+sort+"&key=add_attr",
+                data: "id="+id+"&group="+group+"&index="+index+"&filter_name="+filter_name+"&name="+name+"&enable="+enable_tmp+"&sort="+sort+"&key=add_attr",
                 beforeSend: function(){
                 },
                 success: function(msg){

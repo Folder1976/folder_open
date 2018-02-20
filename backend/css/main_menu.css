@@ -11,7 +11,7 @@ DIV.main_menu_item {
     border: 1px solid #DFDCD7; 
     background-color: none; float: left; text-align: left; padding:3px;
     cursor:pointer;
-    cursor:hand;
+    /*cursor:hand;*/
     display: block;
 }   
 

@@ -46,6 +46,9 @@ class File {
 
 		$file = DIR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.' . (time() + $this->expire);
 
+		
+		//echo '<br>'.$file;die();
+		
 		$handle = fopen($file, 'w');
 
 		flock($handle, LOCK_EX);

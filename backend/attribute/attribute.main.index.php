@@ -15,7 +15,7 @@ if(strpos($_SERVER['PHP_SELF'], $file[count($file)-1]) !== false){
 				$filter_name = $tmp['name'];	
 			}
 				
-			$sql = 'SELECT A.attribute_id AS id, A.attribute_group_id AS `group`, AD.name, A.filter_name, A.sort_order AS sort, A.enable
+			$sql = 'SELECT A.attribute_id AS id, A.attribute_group_id AS `group`, AD.name, A.filter_name, A.sort_order AS sort, A.enable, A.index
 						FROM '.DB_PREFIX.'attribute A
 						LEFT JOIN '.DB_PREFIX.'attribute_description AD ON AD.attribute_id = A.attribute_id
 						WHERE A.attribute_group_id="'.(int)$_GET['guide'].'" ORDER BY sort, name';

@@ -30,15 +30,15 @@
                         <div id="powered">
                                     <div class="vcard" style="align-self:left;">
                                                 <div class="fn org"><b><?php echo $_SERVER['HTTP_HOST']; ?></b></div>
-                                                <img class="photo" src="http://folder.com.ua/catalog/view/theme/simplica/img/logo.png"/>
+                                                <img class="photo" src="/catalog/view/theme/simplica/img/logo.png"/>
                                                 <div class="adr">
-                                                            <span class="country-name">FOLDER</span>,
+                                                            <span class="country-name">LSHOES</span>,
                                                             <span class="locality">Lviv</span>,
                                                             <span class="street-address"></span>
                                                             
                                                 </div>
                                                 <div><span class="tel"><i class="value"><a href="tel:+380975662575">+38-097-566-25-75</a></i></span> </div>
-                                                <div class="copyright b-copyright_footer">COPYRIGHT © FOLDER 2014 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</div>
+                                                <div class="copyright b-copyright_footer">COPYRIGHT © LSHOES 2017 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</div>
                                     </div>
             
                         </div>
@@ -182,20 +182,20 @@
                         <div id="powered">
                                     <div class="vcard" style="align-self:left;">
                                                 <div class="fn org"><b><?php echo $_SERVER['HTTP_HOST']; ?></b></div>
-                                                <img class="photo" src="http://folder.com.ua/catalog/view/theme/simplica/img/logo.png"/>
+                                                <img class="photo" src="/catalog/view/theme/simplica/img/logo.png"/>
                                                 <div class="adr">
-                                                            <span class="country-name">FOLDER</span>,
+                                                            <span class="country-name">LSHOES</span>,
                                                             <span class="locality">Lviv</span>,
                                                             <span class="street-address"></span>
                                                             
                                                 </div>
-                                                <div><span class="tel"><i class="value"><a href="tel:+380975662575">+38-097-566-25-75</a></i></span> </div>
-                                                <div class="copyright b-copyright_footer">COPYRIGHT © FOLDER 2014 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</div>
+                                                <div><span class="tel"><i class="value"><a href="tel:+380970000000">+38-097-000-00-00</a></i></span> </div>
+                                                <div class="copyright b-copyright_footer">COPYRIGHT © LSHOES 2017 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</div>
                                     </div>
             
                         </div>
                         </div>
-                        <!--span style="text-transform:uppercase;">COPYRIGHT © FOLDER 2014 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</span-->
+                        <!--span style="text-transform:uppercase;">COPYRIGHT © LSHOES 2014 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</span-->
                     </p>
                 </div>
             </div>
@@ -352,7 +352,7 @@
                         <div id="powered-container">
                         <div id="powered">
                                     <div class="vcard" style="align-self:left;">
-                                                <img class="photo" style="width:50px;" src="http://folder.com.ua/catalog/view/theme/simplica/img/logo.png"/>
+                                                <img class="photo" style="width:50px;" src="/catalog/view/theme/simplica/img/logo.png"/>
                                                 <div class="fn org"><b><?php echo $_SERVER['HTTP_HOST']; ?></b></div>
                                                 <div class="adr">
                                                             <span class="country-name">Украина</span>,
@@ -361,12 +361,12 @@
                                                             
                                                 </div>
                                                 <div><span class="tel"><i class="value"><a href="tel:+380975662575">+38-097-566-25-75</a></i></span> </div>
-                                                <div class="copyright b-copyright_footer">COPYRIGHT © FOLDER 2014 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</div>
+                                                <div class="copyright b-copyright_footer">COPYRIGHT © LSHOES 2017 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</div>
                                     </div>
             
                         </div>
                         </div>
-                        <!--span style="text-transform:uppercase;">COPYRIGHT © FOLDER 2014 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</span></p-->
+                        <!--span style="text-transform:uppercase;">COPYRIGHT © LSHOES 2017 - <?php echo date('Y');?> - ONLINE CLOTHES SHOP. All rights reserved</span></p-->
                 </div><!-- End content-asset mini-footer -->
             </div>
             <div class="l-social-links">

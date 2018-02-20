@@ -508,6 +508,13 @@ $text_politic = 'Подтверждая, Вы соглашаетесь с наш
                         </form>
                     </div>
                     <div class="b-product_add_to_cart">
+                    <?php if (isset($_SESSION['default']) && isset($_SESSION['default']['user_id'])){ ?>
+                        <ul>
+                        <li><a style="color:red;" href="/admin/index.php?route=catalog/product/edit&token=<?php echo $_SESSION['default']['token']; ?>&product_id=<?php echo  $product_id; ?>" target="_blank">Редактировать</a></li>
+                        </ul>
+                    <?php } ?>
+                    </div>      
+                    <div class="b-product_add_to_cart">
                         <!--form action="" class="js-form_pdp" id="dwfrm_product_addtocart_d0nlllyfdaqo" method="post" name="dwfrm_product_addtocart_d0nlllyfdaqo" novalidate="novalidate">
                             <div class="inventory h-hidden">
                                 <div class="quantity">

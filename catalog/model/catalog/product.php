@@ -320,30 +320,24 @@ class ModelCatalogProduct extends Model {
 			}
 		}
 		
-		$sql = "SELECT DISTINCT *, p.old_price, p2c.category_id, pl.id AS loved, pd.description, pd.name AS name, p.image, m.name AS manufacturer, ua.keyword AS manufacturer_href,
+		$sql = "SELECT DISTINCT *, p.old_price, p2c.category_id, pl.id AS loved, pd.description, pd.name AS name, p.image, md.name AS manufacturer, ua.keyword AS manufacturer_href,
 							(SELECT price FROM " . DB_PREFIX . "product_discount pd2 WHERE pd2.product_id = p.product_id AND pd2.quantity = '1' AND ((pd2.date_start = '0000-00-00' OR pd2.date_start < NOW()) AND (pd2.date_end = '0000-00-00' OR pd2.date_end > NOW())) ORDER BY pd2.priority ASC, pd2.price ASC LIMIT 1) AS discount,
 							(SELECT price FROM " . DB_PREFIX . "product_special ps WHERE ps.product_id = p.product_id AND ((ps.date_start = '0000-00-00' OR ps.date_start < NOW()) AND (ps.date_end = '0000-00-00' OR ps.date_end > NOW())) ORDER BY ps.priority ASC, ps.price ASC LIMIT 1) AS special,
 							(SELECT AVG(rating) AS total FROM " . DB_PREFIX . "review r1 WHERE r1.product_id = p.product_id AND r1.$status GROUP BY r1.product_id) AS rating,
 							(SELECT ss.name FROM " . DB_PREFIX . "stock_status ss WHERE ss.stock_status_id = p.stock_status_id AND ss.language_id = '" . (int)$this->config->get('config_language_id') . "') AS stock_status,
-							p.sort_order,
-							s.id AS shop_id,
-							s.name AS shop_name,
-							s.href AS shop_href,
-							pml.money_limit,
-							pclik.money_click
+							p.sort_order
 						FROM " . DB_PREFIX . "product p
 						LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "')
 						LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id) 
 						LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p.product_id = p2c.product_id AND is_main=1)
 						LEFT JOIN " . DB_PREFIX . "product_loved pl ON (p.product_id = pl.product_id AND customer_id > 0 AND customer_id = '".$this->customer->isLogged()."')
 						LEFT JOIN " . DB_PREFIX . "manufacturer m ON (p.manufacturer_id = m.manufacturer_id)
+						LEFT JOIN " . DB_PREFIX . "manufacturer_description md ON (m.manufacturer_id = md.manufacturer_id)
 						LEFT JOIN " . DB_PREFIX . "url_alias ua ON ua.query = CONCAT('manufacturer_id=',m.manufacturer_id)
-						LEFT JOIN " . DB_PREFIX . "product_to_shop p2sh ON (p.product_id = p2sh.product_id)
-						LEFT JOIN " . DB_PREFIX . "shops s ON (s.id = p2sh.shop_id)
-						LEFT JOIN " . DB_PREFIX . "product_money_limit pml ON (p.product_id = pml.money_product_id)
-						LEFT JOIN " . DB_PREFIX . "product_money_click pclik ON (p.product_id = pclik.click_product_id)
 						
-						WHERE p.product_id = '" . (int)$product_id . "' AND p.$status AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
+						WHERE p.product_id = '" . (int)$product_id . "' AND
+						p.$status AND p.date_available <= NOW() AND
+						p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
 	
 		$query = $this->db->query($sql);
 
@@ -369,11 +363,11 @@ class ModelCatalogProduct extends Model {
 				'meta_description' => $query->row['meta_description'],
 				'keyword'     => $query->row['keyword'],
 				'meta_keyword'     => $query->row['meta_keyword'],
-				'shop_id'     => $query->row['shop_id'],
-				'shop_name'     => $query->row['shop_name'],
-				'shop_href'     => $query->row['shop_href'],
-				'money_limit'     => ($query->row['money_limit'] > 0) ? $query->row['money_limit'] : 0,
-				'money_click'     => ($query->row['money_click'] > 0) ? $query->row['money_click'] : 0,
+				'shop_id'     => 0,//$query->row['shop_id'],
+				'shop_name'     => '',//$query->row['shop_name'],
+				'shop_href'     => '',//$query->row['shop_href'],
+				'money_limit'     => 0,//($query->row['money_limit'] > 0) ? $query->row['money_limit'] : 0,
+				'money_click'     => 0,//($query->row['money_click'] > 0) ? $query->row['money_click'] : 0,
 				'tag'              => $query->row['tag'],
 				'model'            => $query->row['model'],
 				'sku'              => $query->row['sku'],
@@ -1194,13 +1188,6 @@ class ModelCatalogProduct extends Model {
 			$r = $this->db->query($sql);
 			if($r->num_rows){
 				$data['@design_count@'] = $r->row['manufacturer'];
-			}
-			
-			//Магазины
-			$sql = 'SELECT COUNT(DISTINCT shop_id) as shops FROM ' . DB_PREFIX . 'product_to_shop WHERE product_id IN ('.implode(',', $product_ids).')';
-			$r = $this->db->query($sql);
-			if($r->num_rows){
-				$data['@shops_count@'] = $r->row['shops'];
 			}
 			
 		}

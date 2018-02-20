@@ -143,11 +143,13 @@ class ModelCatalogManufacturer extends Model {
 		
 		$query1 = $this->db->query("SELECT *
 									FROM " . DB_PREFIX . "manufacturer_description
-									WHERE manufacturer_id = '" . (int)$manufacturer_id . "'");
+									WHERE manufacturer_id = '" . (int)$manufacturer_id . "'
+										AND language_id=1");
 		
 		$return = $query->row;
+		$return1 = $query1->row;
 		
-		$return['name'] = html_entity_decode($return['name'], ENT_QUOTES, 'UTF-8');
+		$return['name'] = html_entity_decode($return1['name'], ENT_QUOTES, 'UTF-8');
 		$return['code'] = html_entity_decode($return['code'], ENT_QUOTES, 'UTF-8');
 		
 		if($query1->num_rows){

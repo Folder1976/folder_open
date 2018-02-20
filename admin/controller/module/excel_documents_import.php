@@ -193,6 +193,7 @@ class ControllerModuleExcelDocumentsImport extends Controller
         $this->load->model('catalog/attribute_group');
         $this->load->model('catalog/manufacturer');
         $this->load->model('catalog/product_model');
+        $this->load->model('catalog/shops');
     }
 
     /**
@@ -245,8 +246,8 @@ class ControllerModuleExcelDocumentsImport extends Controller
     protected function _loadColumns($imagesCount = 0)
     {
         $columns = array(
-            'store_id', 'sort_order', 'model',
-            'sku', 'name', 'url_alias', 'parent_url_alias', 'price',
+            'store_id','shop_id', 'sort_order', 'model',
+            'sku', 'name', 'url_alias', 'url_image', 'original_url', 'parent_url_alias', 'price',
             'quantity', 'title_h1', 'description',
             'mini_description', 'meta_keyword', 'meta_title',
             'meta_description', 'manufacturer',
@@ -277,11 +278,14 @@ class ControllerModuleExcelDocumentsImport extends Controller
     {
         $this->_columnsNames = array(
             'store_id' => $this->language->get('text_column_store_id'),
+            'shop_id' => $this->language->get('text_column_shop_id'),
             'sort_order' => $this->language->get('text_column_sort_order'),
             'model' => $this->language->get('text_column_model'),
             'sku' => $this->language->get('text_column_sku'),
+            'original_url' => $this->language->get('text_column_original_url'),
             'name' => $this->language->get('text_column_name'),
             'url_alias' => $this->language->get('text_column_url_alias'),
+            'url_image' => $this->language->get('text_column_url_image'),
             'parent_url_alias' => $this->language->get('text_column_parent_url_alias'),
             'price' => $this->language->get('text_column_price'),
             'quantity' => $this->language->get('text_column_quantity'),
@@ -1508,14 +1512,26 @@ class ControllerModuleExcelDocumentsImport extends Controller
             unset($query);
         }
 
+        $is_universal = 0;
+        if($this->_getValueFromRowOrFromOldData('is_universal', $data_from_row, $oldData) == $this->language->get('text_yes')) $is_universal = 1;
+        
+        $top = 0;
+        if($this->_getValueFromRowOrFromOldData('top', $data_from_row, $oldData) == $this->language->get('text_yes')) $top = 1;
+        
+        $is_menu = 0;
+        if($this->_getValueFromRowOrFromOldData('is_menu', $data_from_row, $oldData) == $this->language->get('text_yes')) $is_menu = 1;
+        
+        $is_filter = 0;
+        if($this->_getValueFromRowOrFromOldData('is_filter', $data_from_row, $oldData) == $this->language->get('text_yes')) $is_filter = 1;
+        
         // Prepare category new data
         $data = array(
             'category_store' => $this->_getValueFromRowOrFromOldData('store_id', $data_from_row, $oldData),
             'sort_order' => $this->_getValueFromRowOrFromOldData('sort_order', $data_from_row, $oldData),
             'is_universal' => $this->_getValueFromRowOrFromOldData('is_universal', $data_from_row, $oldData),
-            'top' => $this->_getValueFromRowOrFromOldData('top', $data_from_row, $oldData),
-            'is_menu' => $this->_getValueFromRowOrFromOldData('is_menu', $data_from_row, $oldData),
-            'is_filter' => $this->_getValueFromRowOrFromOldData('if_filter', $data_from_row, $oldData),
+            'top' => $top,
+            'is_menu' => $is_menu,
+            'is_filter' => $is_filter,
             'parent_id' => $this->_tryToFindParentId($processed_categories, $level),
             'column' => 0,
             'status' => 1,
@@ -1734,6 +1750,8 @@ class ControllerModuleExcelDocumentsImport extends Controller
         $data = array(
             'model' => $data_from_row[$this->_columns['model']],
             'sku' => $this->_getValueFromRowOrFromOldData('sku', $data_from_row, $oldData, ''),
+            'shop_id' => $this->model_catalog_shops->getShopIdOnName($this->_getValueFromRowOrFromOldData('shop_id', $data_from_row, $oldData, '')),
+            'original_url' => $this->_getValueFromRowOrFromOldData('original_url', $data_from_row, $oldData, ''),
             'upc' => '',
             'ean' => '',
             'jan' => '',
@@ -1967,13 +1985,16 @@ class ControllerModuleExcelDocumentsImport extends Controller
                     $res = $this->_processProductImage($product_id,
                                                     $i,
                                                     $productImages,
-                                                    $data_from_row[$this->_columns[$key]]);
+                                                    $data_from_row[$this->_columns[$key]]
+                                                    );
                     //if($res == 'no_brand'){
                      //   return no_brand;
                     //}
                     
                 }
             }
+            
+            $res = $this->_processProductImageUrl($product_id, $this->_getValueFromRowOrFromOldData('url_image', $data_from_row, $oldData, 0));
             
             
         }
@@ -2190,6 +2211,42 @@ class ControllerModuleExcelDocumentsImport extends Controller
         if (!$isKeyFoundInUpdateProductsImagesList) {
             $this->_updatedProductsImages[$newImagePath] = $newImagePath;
         }
+        
+        return true;
+    }
+
+    protected function _processProductImageUrl($productId, $images)
+    {
+        // Check args
+        if (!is_numeric($productId)
+             || !is_string($images)) {
+            $this->session->data['errors'][] = sprintf(
+                $this->language->get('error_invalid_set_of_arguments_passed_into_method'),
+                '_processProductImageUrl'
+            );
+            return false;
+        }
+
+          //get product brand =======================
+        $sqlb = "SELECT M.code
+                        FROM ".DB_PREFIX."product P
+                        LEFT JOIN ".DB_PREFIX."manufacturer M ON P.manufacturer_id = M.manufacturer_id 
+                        WHERE P.product_id = '$productId';";
+        $r = $this->db->query($sqlb);
+        
+        $brand = '';
+        if($r->num_rows > 0){
+			$brand = $r->row['code'];
+			$brand_tmp = $r->row['code'];
+		}
+        
+        if($brand != ''){
+            $brand = 'brand/' . $brand . '/';
+        }else{
+            $brand = '';
+        }
+        
+        $this->model_catalog_product->addImageToLoad($images, $productId, $brand);
         
         return true;
     }
@@ -2485,11 +2542,14 @@ class ControllerModuleExcelDocumentsImport extends Controller
      
         $fields = array(
             $store_id, // store_id
+            '', //shop_id
             $category['sort_order'], // sort_order
             '', // model
             '', // sku
             $category['name'], // name
             $seo_keyword, // url_alias
+            '', // url_image
+            '', // original_url
             '', // parent_url_alias
             '', // price
             '', // quantity
@@ -2546,7 +2606,9 @@ class ControllerModuleExcelDocumentsImport extends Controller
         $sku = !empty($product['sku']) ? $product['sku'] : '';
         // Get product type
         $product_type = $this->model_catalog_product->getProductType($product['product_id']);
+        $shop = $this->model_catalog_shops->getShop($product['shop_id']);
 
+        if(count($shop) == 0)$shop_name = 'not found';
         // Get product car fit data
         /*
         $pCarfitData = false; //$this->model_catalog_product->getProductCarFit($product['product_id']);
@@ -2559,6 +2621,7 @@ class ControllerModuleExcelDocumentsImport extends Controller
         unset($pCarfitData);
         */
 
+
         // Get product manufacturer name
         $manufacturer_name = $productManufacturer && count($productManufacturer) > 0
             ? $productManufacturer['name'] : '';
@@ -2568,11 +2631,14 @@ class ControllerModuleExcelDocumentsImport extends Controller
         $parent_url_alias = $this->_lastExportedCategoryUrlAlias ? $this->_lastExportedCategoryUrlAlias : '';
         $fields = array(
             '0', // store_id
+            $shop['name'], //shop_id
             $product['sort_order'], // sort_order
             $product['model'], // model
             $sku, // sku
             $product['name'], // name
             '', // url_alias
+            '', // url_image
+            $product['original_url'],
             $parent_url_alias, // parent_url_alias
             $product['price'], // price
             $product['quantity'], // quantity
@@ -2733,15 +2799,18 @@ class ControllerModuleExcelDocumentsImport extends Controller
         // Put general data
         $product['name'] = $this->_prepareItemName($product['name']);
         $parent_url_alias = $this->_lastExportedCategoryUrlAlias ? $this->_lastExportedCategoryUrlAlias : '';
-        
+        $shop = $this->model_catalog_shops->getShop($product['shop_id']);
       
         $fields = array(
             '0', // store_id
+            $shop['name'], //shop_id
             $product['sort_order'], // sort_order
             $product['model'], // model
             $sku, // sku
             $product['name'], // name
             '', // url_alias
+            '', // url_image
+            $product['original_url'],
             $parent_url_alias, // parent_url_alias
             $product['price'], // price
             $product['quantity'], // quantity

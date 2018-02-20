@@ -104,6 +104,8 @@ class ControllerCatalogProduct extends Controller {
 					if ( ! preg_match( '|(.+/)(.+)\.(\w+)$|', $image, $m ) ){	return false;}
 					$path = $m[1]; $file_name = $m[2]; $extension = $m[3];
 					
+					$file_name = str_replace('#','-',$file_name);
+					
 					$count = 0;
 					$image = $path.$file_name.'.'.$extension;
 					while(file_exists($image)){
@@ -122,7 +124,13 @@ class ControllerCatalogProduct extends Controller {
 				$this->model_catalog_product->updateProductImages($this->request->post['product_id'], $product_image);
 			}
 			
-			$this->response->redirect($this->url->link('catalog/product/edit', 'product_id=' . $this->request->get['product_id'] . '&token=' . $this->session->data['token'] . $url, 'SSL'));
+			if(!isset($url)) $url = '';
+			
+			if(isset($_POST['redirect'])){
+				$this->response->redirect($_POST['redirect']);
+			}else{
+				$this->response->redirect($this->url->link('catalog/product/edit', 'product_id=' . $this->request->get['product_id'] . '&token=' . $this->session->data['token'] . $url, 'SSL'));
+			}
 
 		}
 		
@@ -939,6 +947,19 @@ class ControllerCatalogProduct extends Controller {
 			$data['image'] = $product_info['image'];
 		} else {
 			$data['image'] = '';
+		}
+
+		
+		$this->load->model('catalog/shops');
+		if (isset($this->request->post['shop_id'])) {
+			$data['shop_id'] = $this->request->post['shop_id'];
+			$data['shops'] = $this->model_catalog_shops->getShops();
+		} elseif (!empty($product_info)) {
+			$data['shop_id'] = $product_info['shop_id'];
+			$data['shops'] = $this->model_catalog_shops->getShops();
+		} else {
+			$data['shop_id'] = 0;
+			$data['shops'] = $this->model_catalog_shops->getShops();
 		}
 
 		$this->load->model('tool/image');

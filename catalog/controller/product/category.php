@@ -38,6 +38,8 @@ class ControllerProductCategory extends Controller {
 			$price['price_to'] = (int)$this->request->get['price_to'];
 		}
 	
+
+	
 //setcookie('hide_menu_help', '0', time()+3600);
 		$data['selected_attributes'] = array();
 		$attributes = array();
@@ -223,7 +225,7 @@ class ControllerProductCategory extends Controller {
 			$like_info = 'search';
 			$search = $this->request->get['search'];
 			$category_info['name'] = $category_info['title'];
-			
+			$data['header'] = $category_info['header'] = $category_info['title'];
 			foreach($category_info as $index => $name){
 				$category_info[$index] = str_replace('@search@', $this->request->get['search'], $name);
 			}
@@ -906,25 +908,7 @@ class ControllerProductCategory extends Controller {
 			
 			//Массив атрибутов для фильтров
 			$product_attributes = array();
-			/*	
-			$add_filters = array();
-			$add_filters[] = array('name'=>'Цена','attribute_id'=>169,'filter_name'=>'Недорогие','filter_alias'=>'cheap');
-			$add_filters[] = array('name'=>'Цена','attribute_id'=>168,'filter_name'=>'Дорогие','filter_alias'=>'expensive');
-			
-			foreach($add_filters as $filter){
-				$product_attributes[22]['attribute_group_id'] = 22;
-				$product_attributes[22]['attribute_group_name'] = $filter['name'];
-				$product_attributes[22]['description'] = $filter['name'];
-				$product_attributes[22]['attributes'][$filter['attribute_id']]['attribute_id'] = $filter['attribute_id'];
-				$product_attributes[22]['attributes'][$filter['attribute_id']]['name'] = $filter['filter_name'];
-				$product_attributes[22]['attributes'][$filter['attribute_id']]['filter_name'] = $filter['filter_alias'];
-			}
-			
-			$product_attributes[22]['attribute_group_id'] = 22;
-			$product_attributes[22]['attributes'][0]['attribute_id'] = -1;
-			$product_attributes[22]['attribute_group_name'] = 'Цена';
-			$product_attributes[22]['description'] = 'Цена';
-			*/
+
 			//Подчистим атрибуты по тем что назначены
 			//Тут идет отсечение не активных у категории атрибутов
 			// Если это категория бренда - открываем все фильтры
@@ -959,6 +943,9 @@ class ControllerProductCategory extends Controller {
 				}
 			}
 		
+		//header("Content-Type: text/html; charset=UTF-8");
+		//echo '<pre>'; print_r(var_dump( $results ));
+		//die();	
 		
 			if(isset($this->request->get['filtered_category'])){
 				$filter = explode(',',$this->request->get['filtered_category']);
@@ -974,7 +961,9 @@ class ControllerProductCategory extends Controller {
 				}
 					
 			}
-		
+	
+				
+
 		
 		
 			$data['product_attributes'] = $product_attributes;

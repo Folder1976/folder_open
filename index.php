@@ -1,5 +1,8 @@
 <?php
+header("Content-Type: text/html; charset=UTF-8");
 
+
+if(in_array('gd',get_loaded_extensions())) {echo 'Да, GD модуль пашет!!'; } else { echo 'Увы.. Нет поддержки GD.'; }
 
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);

@@ -1,0 +1,73 @@
+	.kredit_form{
+		width: 100%;
+		height: 100%;
+		/*margin-left: calc((100% - 700px) / 2);*/
+		background-color: #C9E2FF;
+		z-index: 99;
+		position: absolute;
+		/* top: 170px; */
+		text-align: center;
+		display: block;
+		font-size: 22px;
+        border-radius: 20px;
+		
+	}
+	.kredit_form input, .kredit_form select{
+		font-size: 22px;
+		margin: 10px;
+		background-color: white;
+		border-radius: 10px;
+		padding: 4px;
+		color: black;
+	}
+    
+    .btn{
+        border: 2px solid black;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px;
+        text-decoration: none;
+    }
+    .btn:hover{
+      color: white;
+      background-color: black;
+    }
+    
+	.customer_find_res{
+		height: 220px;
+		text-align: left;
+		margin-left: 20px;
+		font-weight: bold;
+		border: 1px solid gray;
+		width: 95%;
+		padding: 5px;
+		overflow: auto;
+		background-color: cornsilk;
+		
+	}
+	.customer_find_res a{
+		padding-bottom: 7px;
+        
+	}
+	#selected_customer_name{
+		font-size: 24px;
+		font-weight: bold;
+	}
+	#sum{
+        font-size: 40px;
+    }
+	#set_kredir, #cansel_kredit{
+		font-size: 24px;
+		font-weight: bold;
+		margin: 30px;
+		width: 300px;
+		border: 2px solid;
+		padding: 10px;
+		border-radius: 10px;
+	}
+	#set_kredir:hover{
+		background-color: #87C14D;
+	}
+	#cansel_kredit:hover{
+		background-color: #BF4C4C;
+	}

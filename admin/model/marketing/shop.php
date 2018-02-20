@@ -2,7 +2,7 @@
 class ModelMarketingShop extends Model {
 
 	public function getShops(){
-		$sql = "SELECT * FROM " . DB_PREFIX . "shops ORDER BY sort, name";
+		$sql = "SELECT * FROM " . DB_PREFIX . "shops ORDER BY  name";
 
 		$query = $this->db->query($sql);
 

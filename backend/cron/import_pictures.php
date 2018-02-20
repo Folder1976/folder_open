@@ -386,7 +386,7 @@ unlink($file_name);
 
 
 if(isset($_GET['rotation'])){ ?>
-	<script type="text/javascript" src="/<?php echo $tmp_dir;?>backend/js/jquery.js"></script>
+	<!--script type="text/javascript" src="/<?php echo $tmp_dir;?>backend/js/jquery.js"></script-->
 	<script type="text/javascript" src="/<?php echo $tmp_dir;?>backend/js/ui/jquery-ui.js"></script>
 	
 		<script>

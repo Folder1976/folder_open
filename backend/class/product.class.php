@@ -4,10 +4,17 @@ class Product
 {
 	private $db;
 	private $pp;
+	private $session;
 	
-    function __construct ($conn, $pp){
-		$this->db = $conn;
-		$this->pp = $pp;
+    function __construct ($conn=false, $pp=false){
+		
+		$this->pp = DB_PREFIX;
+		
+		$this->session = $_SESSION;
+		
+		//Новое соединение с базой
+		$this->db = mysqli_connect(DB_HOSTNAME,DB_USERNAME,DB_PASSWORD,DB_DATABASE) or die("Error db connection "); 
+		mysqli_set_charset($this->db,"utf8");
 	}
 	
 	/*
@@ -57,6 +64,9 @@ class Product
 		$sql = "INSERT INTO " . $this->pp . "product SET
 									sale = '0',
 									model = '" . $data['model'] . "',
+									model7 = '" . $data['model7'] . "',
+									model8 = '" . $data['model8'] . "',
+									model4 = '" . $data['model4'] . "',
 									moderation_id = '" . $data['moderation_id'] . "',
 									original_url = '" . $data['original_url'] . "',
 									original_code = '" . $data['original_code'] . "',
@@ -67,6 +77,7 @@ class Product
 									isbn = '" . $data['isbn'] . "',
 									mpn = '" . $data['mpn'] . "',
 									location = '" . $data['location'] . "',
+									size_group_id = '" . $data['size_group_id'] . "',
 									quantity = '" . (int)$data['quantity'] . "',
 									minimum = '" . (int)$data['minimum'] . "',
 									subtract = '" . (int)$data['subtract'] . "',
@@ -84,6 +95,8 @@ class Product
 									length_class_id = '" . (int)$data['length_class_id'] . "',
 									status = '" . (int)$data['status'] . "',
 									tax_class_id = '" . (int)$data['tax_class_id'] . "',
+									zakup = '" . (float)$data['zakup'] . "',
+									zakup_currency_id = '" . (int)$data['zakup_currency_id'] . "',
 									sort_order = '" . (int)$data['sort_order'] . "',
 									date_added = NOW()";
 		$this->db->query('SET NAMES utf8');
@@ -283,10 +296,52 @@ class Product
 		return $product_id;
 }
 
-	public function editProduct($product_id, $data) {
+	public function saveNewPrice($product_id, $data, $as_add = ''){
+		
+		$sql = 'SELECT zakup, price FROM ' . $this->pp . 'product WHERE product_id = "' . (int)$product_id . '" LIMIT 1';
+		$r = $this->db->query($sql);
+		$row = $r->fetch_assoc();
+		
+			if((float)$row['price'] != (float)$data['price'] or $as_add == 'new'){
+				$sql = 'INSERT INTO ' . $this->pp . 'product_reprice SET 
+							`date` = "'.date('Y-m-d H:i:s').'",
+							`user_id`="'.$this->session['default']['user_id'].'",
+							`product_id` = "'.$product_id.'",
+							`price` = "'.$data['price'].'";';
+				//echo $sql;
+				$this->db->query($sql);
+				
+				$sql = 'UPDATE ' . $this->pp . 'product SET price="'.(float)$data['price'].'" WHERE product_id = "' . (int)$product_id . '";';
+				$this->db->query($sql);
+		
+			}
+			
+			if(isset($data['zakup']) AND ((float)$row['zakup'] != (float)$data['zakup'] or $as_add == 'new')){
+				$sql = 'INSERT INTO ' . $this->pp . 'product_rezakup SET 
+							`date` = "'.date('Y-m-d H:i:s').'",
+							`user_id`="'.$this->session['default']['user_id'].'",
+							`product_id` = "'.$product_id.'",
+							`zakup` = "'. $data['zakup'].'";';
+				//echo $sql;
+				$this->db->query($sql);
+				
+				$sql = 'UPDATE ' . $this->pp . 'product SET zakup="'.(float)$data['zakup'].'" WHERE product_id = "' . (int)$product_id . '";';
+				$this->db->query($sql);
+
+			}
+		echo '++++++++++++++++++++++++++';
+		
+	}
 	
+	public function editProduct($product_id, $data) {
+		
+		$this->saveNewPrice($product_id, $data);
+		
 		$sql = "UPDATE " . $this->pp . "product SET
 								model = '" . $this->escape($data['model']) . "',
+								model7 = '" . $this->escape($data['model7']) . "',
+								model8 = '" . $this->escape($data['model8']) . "',
+								model4 = '" . $this->escape($data['model4']) . "',
 								sale = '0',
 								original_url = '" . $this->escape($data['original_url']) . "',
 								original_code = '" . $this->escape($data['original_code']) . "',
@@ -299,6 +354,8 @@ class Product
 								location = '" . $this->escape($data['location']) . "',
 								quantity = '" . (int)$data['quantity'] . "',
 								minimum = '" . (int)$data['minimum'] . "',
+								zakup = '" . (float)$data['zakup'] . "',
+								zakup_currency_id = '" . (int)$data['zakup_currency_id'] . "',
 								subtract = '" . (int)$data['subtract'] . "',
 								stock_status_id = '" . (int)$data['stock_status_id'] . "',
 								date_available = '" . $this->escape($data['date_available']) . "',
@@ -545,7 +602,11 @@ class Product
 
 	public function dellProduct($product_id){
 		
-		$pp = $this->pp;
+		$r = $this->db->query("SELECT opearion_id FROM " . $pp . "operation_product WHERE product_id = '" . (int)$product_id . "'");
+		
+		if($r->num_rows == 0){
+		
+			$pp = $this->pp;
 
 			$this->db->query("DELETE FROM " . $pp . "product_to_size WHERE product_id = '" . (int)$product_id . "'");
 			$this->db->query("DELETE FROM " . $pp . "product WHERE product_id = '" . (int)$product_id . "'");
@@ -567,6 +628,8 @@ class Product
 			$this->db->query("DELETE FROM " . $pp . "product_recurring WHERE product_id = " . (int)$product_id);
 			$this->db->query("DELETE FROM " . $pp . "review WHERE product_id = '" . (int)$product_id . "'");
 			$this->db->query("DELETE FROM " . $pp . "url_alias WHERE query = 'product_id=" . (int)$product_id . "'");
+			
+		}
 
 	}
 	
@@ -626,22 +689,200 @@ class Product
 		return  strtolower(trim(str_replace($rus, $lat, $str)));
 	}
 	
+	public function copyProduct($product_id) {
+		
+		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "product p
+								  LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id)
+								  WHERE p.product_id = '" . (int)$product_id . "' AND pd.language_id = '1'");
+
+		if ($query->num_rows) {
+			$data = $query->fetch_assoc();
+
+			unset($data['product_id']);
+			
+			/*
+			$data['sku'] = '';
+			$data['upc'] = '';
+			$data['viewed'] = '0';
+			$data['keyword'] = '';
+			$data['status'] = '0';
+			*/
+			$data['product_attribute'] = $this->getProductAttributes($product_id);
+			$data['product_description'] = $this->getProductDescriptions($product_id);
+			//$data['product_discount'] = $this->getProductDiscounts($product_id);
+			//$data['product_filter'] = $this->getProductFilters($product_id);
+			$data['product_image'] = $this->getProductImages($product_id);
+			//$data['product_option'] = $this->getProductOptions($product_id);
+			//$data['product_related'] = $this->getProductRelated($product_id);
+			//$data['product_reward'] = $this->getProductRewards($product_id);
+			//$data['product_special'] = $this->getProductSpecials($product_id);
+			$data['product_category'] = $this->getProductCategories($product_id);
+			//$data['product_download'] = $this->getProductDownloads($product_id);
+			$data['product_layout'] = $this->getProductLayouts($product_id);
+			$data['product_store'] = $this->getProductStores($product_id);
+			//$data['product_recurrings'] = $this->getRecurrings($product_id);
+
+			return $this->addProduct($data);
+		}
+		return false;
+	}
+	
+	public function getProductDescriptions($product_id) {
+		$product_description_data = array();
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_description WHERE product_id = '" . (int)$product_id . "'");
+
+		while ($result = $query->fetch_assoc()) {
+			$product_description_data[$result['language_id']] = array(
+				'name'             => html_entity_decode(html_entity_decode(html_entity_decode($result['name']))),
+				'description'      => html_entity_decode(html_entity_decode(html_entity_decode($result['description']))),
+				'description_detail'      => html_entity_decode(html_entity_decode(html_entity_decode($result['description_detail']))),
+				'meta_title'       => html_entity_decode(html_entity_decode(html_entity_decode($result['meta_title']))),
+				'meta_description' => html_entity_decode(html_entity_decode(html_entity_decode($result['meta_description']))),
+				'meta_keyword'     => html_entity_decode(html_entity_decode(html_entity_decode($result['meta_keyword']))),
+				'tag'              => html_entity_decode(html_entity_decode(html_entity_decode($result['tag'])))
+			);
+		}
+
+		return $product_description_data;
+	}
+	
+	public function getProductImages($product_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "' ORDER BY sort_order ASC");
+
+		return $query->fetch_assoc();
+	}
+	
+	public function getProductCategories($product_id) {
+		$product_category_data = array();
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_category WHERE product_id = '" . (int)$product_id . "'");
+
+		while ($result = $query->fetch_assoc()) {
+			$product_category_data[] = $result['category_id'];
+		}
+
+		return $product_category_data;
+	}
+	
+	public function getProductStores($product_id) {
+		$product_store_data = array();
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_store WHERE product_id = '" . (int)$product_id . "'");
+
+		while ($result = $query->fetch_assoc()) {
+			$product_store_data[] = $result['store_id'];
+		}
+
+		return $product_store_data;
+	}
+
+	public function getProductLayouts($product_id) {
+		$product_layout_data = array();
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_layout WHERE product_id = '" . (int)$product_id . "'");
+
+		while ($result = $query->fetch_assoc()) {
+			$product_layout_data[$result['store_id']] = $result['layout_id'];
+		}
+
+		return $product_layout_data;
+	}
+	
+	public function getProductAttributes($product_id) {
+		$product_attribute_data = array();
+
+		$product_attribute_query = $this->db->query("SELECT attribute_id FROM " . DB_PREFIX . "product_attribute WHERE product_id = '" . (int)$product_id . "' GROUP BY attribute_id");
+
+		while ($product_attribute = $product_attribute_query->fetch_assoc()) {
+			$product_attribute_description_data = array();
+
+			$product_attribute_description_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_attribute WHERE product_id = '" . (int)$product_id . "' AND
+																	attribute_id = '" . (int)$product_attribute['attribute_id'] . "'");
+
+			while ($product_attribute_description = $product_attribute_description_query->fetch_assoc() ) {
+				$product_attribute_description_data[$product_attribute_description['language_id']] = array('text' => $product_attribute_description['text']);
+			}
+
+			$product_attribute_data[] = array(
+				'attribute_id'                  => $product_attribute['attribute_id'],
+				'product_attribute_description' => $product_attribute_description_data
+			);
+		}
+
+		return $product_attribute_data;
+	}
+
 	public function getProducts($data = array()) {
-		$sql = "SELECT * FROM " . $this->pp . "product p
+		
+		
+		$sql = "SELECT  p.product_id
+				FROM " . $this->pp . "product p
 				LEFT JOIN " . $this->pp . "product_description pd ON (p.product_id = pd.product_id)
 				LEFT JOIN " . $this->pp . "product_to_shop p2s ON (p.product_id = p2s.product_id)
 				LEFT JOIN " . $this->pp . "product_to_category p2c ON (p.product_id = p2c.product_id)
-				LEFT JOIN " . $this->pp . "category_path cp ON (p2c.category_id = cp.category_id)
-				WHERE pd.language_id = '1'
+				LEFT JOIN " . $this->pp . "category_path cp ON (p2c.category_id = cp.category_id) ";
+	
+		if(isset($_SESSION['default']['shop_id']) AND $_SESSION['default']['shop_id'] AND isset($_SESSION['is_warehouse']) AND $_SESSION['is_warehouse']){
+		
+			$sql .= "LEFT JOIN " . $this->pp . "product_warehouse pw ON (p.product_id = pw.product_id)";	
+			
+		}
+		
+		$sql .= "WHERE pd.language_id = '1'
 				";
 
 		if (!empty($data['filter_name'])) {
 			$sql .= " AND (pd.name LIKE '%" . $this->escape(trim($data['filter_name'])) . "%'";
-			$sql .= " OR p.model LIKE '%" . $this->escape(trim($data['filter_model'])) . "%')";
+			$sql .= " OR p.model LIKE '%" . $this->escape(trim($data['filter_name'])) . "%'";
+			$sql .= " OR p.code LIKE '%" . $this->escape(trim($data['filter_name'])) . "%'";
+			
+			if(isset($_SESSION['default']['shop_id']) AND (int)$_SESSION['default']['shop_id'] > 0){
+				$sql .= " OR p.model".(int)$_SESSION['default']['shop_id']." LIKE '%" . $this->escape(trim($data['filter_name'])) . "%'";
+			}else{
+				$sql .= " OR p.model7 LIKE '%" . $this->escape(trim($data['filter_name'])) . "%'";
+				$sql .= " OR p.model8 LIKE '%" . $this->escape(trim($data['filter_name'])) . "%'";
+				$sql .= " OR p.model4 LIKE '%" . $this->escape(trim($data['filter_name'])) . "%'";
+			}
+			$sql .= ')';
 		}
 
+		if(isset($_SESSION['default']['shop_id']) AND $_SESSION['default']['shop_id'] AND isset($_SESSION['is_warehouse']) AND $_SESSION['is_warehouse']){
+			
+			$sql .= " AND (pw.quantity>0 AND pw.master_id=".(int)$_SESSION['master_id'] ." AND pw.warehouse_id IN (SELECT w.warehouse_id FROM " . $this->pp . "warehouse w WHERE w.shop_id=".(int)$_SESSION['default']['shop_id']."))";
+	
+		}
+		
 		if (!empty($data['filter_model'])) {
-			//$sql .= " AND p.model LIKE '%" . $this->escape(trim($data['filter_model'])) . "%'";
+			
+			if (isset($data['filter_is_code']) AND $data['filter_is_code'] > 0) {
+				$sql .= " AND (p.model LIKE '" . $this->escape(trim($data['filter_model'])) . "'";
+			}else{
+				$sql .= " AND (p.model LIKE '%" . $this->escape(trim($data['filter_model'])) . "%'";
+			}
+			if(isset($_SESSION['default']['shop_id']) AND (int)$_SESSION['default']['shop_id'] > 0){
+				if (isset($data['filter_is_code']) AND $data['filter_is_code'] > 0) {
+					$sql .= " OR p.model".(int)$_SESSION['default']['shop_id']." LIKE '" . $this->escape(trim($data['filter_model'])) . "'";
+				}else{
+					$sql .= " OR p.model".(int)$_SESSION['default']['shop_id']." LIKE '%" . $this->escape(trim($data['filter_model'])) . "%'";
+				}
+				
+				//die($sql);
+				
+			}else{
+				$sql .= " OR p.model7 LIKE '%" . $this->escape(trim($data['filter_model'])) . "%'";
+				$sql .= " OR p.model8 LIKE '%" . $this->escape(trim($data['filter_model'])) . "%'";
+				$sql .= " OR p.model4 LIKE '%" . $this->escape(trim($data['filter_model'])) . "%'";
+			}
+			$sql .= ')';
+		}
+
+		if (!empty($data['filter_code'])) {
+			if (isset($data['filter_is_code']) AND $data['filter_is_code'] > 0) {
+				$sql .= " AND p.code LIKE '" . $this->escape(trim($data['filter_code'])) . "'";
+			}else{
+				$sql .= " AND p.code LIKE '%" . $this->escape(trim($data['filter_code'])) . "%'";
+			}
 		}
 
 		if (isset($data['filter_price']) && !is_null($data['filter_price'])) {
@@ -671,6 +912,13 @@ class Product
 		if (isset($data['filter_category']) && !is_null($data['filter_category'])) {
 			$sql .= " AND cp.path_id = '" . (int)$data['filter_category'] . "'";
 		}
+		
+		if (isset($data['operation_find_id']) && (int)$data['operation_find_id'] > 0) {
+			$sql .= " AND p.product_id IN
+							(SELECT distinct product_id
+									FROM ".$this->pp."operation_product
+									WHERE operation_id = " . (int)$data['operation_find_id'] . ")";
+		}
 
 		$sql .= " GROUP BY p.product_id";
 
@@ -683,16 +931,23 @@ class Product
 			'p.sort_order'
 		);
 
-		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
-			$sql .= " ORDER BY " . $data['sort'];
-		} else {
-			$sql .= " ORDER BY pd.name";
-		}
+		if (isset($data['product_order'])) {
+			$sql .= " ORDER BY " . $data['product_order'];
+		}else{
 
-		if (isset($data['order']) && ($data['order'] == 'DESC')) {
-			$sql .= " DESC";
-		} else {
-			$sql .= " ASC";
+			if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+				$sql .= " ORDER BY " . $data['sort'];
+			} else {
+				$sql .= " ORDER BY pd.name";
+			}
+	
+			
+			if (isset($data['order']) && ($data['order'] == 'DESC')) {
+				$sql .= " DESC";
+			} else {
+				$sql .= " ASC";
+			}
+			
 		}
 
 		if (isset($data['start']) || isset($data['limit'])) {
@@ -707,18 +962,69 @@ class Product
 			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
 		}
 
-		//echo $sql; 
+
+//echo '<pre>'; print_r(var_dump( $data  ));
+//echo '<br><br><br>'.$sql; 
 		$query = $this->db->query($sql);
 
 		$return = array();
 		while($tmp = $query->fetch_assoc()){
-			$return[$tmp['product_id']] = $tmp;
+			$return[$tmp['product_id']] = $this->getProduct($tmp['product_id']);
+		}
+	
+		return $return;
+	}
+	
+	public function getAttributes($product_id){
+		
+		$sql = 'SELECT
+						A.attribute_id,
+						A.attribute_group_id,
+						A.index,
+						AD.name,
+						AGD.name AS group_name
+						
+					FROM `'.$this->pp.'product_attribute` PA
+					LEFT JOIN `'.$this->pp.'attribute` A ON A.attribute_id = PA.attribute_id
+					LEFT JOIN `'.$this->pp.'attribute_description` AD ON A.attribute_id = AD.attribute_id
+					LEFT JOIN `'.$this->pp.'attribute_group` AG ON A.attribute_group_id = AG.attribute_group_id
+					LEFT JOIN `'.$this->pp.'attribute_group_description` AGD ON AGD.attribute_group_id = AG.attribute_group_id
+					WHERE A.`enable` = "1" AND PA.product_id = "'.$product_id.'"
+					ORDER BY AG.sort_order, AGD.name, A.sort_order, AD.name;';
+		
+		//echo $sql;
+		
+		$r = $this->db->query($sql) or die($sql);
+		
+		$return = array();
+		if($r->num_rows > 0){
+			while($row = $r->fetch_assoc()){
+				$return[$row['attribute_id']] = $row;
+				
+			}
 		}
 		
 		return $return;
+		
+	}
+	
+	public function getSizeGroup($product_id) {
+		$sql = "SELECT DISTINCT size_group_id
+				FROM " . $this->pp . "product p
+				WHERE p.product_id = '" . (int)$product_id . "' AND p.status = '1' ;";
+	
+		$query = $this->db->query($sql) or die('lffl ase9 0 '. $sql);
+		
+		if ($query->num_rows) {
+			$row = $query->fetch_assoc();
+			return (int)$row['size_group_id'];
+		}
+		
+		return 0;
+		
 	}
 	public function getProduct($product_id) {
-		$sql = "SELECT DISTINCT *, pd.name AS name, p.image, m.name AS manufacturer,
+		$sql = "SELECT DISTINCT *, pd.name AS name, p.image, md.name AS manufacturer,
 					(SELECT price FROM " . $this->pp . "product_discount pd2
 							WHERE pd2.product_id = p.product_id AND pd2.quantity = '1' AND
 									((pd2.date_start = '0000-00-00' OR pd2.date_start < NOW()) AND
@@ -739,11 +1045,18 @@ class Product
 							WHERE p2c.product_id = p.product_id LIMIT 0,1) AS category_id,
 					(SELECT sh.shop_id FROM " . $this->pp . "product_to_shop sh
 							WHERE sh.product_id = p.product_id LIMIT 0,1) AS shop_id,
-					p.sort_order
+					p.sort_order,
+					p.code,
+					(SELECT op.price_invert FROM `".$this->pp."operation_product` op
+					WHERE op.product_id=p.product_id ORDER BY operation_id DESC LIMIT 1) AS last_price_invert,
+					(SELECT op1.zakup FROM `".$this->pp."operation_product` op1
+					WHERE op1.product_id=p.product_id AND op1.type_id='1'
+					ORDER BY op1.operation_id DESC LIMIT 1) AS last_zakup
 				FROM " . $this->pp . "product p
 				LEFT JOIN " . $this->pp . "product_description pd ON (p.product_id = pd.product_id)
 				LEFT JOIN " . $this->pp . "product_to_store p2s ON (p.product_id = p2s.product_id)
 				LEFT JOIN " . $this->pp . "manufacturer m ON (p.manufacturer_id = m.manufacturer_id)
+				LEFT JOIN " . $this->pp . "manufacturer_description md ON (md.manufacturer_id = m.manufacturer_id AND md.language_id = '1')
 				WHERE p.product_id = '" . (int)$product_id . "' AND
 						p.status = '1' AND
 						p.date_available <= NOW()
@@ -754,6 +1067,8 @@ class Product
 		if ($query->num_rows) {
 			$row = $query->fetch_assoc();
 			
+			//die($row['last_zakup']);
+			
 			$return = array(
 				'product_id'       => $row['product_id'],
 				'shop_id'       	=> $row['shop_id'],
@@ -762,18 +1077,28 @@ class Product
 				'description'      => $row['description'],
 				'moderation_id'      => $row['moderation_id'],
 				'original_url'      => $row['original_url'],
+				'size_group_id'      => $row['size_group_id'],
 				'original_code'      => $row['original_code'],
 				'meta_title'       => $row['meta_title'],
 				'meta_description' => $row['meta_description'],
 				'meta_keyword'     => $row['meta_keyword'],
 				'tag'              => $row['tag'],
 				'model'            => $row['model'],
+				'model7'            => $row['model7'],
+				'model8'            => $row['model8'],
+				'model4'            => $row['model4'],
+				'last_price_invert'            => ($row['last_price_invert']) ? $row['last_price_invert'] : $row['price'],
+				'last_zakup'            => ($row['last_zakup']) ? $row['last_zakup'] : $row['zakup'],
+				'zakup'              => $row['zakup'],
 				'sku'              => $row['sku'],
+				'code'              => $row['code'],
 				'upc'              => $row['upc'],
 				'ean'              => $row['ean'],
 				'jan'              => $row['jan'],
 				'isbn'             => $row['isbn'],
 				'mpn'              => $row['mpn'],
+				'zakup'             => $row['zakup'],
+				'zakup_currency_id' => $row['zakup_currency_id'],
 				'location'         => $row['location'],
 				'quantity'         => $row['quantity'],
 				'stock_status'     => $row['stock_status'],
@@ -835,7 +1160,8 @@ class Product
 
 		if (!empty($data['filter_name'])) {
 			$sql .= " AND (pd.name LIKE '%" . $this->escape(trim($data['filter_name'])) . "%'";
-			$sql .= " OR p.model LIKE '%" . $this->escape(trim($data['filter_model'])) . "%')";
+			$sql .= " OR p.model LIKE '%" . $this->escape(trim($data['filter_name'])) . "%'";
+			$sql .= " OR p.code LIKE '%" . $this->escape(trim($data['filter_name'])) . "%')";
 		}
 
 		if (!empty($data['filter_model'])) {

@@ -194,7 +194,9 @@
                 <!-- Фильтры. START -->
 
                 <div class="b-category-title">
+                    <?php if(isset($categories['header'])){ ?>
                     <h1><?php echo $categories['header']; ?></h1>
+                    <?php } ?>
                 </div>
                 <div class="b-refinement_dropdown">
                     <span class="b-refinement_dropdown-title"><?php echo $text_filter; ?></span>
@@ -216,12 +218,12 @@ function print_children_list ( $list, $selected_attributes_alias, $category_alia
             $edit = '';
            
            
-            $item['keyword'] = str_replace('-','@',$item['keyword']); 
+            //$item['keyword'] = str_replace('-','@',$item['keyword']); 
             if ( strlen($selected_attributes_alias) > 0 AND strlen($item['keyword']) > 0 AND strpos($selected_attributes_alias, $item['keyword']) !== false) { 
                 echo $edit.'<a class="b-refinement-link b-refinement-link--active" href="'.str_replace($item['keyword'].'-','',$selected_attributes_alias).$category_alias.'">'.$item['name'].'</a>';
             } else {
                 if(!isset($manufacturer_main_category)){ 
-                    echo $edit.'<a class="b-refinement-link " href="/'.$language_href.$item['keyword'].'-'.$selected_attributes_alias.$category_alias.'">'.$item['name'].'</a>';
+                    echo $edit.'<a class="b-refinement-link " href="/'.$language_href.$item['keyword'].'">'.$item['name'].'</a>';
                 }else{
                     echo $edit.'<a class="b-refinement-link " href="/'.$language_href.$selected_attributes_alias.'-'.$item['keyword'].'">'.$item['name'].'</a>';
                 }
@@ -271,6 +273,8 @@ function print_children_filter_list ( $list, $selected_attributes_alias, $catego
                                         <div class="b-refinement-sub_title js-mob-filter-popup-link"><?php echo $text_category; ?></div>
                                         <div class="js-scrollbar scrollbar-light b-refinement-ul js-mob-filter-popup h-mob-hidden">
                                             <?php if ( isset($subcategories) AND count($subcategories) > 0) {
+                                               
+                                                
                                                 print_children_list($subcategories, $selected_attributes_alias, $category_alias, $language_href, 0);
                                             } ?>
                                         </div>
@@ -417,6 +421,13 @@ function print_children_filter_list ( $list, $selected_attributes_alias, $catego
 
                         <?php foreach ($products as $product) { ?>
                         <div class="b-product_tile js-product_tile b-product_tile--1" data-itemid="F61D5TFMME1S8031" data-product-name="<?php echo $product['name']; ?>" id="4982d3b862873672c1ef6a361b">
+                            <?php if (isset($_SESSION['default']) && isset($_SESSION['default']['user_id'])){ ?>
+                                <ul>
+                                <li><a style="color:red;" href="/admin/index.php?route=catalog/product/edit&token=<?php echo $_SESSION['default']['token']; ?>&product_id=<?php echo  $product['product_id'] ?>" target="_blank">Редактировать</a></li>
+                                </ul>
+                            <?php } ?>
+                            
+                            
                             <div class="b-product-hover_box js-product-hover_box">
                                 <a class="js-producttile_link b-product_image-wrapper" href="/<?php echo $language_href; ?><?php echo $product['href']; ?>" title="<?php echo $product['name']; ?>">
                                 <img alt="<?php echo $product['name']; ?>" class="js-producttile_image b-product_image" src="<?php echo $product['thumb']; ?>" title="<?php echo $product['name']; ?>" data-altimage="<?php echo $product['thumb_second']; ?>" >

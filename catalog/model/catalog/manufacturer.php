@@ -120,8 +120,9 @@ class ModelCatalogManufacturer extends Model {
 			$manufacturer_data = $this->cache->get('manufacturer.' . (int)$this->config->get('config_store_id'));
 
 			if (!$manufacturer_data) {
-				$sql = "SELECT m.*, ua.keyword FROM " . DB_PREFIX . "manufacturer m
+				$sql = "SELECT md.*, m.*, ua.keyword FROM " . DB_PREFIX . "manufacturer m
 									LEFT JOIN " . DB_PREFIX . "url_alias ua ON ua.query = CONCAT('manufacturer_id=',m.manufacturer_id)
+									LEFT JOIN " . DB_PREFIX . "manufacturer_description md ON md.manufacturer_id = m.manufacturer_id
 									WHERE `enable`='1' 
 									ORDER BY name";
 									

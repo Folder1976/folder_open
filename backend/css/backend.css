@@ -186,6 +186,11 @@ div.form {
     float: left;
 }
 
+input:focus{
+    background-color: #4F0000;
+    color: white;
+}
+
 #content div.filter_form input[type=text] {
    font-size:12px;
    padding:2px 2px;
@@ -463,6 +468,13 @@ a, a:hover, a:active, a:visited {
     color: black;
 }
 
+.msg_note{
+    font-style: italic;
+    color: #AF7800;
+    font-size: 12px;
+    margin-left: 30px;
+}
+
 div.operation { margin-top: 10px; }
 
 div.operation a {
@@ -516,16 +528,22 @@ div.operation a.left {
     line-height: 14px;
 }
 
+.right{
+    text-align: right;
+}
 
 a img { border: 0; }
 
 div.table_body {
 	margin-top: 20px;
+    width: 100%;
+    position: absolute;
 }
 
 div.table_body table {
     border-collapse: collapse;
-    width: 100%;
+    width: 96%;
+    margin: auto;
 }
 
 div.table_body table th, div.table_body table td {
@@ -544,6 +562,10 @@ div.table_body table td {
     vertical-align: middle;
 }
 
+.link_table_row:hover{
+    cursor: pointer;
+    background-color: #D1EDFC;
+}
 
 img#contentblocker {
     background-attachment:fixed;

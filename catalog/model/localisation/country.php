@@ -25,7 +25,7 @@ class ModelLocalisationCountry extends Model {
 		if (!$country_data) {
 			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "country C
 									  LEFT JOIN " . DB_PREFIX . "country_description CD ON (C.country_id = CD.country_id)
-									  WHERE C.status = '1' AND
+									  WHERE C.enable = '1' AND
 									  CD.language_id = '" . (int)$this->config->get('config_language_id') . "'
 									  ORDER BY CD.name ASC");
 

@@ -4837,6 +4837,7 @@ body .ui-tabs .ui-tabs-panel {
 }
 
 .l-primary_content {
+    margin-top:35px;
     padding: 0 2%;
 }
 

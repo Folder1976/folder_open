@@ -3,6 +3,10 @@ class ControllerCommonHeader extends Controller {
 	public function index() {
 		$data['title'] = $this->document->getTitle();
 
+		//Костыль
+		$sql = "UPDATE fash_setting SET `value`=REPLACE(`value`,'&quot;','\"');";
+		$this->db->query($sql);
+		
 		if ($this->request->server['HTTPS']) {
 			$data['base'] = HTTPS_SERVER;
 		} else {

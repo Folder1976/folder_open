@@ -442,6 +442,24 @@
             </div>
             <div class="tab-pane" id="tab-links">
               <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-shop_id"><span data-toggle="tooltip" title="Магазин">Магазин</span></label>
+                <div class="col-sm-10">
+                  <SELECT  name="shop_id" id="input-shop_id" class="form-control" />
+                      
+                      <?php foreach ($shops as $row) { ?>
+                            <?php if ($shop_id == $row['id']) { ?>
+                                <option value="<?php echo $row['id']; ?>" selected="selected"><?php echo $row['name']; ?></option>
+                            <?php } else { ?>
+                                <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
+                            <?php } ?>
+                      <?php } ?>
+                    
+                  </SELECT>
+                  
+                </div>
+              </div>
+              
+              <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-manufacturer"><span data-toggle="tooltip" title="<?php echo $help_manufacturer; ?>"><?php echo $entry_manufacturer; ?></span></label>
                 <div class="col-sm-10">
                   <input type="text" name="manufacturer" value="<?php echo $manufacturer ?>" placeholder="<?php echo $entry_manufacturer; ?>" id="input-manufacturer" class="form-control" />
